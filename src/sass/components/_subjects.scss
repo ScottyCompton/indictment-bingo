@@ -1,0 +1,28 @@
+.subjects {
+    max-width: 600px;
+    margin: 0 auto;
+    margin-top: 4.0rem;
+    -webkit-box-shadow: 0px 10px 13px -7px #000000, 5px 5px 12px 3px rgba(0, 0, 0, 0);
+    box-shadow: 0px 10px 13px -7px #000000, 5px 5px 12px 3px rgba(0, 0, 0, 0);
+    &_wrapper {
+        padding-top: 0;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        margin: 0 auto;
+    }
+    &_nav {
+        text-align: center;
+    }
+    &_title {
+        font-weight: bolder;
+        color: darkred;
+        margin: 0 auto;
+        font-size: 3.0rem;
+    }
+    &_subheading {
+        font-weight: bolder;
+        letter-spacing: .9rem;
+        text-align: center;
+        color: darkred;
+    }
+}
