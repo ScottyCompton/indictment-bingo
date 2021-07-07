@@ -4,3 +4,37 @@ body,
     padding: 0;
     margin: 0;
 }
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    background-image: url('../images/main_bkg.jpg');
+    background-size: contain;
+    background-repeat: repeat;
+    background-attachment: fixed;
+}
+
+.fadeable {
+    opacity: 0;
+    transition: all 0.5s ease-in;
+}
+
+.fade-out {
+    opacity: 0;
+}
+
+.fade-in {
+    opacity: 1;
+}
+
+.big-button {
+    font-size: $btn-font-size-mobile;
+    font-weight: bolder;
+    @media (min-width: 600px) {
+        font-size: $btn-font-size-std
+    }
+}

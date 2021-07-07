@@ -7,6 +7,7 @@ const SubjectTile:React.FC<SubjectTileProps> = (props:SubjectTileProps) => {
     const {subjectId, subjectTitle, subjectImg, subjectDesc, bingoDate} = props.subjectData;
     const [imgToShow, setImgToShow] = useState('nothing.png');
     const [imgClass, setImgClass] = useState('subject_tile-img');
+
     useEffect(() => {
         if(subjectId !== -1) {
             setImgToShow(`roller${Math.floor(Math.random() * 6)+1}.gif`);
@@ -18,6 +19,7 @@ const SubjectTile:React.FC<SubjectTileProps> = (props:SubjectTileProps) => {
                 } else {
                     setImgClass('subject_tile-img');
                 }
+                props.incrementCounter(subjectId);
             }, Math.floor(Math.random() * 15000))
         } else {
             if(subjectImg.indexOf('roller') !== -1) {

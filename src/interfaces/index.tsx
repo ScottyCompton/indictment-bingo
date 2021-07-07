@@ -3,7 +3,7 @@ export interface Subject {
     subjectTitle: string;
     subjectImg:string;
     subjectDesc: string;
-    bingoDate: string;
+    bingoDate: string | null;
 }
 
 export interface NonDataSubject {
@@ -13,5 +13,23 @@ export interface NonDataSubject {
 export interface SubjectTileProps {
     subjectData: Subject;
     idx: number;
+    incrementCounter: (subjectId: number) => void;
+}
+
+export interface InfoScreenProps {
+    onNav: (navState:string) => void;
+}
+
+export interface SplashScreenProps {
+    onNav: (navState:string) => void;
+}
+
+export interface PreLoadScreenProps {
+    onNav: (navState:string) => void;    
+}
+
+export interface SubjectScreenProps {
+    onNav: (navState:string) => void;    
+
 }
 

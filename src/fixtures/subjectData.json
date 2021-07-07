@@ -25,7 +25,7 @@
             "subjectTitle": "1000 Capital Rioters",
             "subjectImg": "capitol_rioters.jpg",
             "subjectDesc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eget tempor velit. Maecenas augue dolor, scelerisque id lacus id, feugiat vehicula tortor. Suspendisse condimentum libero vel neque condimentum bibendum. Nullam eleifend aliquam metus. Vestibulum molestie ligula quis nisi venenatis porta. Nam ut volutpat urna, eget condimentum urna. Cras eu tincidunt sem.",
-            "bingoDate": null
+            "bingoDate": "1-20-2020"
         },
         {
             "subjectId": 4,
@@ -156,7 +156,15 @@
             "subjectImg": "jim_jordan.jpg",
             "subjectDesc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eget tempor velit. Maecenas augue dolor, scelerisque id lacus id, feugiat vehicula tortor. Suspendisse condimentum libero vel neque condimentum bibendum. Nullam eleifend aliquam metus. Vestibulum molestie ligula quis nisi venenatis porta. Nam ut volutpat urna, eget condimentum urna. Cras eu tincidunt sem.",
             "bingoDate": null
+        },
+        {
+            "subjectId": 22,
+            "subjectTitle": "Jared Kuchner",
+            "subjectImg": "jared_kushner.jpg",
+            "subjectDesc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eget tempor velit. Maecenas augue dolor, scelerisque id lacus id, feugiat vehicula tortor. Suspendisse condimentum libero vel neque condimentum bibendum. Nullam eleifend aliquam metus. Vestibulum molestie ligula quis nisi venenatis porta. Nam ut volutpat urna, eget condimentum urna. Cras eu tincidunt sem.",
+            "bingoDate": null
         }
+
 
 
 

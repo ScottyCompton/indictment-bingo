@@ -2,7 +2,11 @@
 @import "node_modules/bootswatch/dist/flatly/variables";
 @import "node_modules/bootstrap/scss/bootstrap";
 @import "node_modules/bootswatch/dist/flatly/bootswatch";
+@import "variables/variables";
 @import "base/base";
 @import "components/app";
 @import "components/subjects";
 @import "components/subject_tile";
+@import "components/splash_screen";
+@import "components/info_screen";
+@import "components/preload_screen";

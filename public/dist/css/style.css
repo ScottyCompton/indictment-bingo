@@ -7561,6 +7561,34 @@ body,
   padding: 0;
   margin: 0; }
 
+html,
+body {
+  width: 100%;
+  height: 100%; }
+
+body {
+  background-image: url("../images/main_bkg.jpg");
+  background-size: contain;
+  background-repeat: repeat;
+  background-attachment: fixed; }
+
+.fadeable {
+  opacity: 0;
+  transition: all 0.5s ease-in; }
+
+.fade-out {
+  opacity: 0; }
+
+.fade-in {
+  opacity: 1; }
+
+.big-button {
+  font-size: 1rem;
+  font-weight: bolder; }
+  @media (min-width: 600px) {
+    .big-button {
+      font-size: 2rem; } }
+
 .app {
   max-width: 1000px;
   width: 100%;
@@ -7568,16 +7596,21 @@ body,
   position: relative; }
 
 .subjects {
-  max-width: 600px;
+  max-width: 700px;
   margin: 0 auto;
-  margin-top: 4.0rem;
+  margin-top: 2vh;
+  width: 100%;
   -webkit-box-shadow: 0px 10px 13px -7px #000000, 5px 5px 12px 3px rgba(0, 0, 0, 0);
   box-shadow: 0px 10px 13px -7px #000000, 5px 5px 12px 3px rgba(0, 0, 0, 0); }
   .subjects_wrapper {
+    background-color: #c0c0c0;
     padding-top: 0;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    margin: 0 auto; }
+    margin: 0 auto;
+    max-width: 600px;
+    width: 100%;
+    padding: .5rem; }
   .subjects_nav {
     text-align: center; }
   .subjects_title {
@@ -7595,7 +7628,7 @@ body,
   background-color: #dfdfdf;
   box-sizing: border-box;
   opacity: 1;
-  margin: 2px; }
+  margin: .2rem; }
   .subject_tile-img {
     width: 100%;
     height: auto;
@@ -7605,3 +7638,45 @@ body,
     .subject_tile-img__active {
       background-color: red;
       border-color: red; }
+
+.splash-screen__container {
+  position: relative;
+  max-width: 700px;
+  margin: 0 auto;
+  transform: translateY(25%);
+  top: 0px;
+  width: 100%;
+  text-align: center; }
+
+.splash-screen__img {
+  width: 100%;
+  height: 0px;
+  padding-top: 66%;
+  background-image: url("../images/splash_screen.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin: 0 auto;
+  position: relative;
+  margin-bottom: 10px; }
+
+.info-screen {
+  transform: translateY(25%);
+  position: relative;
+  max-width: 700px;
+  width: 100%;
+  margin: 0 auto; }
+
+.preload-screen {
+  transform: translateY(50%);
+  position: relative;
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto; }
+  .preload-screen__btn {
+    font-size: 2rem;
+    font-weight: bolder;
+    margin-top: 3rem; }
+  .preload-screen__progress-bar {
+    margin: 2rem; }
+  .preload-screen h3, .preload-screen .h3 {
+    text-align: center; }
