@@ -1,37 +1,60 @@
-import {SubjectTileProps} from '../interfaces';
+import {SubjectTileProps, Subject} from '../interfaces';
 import {useState, useEffect} from 'react';
-
-
+import {useAppSelector, useAppDispatch} from '../hooks';
+import {app_updateCompletedTileCount} from '../appData'
 
 const SubjectTile:React.FC<SubjectTileProps> = (props:SubjectTileProps) => {
-    const {subjectId, subjectTitle, subjectImg, subjectDesc, bingoDate} = props.subjectData;
-    const [imgToShow, setImgToShow] = useState('nothing.png');
-    const [imgClass, setImgClass] = useState('subject_tile-img');
+    const dispatch = useAppDispatch();
+    const {idx, rollerImgId} = props;
+
+    const [subjectData, setSubjectData] = useState<Subject>({
+        subjectId: '-1',
+        subjectTitle: null, 
+        subjectDesc: null,
+        subjectImg: `roller${rollerImgId}.gif`,
+        bingoDate: null,
+        imgClass: 'subject_tile-img subject_tile-img__rolling'
+    })
+    
+    const selectedSubjects = useAppSelector(state => state.appData.selectedSubjects);
+    const subjects = useAppSelector(state => state.appData.subjects);
+
+
+
+
 
     useEffect(() => {
-        if(subjectId !== -1) {
-            setImgToShow(`roller${Math.floor(Math.random() * 6)+1}.gif`);
-            setImgClass('subject_tile-img subject_tile-img__rolling')
+
+        if(selectedSubjects.length !== 0) {
             setTimeout(() => {
-                setImgToShow(subjectImg);
-                if(bingoDate !== null) {
-                    setImgClass('subject_tile-img subject_tile-img__active')
-                } else {
-                    setImgClass('subject_tile-img');
+
+                let selectedSubject:Subject | undefined = subjects.find(item => item.subjectId === selectedSubjects[idx].subjectId)
+    
+                if(selectedSubject) {
+                    const {subjectId, subjectTitle, subjectDesc, bingoDate, subjectImg} = selectedSubject;
+    
+                    setSubjectData({
+                        subjectId,
+                        subjectTitle,
+                        subjectDesc,
+                        subjectImg,
+                        bingoDate,
+                        imgClass: bingoDate !== null ? 'subject_tile-img subject_tile-img__active' : 'subject_tile-img subject_tile-img'
+                    })
+                    dispatch(app_updateCompletedTileCount());
                 }
-                props.incrementCounter(subjectId);
+    
             }, Math.floor(Math.random() * 15000))
-        } else {
-            if(subjectImg.indexOf('roller') !== -1) {
-                setImgToShow(subjectImg);
-            }
+
         }
-    }, [subjectImg, subjectId, bingoDate])
+
+
+    }, [idx, selectedSubjects, subjects, dispatch])
 
 
     return (
         <div className="subject_tile">
-            <img alt={subjectTitle} src={`../dist/images/subjects/${imgToShow}`} className={imgClass} />
+            <img alt={subjectData.subjectTitle + ''} src={`../dist/images/subjects/${subjectData.subjectImg}`} className={subjectData.imgClass} />
         </div>
     );
 }

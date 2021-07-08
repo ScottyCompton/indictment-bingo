@@ -1,35 +1,46 @@
+
 export interface Subject {
-    subjectId: number;
-    subjectTitle: string;
+    subjectId: string;
+    subjectTitle?: string | null;
     subjectImg:string;
-    subjectDesc: string;
-    bingoDate: string | null;
+    subjectDesc?: string | null;
+    bingoDate?: string | null;
+    rollerImgId?: number;
+    imgClass?: string;
 }
+
+
 
 export interface NonDataSubject {
     subjectImg: string;
 }
 
 export interface SubjectTileProps {
-    subjectData: Subject;
     idx: number;
-    incrementCounter: (subjectId: number) => void;
+    rollerImgId: number | undefined;
 }
 
-export interface InfoScreenProps {
-    onNav: (navState:string) => void;
+
+export interface SelectedSubject {
+    subjectId: string | number;
 }
 
-export interface SplashScreenProps {
-    onNav: (navState:string) => void;
+export interface AppDataState {
+    subjects: Subject[];
+    selectedSubjects: SelectedSubject[];
+    uiState: {
+        screen: string;
+        isLoading: boolean;
+        tileDisplayCount: number;
+        rollComplete: boolean;
+    }
 }
 
-export interface PreLoadScreenProps {
-    onNav: (navState:string) => void;    
+
+export interface SubjectUpdatePayload {
+    subjects: Subject[];
 }
 
-export interface SubjectScreenProps {
-    onNav: (navState:string) => void;    
-
+export interface PreloadScreenProps {
+    handleClick: () => void;
 }
-

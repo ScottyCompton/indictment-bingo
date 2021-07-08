@@ -1,84 +1,81 @@
 import {useState, useEffect, useCallback} from 'react';
-import subjectData from '../fixtures/subjectData.json';
-import SubjectTile from '../components/SubjectTile';
+import SubjectTile from './SubjectTile';
 import {v4 as uuid} from 'uuid';
-import {SubjectScreenProps} from '../interfaces';
-import PlayAgainButton from '../components/PlayAgainButton'
+import {Subject} from '../interfaces';
+import PlayAgainButton from './PlayAgainButton'
+import {useAppDispatch, useAppSelector} from '../hooks';
+import {app_updateSelected} from '../appData';
 
 
-const Subjects:React.FC<SubjectScreenProps> = (props:SubjectScreenProps) => {
-    const {subjects} = subjectData;
-    const [arySubjects, setSubjectData] = useState(subjects);
+
+const Subjects:React.FC = () => {
+    const [aryTiles, setTileData] = useState<Subject[]>([]);
     const [rootClass, setRootClass] = useState('subjects fadeable fade-out');
-    const [btnVisible, setBtnVisible] = useState(false)
-    const arrComplete: any = [];
-
+    const dispatch = useAppDispatch();
+    const subjects = useAppSelector(state => state.appData.subjects);
+    
     const loadTiles = useCallback(() => {
-        let aryOut = arySubjects.slice();
+        setRootClass('subjects fadeable fade-in');
+
         let currIdx = 0;
         let nextIdx = 0;
-        arySubjects.forEach((item, idx) => {
+
+        let aryOut:any[] = [];
+        for(let i = 0; i < subjects.length; i++) {
             while (nextIdx === currIdx) {
                 nextIdx = Math.floor(Math.random() * 6)+1;
             }
-            const rollerImg = `roller${nextIdx}.gif`
-            aryOut.splice(idx, 1, {...arySubjects[idx], subjectImg: rollerImg})
+            aryOut.push({subjectId: "-1", rollerImgId: nextIdx})
             currIdx = nextIdx;
-        })
-
-        setSubjectData(aryOut);
-    },[arySubjects])
-
-
-
-
-    const incrementComplete = (subjectId:number) => {
-        if(!arrComplete.includes(subjectId)) {
-            arrComplete.push(subjectId);
-
-            if(arrComplete.length === subjects.length) {
-                setBtnVisible(true);
-            }            
         }
-        
-    }
+
+
+        setTileData(aryOut);
+    },[subjects])
 
 
 
-    const execRoll = () => {
-            let selectedIndex = -1;
-            const arySelected:any[] = [];
 
-            while((arySelected.length < subjects.length)) {
-                selectedIndex = Math.floor(Math.random() * subjects.length);
-                let nextSubject = subjects[selectedIndex];      // pull a random subject out of the subjects array
-                
-                if (arySelected.findIndex(item =>  item.subjectId === nextSubject.subjectId) === -1) {
-                    arySelected.push(nextSubject);
+
+    const execRoll = useCallback(() => {
+        let selectedIndex = -1;
+        const arySelected:any[] = [];
+
+        setTimeout(() => {
+            setTimeout(() => {
+
+                while((arySelected.length < subjects.length)) {
+                    selectedIndex = Math.floor(Math.random() * subjects.length);
+                    let nextSubject = subjects[selectedIndex];      // pull a random subject out of the subjects array
+                    
+                    if (arySelected.findIndex(item =>  item.subjectId === nextSubject.subjectId) === -1) {
+                        arySelected.push(nextSubject);
+                    }
                 }
-            }
-            setSubjectData(arySelected);
-    }
+                dispatch(app_updateSelected(arySelected))   // here we have an arra of subjectId's                        
+            }, 750)
+        }, 500)        
+    }, [dispatch, subjects])
+
+
 
     useEffect(() => {
-            loadTiles();
-            setTimeout(() => {
-                setRootClass('subjects fadeable fade-in');
-                setTimeout(() => {
-                    execRoll();
-                }, 750)
-            }, 500)
-    }, [])
+            loadTiles();    
+            execRoll();
+    }, [loadTiles, execRoll])
 
   
 
-    const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        e.preventDefault();
-        setRootClass('subjects fadeable fade-out');
-        setTimeout(() => {
-            props.onNav('STEP1');
-        },750)    
+    // const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    //     e.preventDefault();
+    //     setRootClass('subjects fadeable fade-out');                
+    //     dispatch(app_reeinitialize());
+    // }
+
+    const handleClick = () => {
+        setRootClass('subjects fadeable fade-out');                
     }
+
 
 
     return (
@@ -91,13 +88,16 @@ const Subjects:React.FC<SubjectScreenProps> = (props:SubjectScreenProps) => {
                         <div className="subjects_title">N</div>
                         <div className="subjects_title">G</div>
                         <div className="subjects_title">O</div>
-                        {arySubjects && arySubjects.map((subject,idx) => {
-                        return <SubjectTile key={uuid()} idx={idx} incrementCounter={incrementComplete}  subjectData={subject} />
+                        {aryTiles && aryTiles.map((item: Subject, idx:number) => {
+                            return <SubjectTile key={uuid()} idx={idx}  rollerImgId={item.rollerImgId} />
+                        
                         })}
                     </div>
                 </div>
             </div>
-            <PlayAgainButton handleClick={handleClick} showButton={btnVisible} />
+            <div>
+            <PlayAgainButton handleClick={handleClick} />
+        </div>
         </div>
                 
     )

@@ -1,8 +1,11 @@
-import { SplashScreenProps } from "../interfaces";
 import {useState, useEffect} from 'react';
+import {useAppDispatch} from '../hooks';
+import {app_navigate} from '../appData';
 
-const SplashScreen:React.FC<SplashScreenProps> = (props: SplashScreenProps) => {
+
+const SplashScreen:React.FC = () => {
     const [rootClass, setRootClass] = useState('splash-screen fadeable');
+    const dispatch = useAppDispatch()
 
     useEffect(() => {
         setRootClass('splash-screen fade-in fadeable');
@@ -11,9 +14,7 @@ const SplashScreen:React.FC<SplashScreenProps> = (props: SplashScreenProps) => {
     const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault();
         setRootClass('splash-screen fade-out fadeable');
-        setTimeout(() => {
-            props.onNav('STEP2');
-        },750)    
+        dispatch(app_navigate('STEP_2'));   
     }
 
 

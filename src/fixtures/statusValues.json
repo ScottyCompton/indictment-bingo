@@ -1,0 +1,35 @@
+{
+    "statusValues": [{
+            "statusText": "Interviewing Witnessses",
+            "statusVal": 10
+        },
+        {
+            "statusText": "Aquiring Tax Returns",
+            "statusVal": 22
+        },
+        {
+            "statusText": "Gathering Evidence",
+            "statusVal": 34
+        },
+        {
+            "statusText": "Informing The Attorney General",
+            "statusVal": 56
+        },
+        {
+            "statusText": "Conducting Grand Jury Hearings",
+            "statusVal": 72
+        },
+        {
+            "statusText": "Filing Indictments",
+            "statusVal": 85
+        },
+        {
+            "statusText": "Coordinating with the FBI",
+            "statusVal": 96
+        },
+        {
+            "statusText": "Indictments Are Ready!",
+            "statusVal": 100
+        }
+    ]
+}

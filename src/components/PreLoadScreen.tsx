@@ -1,81 +1,51 @@
-import {useState, useEffect} from 'react';
-import {PreLoadScreenProps} from '../interfaces';
+import {useState, useEffect, useCallback} from 'react';
+import statusVals from '../fixtures/statusValues.json';
+import {useAppDispatch} from '../hooks';
+import {app_navigate} from '../appData';
+import {PreloadScreenProps} from '../interfaces';
 
-
-const PreLoadScreen:React.FC<PreLoadScreenProps> = (props:PreLoadScreenProps) => {
+const PreLoadScreen:React.FC<PreloadScreenProps> = (props:PreloadScreenProps) => {
     const [rootClass, setRootClass] = useState('preload-screen fade-out fadeable');
     const [status, setStatus] = useState({statusVal: 0, statusText: 'Here we go...'});
     const [loaded, setLoaded] = useState(false);
-
-    const statusVals = [
-        {
-            statusText: 'Interviewing Witnessses',
-            statusVal: 10
-        },
-        {
-            statusText: 'Aquiring Tax Returns',
-            statusVal: 22,
-        },        
-        {
-            statusText: 'Gathering Evidence',
-            statusVal: 34
-        },
-        {
-            statusText: 'Informing The Attorney General',
-            statusVal: 56
-        },
-        {
-            statusText: 'Conducting Grand Jury Hearings',
-            statusVal: 72
-        },
-        {
-            statusText: 'Filing Indictments',
-            statusVal: 85
-        },
-        {
-            statusText: 'Coordinating with the FBI',
-            statusVal: 96
-        },
-        {
-            statusText: 'BINGO!',
-            statusVal: 100,
-            done: true
-        },
-
-    ]
+    const {statusValues} = statusVals;
+    const dispatch = useAppDispatch();
 
 
-
-    useEffect(() => {
+    const doPreload = useCallback(() => {
         setLoaded(false);
         setRootClass('preload-screen fade-in fadeable');
 
-        const updateStatus = (status:{statusText: string, statusVal: number}, idx:number) => {
+        const updateStatus = (status: {statusText: string, statusVal: number}, idx:number) => {
             setStatus((prevState) => {
-                if(idx === statusVals.length-1) {
+                if(idx === statusValues.length-1) {
                     setLoaded(true);
                 }
                 return status;              
             })
-
-            
         }
 
-        statusVals.forEach((item, idx) => {
+        statusValues.forEach((item, idx) => {
             setTimeout(() => {
                 updateStatus(item, idx)
             }, idx*2000)
         })
+    }, [statusValues])
 
-    },[])   
+
+
+    useEffect(() => {
+        doPreload()
+    }, [doPreload])   
 
 
     const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault();
-        setRootClass('preload-screen fade-out fadeable');
         setTimeout(() => {
-            props.onNav('STEP4')
-        },750)        
+            props.handleClick();
+        }, 750)
+        setRootClass('preload-screen fade-out fadeable');
+        dispatch(app_navigate('STEP_4'));      
     }
 
     return (
@@ -89,8 +59,8 @@ const PreLoadScreen:React.FC<PreLoadScreenProps> = (props:PreLoadScreenProps) =>
                 </div>
             </div>
 
-            {loaded && <button id="btnLoadBingo" onClick={handleClick} className="btn btn-success form-control big-button">CLAIM YOUR BINGO CARD!</button>}
-            {!loaded && <button id="btnLoadBingo" disabled={true} className="btn btn-secondary form-control big-button">CLAIM YOUR BINGO CARD!</button>}
+            {loaded && <button id="btnLoadBingo" onClick={handleClick} className="btn btn-success form-control big-button">GENERATE YOUR BINGO CARD!</button>}
+            {!loaded && <button id="btnLoadBingo" disabled={true} className="btn btn-secondary form-control big-button">GENERATE YOUR BINGO CARD!</button>}
         </div>
     )
 }

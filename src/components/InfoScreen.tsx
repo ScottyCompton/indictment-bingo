@@ -1,8 +1,10 @@
-import {InfoScreenProps} from '../interfaces';
 import {useState, useEffect} from 'react';
+import {useAppDispatch} from '../hooks';
+import {app_navigate} from '../appData';
 
-const InfoScreen:React.FC<InfoScreenProps> = (props: InfoScreenProps) => {
+const InfoScreen:React.FC = () => {
     const [rootClass, setRootClass] = useState('info-screen fade-out fadeable');
+    const dispatch = useAppDispatch()
 
     useEffect(() => {
         setRootClass('info-screen fade-in fadeable');
@@ -11,9 +13,7 @@ const InfoScreen:React.FC<InfoScreenProps> = (props: InfoScreenProps) => {
     const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault();
         setRootClass('info-screen fade-out fadeable');
-        setTimeout(() => {
-            props.onNav('STEP3')
-        },750)        
+        dispatch(app_navigate('STEP_3'));
     }
 
 
