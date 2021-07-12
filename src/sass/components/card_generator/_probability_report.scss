@@ -1,0 +1,13 @@
+.probability-report {
+    .rpt-prb {
+        float: right;
+    }
+    @media screen and (max-width:500px) {
+        h3 {
+            font-size: 1.5rem;
+        }
+        h5 {
+            font-size: 1.0rem;
+        }
+    }
+}

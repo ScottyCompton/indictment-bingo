@@ -2,206 +2,233 @@
     "subjects": [{
             "subjectId": "92347432u4987",
             "subjectTitle": "Donald J. Trump",
+            "subjectShortDesc": "'Individual-1' himself, twice-impeached FORMER POTUS, loudmouth Florida retiree, Insurrectionist in Chief and drunk uncle who tells you to drink Clorox to cure COVID ",
             "subjectImg": "donald_trump.jpg",
             "subjectDesc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eget tempor velit. Maecenas augue dolor, scelerisque id lacus id, feugiat vehicula tortor. Suspendisse condimentum libero vel neque condimentum bibendum. Nullam eleifend aliquam metus. Vestibulum molestie ligula quis nisi venenatis porta. Nam ut volutpat urna, eget condimentum urna. Cras eu tincidunt sem.",
-            "bingoDate": null,
+            "markDate": null,
             "probability": 3
         },
         {
             "subjectId": "9234sdfjhs32u4987",
             "subjectTitle": "Donald Trump Jr",
+            "subjectShortDesc": "Eldest son to Donald Trump, Trump Org executive and half of the Beavis and Butthead lookalike winner's club",
             "subjectImg": "djtj.jpg",
             "subjectDesc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eget tempor velit. Maecenas augue dolor, scelerisque id lacus id, feugiat vehicula tortor. Suspendisse condimentum libero vel neque condimentum bibendum. Nullam eleifend aliquam metus. Vestibulum molestie ligula quis nisi venenatis porta. Nam ut volutpat urna, eget condimentum urna. Cras eu tincidunt sem.",
-            "bingoDate": null,
+            "markDate": null,
             "probability": 3
         },
         {
             "subjectId": "92347432u493387",
             "subjectTitle": "Ivanka Trump",
+            "subjectShortDesc": "Eldest daughter to Donald Trump, Trump Org executive, former Senior 'Advisor' (wink wink) and woman Donald Trump wants to most have sex with.",
             "subjectImg": "ivanka_trump.jpg",
             "subjectDesc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eget tempor velit. Maecenas augue dolor, scelerisque id lacus id, feugiat vehicula tortor. Suspendisse condimentum libero vel neque condimentum bibendum. Nullam eleifend aliquam metus. Vestibulum molestie ligula quis nisi venenatis porta. Nam ut volutpat urna, eget condimentum urna. Cras eu tincidunt sem.",
-            "bingoDate": null,
+            "markDate": null,
             "probability": 3
         },
         {
             "subjectId": "we33d47432u493387",
-            "subjectTitle": "1000 Capital Rioters",
+            "subjectTitle": "Capital Rioters",
+            "subjectShortDesc": "Domestic Terrorists who stormed the capital Guiness World Record holders for largest tweaker gathering",
             "subjectImg": "capitol_rioters.jpg",
             "subjectDesc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eget tempor velit. Maecenas augue dolor, scelerisque id lacus id, feugiat vehicula tortor. Suspendisse condimentum libero vel neque condimentum bibendum. Nullam eleifend aliquam metus. Vestibulum molestie ligula quis nisi venenatis porta. Nam ut volutpat urna, eget condimentum urna. Cras eu tincidunt sem.",
-            "bingoDate": "1-20-2020",
+            "markDate": "1-20-2020",
             "probability": 5
         },
         {
             "subjectId": "9234743jaosutryu98wr",
             "subjectTitle": "Eric Trump",
+            "subjectShortDesc": "Son of Donald Trump, Trump Org executive and second half of the 'Beavis and Butthead' lookalike winner's club",
             "subjectImg": "eric_trump.jpg",
             "subjectDesc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eget tempor velit. Maecenas augue dolor, scelerisque id lacus id, feugiat vehicula tortor. Suspendisse condimentum libero vel neque condimentum bibendum. Nullam eleifend aliquam metus. Vestibulum molestie ligula quis nisi venenatis porta. Nam ut volutpat urna, eget condimentum urna. Cras eu tincidunt sem.",
-            "bingoDate": null,
+            "markDate": null,
             "probability": 3
         },
         {
             "subjectId": "92347332432u493387",
             "subjectTitle": "Rudy Giuliani",
+            "subjectShortDesc": "Former NY mayor, license-suspened 'lawyer' to Donald Trump and derranged lunatic who doesn't know how to rinse after dying his hair",
             "subjectImg": "rudy_giuliani.jpg",
             "subjectDesc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eget tempor velit. Maecenas augue dolor, scelerisque id lacus id, feugiat vehicula tortor. Suspendisse condimentum libero vel neque condimentum bibendum. Nullam eleifend aliquam metus. Vestibulum molestie ligula quis nisi venenatis porta. Nam ut volutpat urna, eget condimentum urna. Cras eu tincidunt sem.",
-            "bingoDate": null,
+            "markDate": null,
             "probability": 3
         },
         {
             "subjectId": "92347432u49332227",
             "subjectTitle": "Roger Stone",
+            "subjectShortDesc": "Conservative political strategist, pardoned convicted felon, obnoxious Nixon-loving prick and extra-large barrel of aged taint sweat",
             "subjectImg": "roger_stone.jpg",
             "subjectDesc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eget tempor velit. Maecenas augue dolor, scelerisque id lacus id, feugiat vehicula tortor. Suspendisse condimentum libero vel neque condimentum bibendum. Nullam eleifend aliquam metus. Vestibulum molestie ligula quis nisi venenatis porta. Nam ut volutpat urna, eget condimentum urna. Cras eu tincidunt sem.",
-            "bingoDate": null,
+            "markDate": null,
             "probability": 2
         },
         {
             "subjectId": "9234743212u493387",
             "subjectTitle": "Paul Gosar",
+            "subjectShortDesc": "Congressman (R-PA) and lying, pus-filled waste of meat and oxygen who continues to push the 'Big Lie'",
             "subjectImg": "paul_gosar.jpg",
             "subjectDesc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eget tempor velit. Maecenas augue dolor, scelerisque id lacus id, feugiat vehicula tortor. Suspendisse condimentum libero vel neque condimentum bibendum. Nullam eleifend aliquam metus. Vestibulum molestie ligula quis nisi venenatis porta. Nam ut volutpat urna, eget condimentum urna. Cras eu tincidunt sem.",
-            "bingoDate": null,
+            "markDate": null,
             "probability": 2
         },
         {
             "subjectId": "92347432u493388",
             "subjectTitle": "Lindsey Graham",
+            "subjectShortDesc": "Senator (R-NC), Trump's favorite suck-up senator, Fake Outrage Caucuss Chairman and closeted gay meatball who likes to be abused by large, mean women",
             "subjectImg": "lindsey_graham.jpg",
             "subjectDesc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eget tempor velit. Maecenas augue dolor, scelerisque id lacus id, feugiat vehicula tortor. Suspendisse condimentum libero vel neque condimentum bibendum. Nullam eleifend aliquam metus. Vestibulum molestie ligula quis nisi venenatis porta. Nam ut volutpat urna, eget condimentum urna. Cras eu tincidunt sem.",
-            "bingoDate": null,
+            "markDate": null,
             "probability": 2
         },
         {
             "subjectId": "34347432u493387",
             "subjectTitle": "Allen Weisselberg",
+            "subjectShortDesc": "Trump Org CFO and guy most likely to get drunk and molest you at a party after he 'accidentially' walks into the bathroom",
             "subjectImg": "allen_weisselberg.jpg",
             "subjectDesc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eget tempor velit. Maecenas augue dolor, scelerisque id lacus id, feugiat vehicula tortor. Suspendisse condimentum libero vel neque condimentum bibendum. Nullam eleifend aliquam metus. Vestibulum molestie ligula quis nisi venenatis porta. Nam ut volutpat urna, eget condimentum urna. Cras eu tincidunt sem.",
-            "bingoDate": "7-1-2021",
+            "markDate": "7-1-2021",
             "probability": 5
         },
         {
             "subjectId": "32592347432u493387",
             "subjectTitle": "Bill Barr",
+            "subjectShortDesc": "Trump's former Attorney General, Droopy look-alike contest winner, Roy Cohen understudy and Trump scandal cover-up hitman",
             "subjectImg": "bill_barr.jpg",
             "subjectDesc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eget tempor velit. Maecenas augue dolor, scelerisque id lacus id, feugiat vehicula tortor. Suspendisse condimentum libero vel neque condimentum bibendum. Nullam eleifend aliquam metus. Vestibulum molestie ligula quis nisi venenatis porta. Nam ut volutpat urna, eget condimentum urna. Cras eu tincidunt sem.",
-            "bingoDate": null,
+            "markDate": null,
             "probability": 2
         },
         {
             "subjectId": "42892347432u493387",
             "subjectTitle": "Steve Bannon",
+            "subjectShortDesc": "Conservative political strategist, indicted and pardoned scam artist and man who's face looks like the used crack pipe you just threw out",
             "subjectImg": "steve_bannon.jpg",
             "subjectDesc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eget tempor velit. Maecenas augue dolor, scelerisque id lacus id, feugiat vehicula tortor. Suspendisse condimentum libero vel neque condimentum bibendum. Nullam eleifend aliquam metus. Vestibulum molestie ligula quis nisi venenatis porta. Nam ut volutpat urna, eget condimentum urna. Cras eu tincidunt sem.",
-            "bingoDate": null,
+            "markDate": null,
             "probability": 2
         },
         {
             "subjectId": "71292347432u493387",
             "subjectTitle": "Jeff Sessions",
+            "subjectShortDesc": "Trump's former (fired) Attorney General and Keebler elf who got kicked out of the tree for being an asshole",
             "subjectImg": "jeff_sessions.jpg",
             "subjectDesc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eget tempor velit. Maecenas augue dolor, scelerisque id lacus id, feugiat vehicula tortor. Suspendisse condimentum libero vel neque condimentum bibendum. Nullam eleifend aliquam metus. Vestibulum molestie ligula quis nisi venenatis porta. Nam ut volutpat urna, eget condimentum urna. Cras eu tincidunt sem.",
-            "bingoDate": null,
+            "markDate": null,
             "probability": 2
         },
         {
             "subjectId": "68492347432u493387",
             "subjectTitle": "Ted Cruz",
+            "subjectShortDesc": "Senator (R-TX), Trump's second-favorite suckup and douchebag who tried to escape to the warmth of Cancun while his home state of Texas froze over when the power grid failed.",
             "subjectImg": "ted_cruz.jpg",
             "subjectDesc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eget tempor velit. Maecenas augue dolor, scelerisque id lacus id, feugiat vehicula tortor. Suspendisse condimentum libero vel neque condimentum bibendum. Nullam eleifend aliquam metus. Vestibulum molestie ligula quis nisi venenatis porta. Nam ut volutpat urna, eget condimentum urna. Cras eu tincidunt sem.",
-            "bingoDate": null,
+            "markDate": null,
             "probability": 2
         },
         {
             "subjectId": "98792347432u493387",
             "subjectTitle": "Mo Brooks",
+            "subjectShortDesc": "Congressman (R-AL), Q-Anon conspiracy theorist, riot inciter, pusher of the 'Big Lie' and human equivalent of what is drained out of your septic tank",
             "subjectImg": "mo_brooks.jpg",
             "subjectDesc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eget tempor velit. Maecenas augue dolor, scelerisque id lacus id, feugiat vehicula tortor. Suspendisse condimentum libero vel neque condimentum bibendum. Nullam eleifend aliquam metus. Vestibulum molestie ligula quis nisi venenatis porta. Nam ut volutpat urna, eget condimentum urna. Cras eu tincidunt sem.",
-            "bingoDate": null,
+            "markDate": null,
             "probability": 3
         },
 
         {
             "subjectId": "81392347432u493387",
             "subjectTitle": "Matthew Calamari",
+            "subjectShortDesc": "Trump Org COO, former football player and man most likely to be confused with either a seafood dish or mob lieutenant",
             "subjectImg": "matthew_calamari.jpg",
             "subjectDesc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eget tempor velit. Maecenas augue dolor, scelerisque id lacus id, feugiat vehicula tortor. Suspendisse condimentum libero vel neque condimentum bibendum. Nullam eleifend aliquam metus. Vestibulum molestie ligula quis nisi venenatis porta. Nam ut volutpat urna, eget condimentum urna. Cras eu tincidunt sem.",
-            "bingoDate": null,
+            "markDate": null,
             "probability": 4
         },
 
         {
             "subjectId": "77292347432u493387",
             "subjectTitle": "Jeffery McConney",
+            "subjectShortDesc": "Trump Org controller and 'fuck that I'm not going to jail for Trump' cooperating witness for the Manhatten DA and New York Attorney General",
             "subjectImg": "jeff_mcconney.jpg",
             "subjectDesc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eget tempor velit. Maecenas augue dolor, scelerisque id lacus id, feugiat vehicula tortor. Suspendisse condimentum libero vel neque condimentum bibendum. Nullam eleifend aliquam metus. Vestibulum molestie ligula quis nisi venenatis porta. Nam ut volutpat urna, eget condimentum urna. Cras eu tincidunt sem.",
-            "bingoDate": null,
+            "markDate": null,
             "probability": 1
         },
 
 
         {
             "subjectId": "25092347432u493387",
-            "subjectTitle": "Margarie Taylor Green",
+            "subjectTitle": "Marjorie Taylor Greene",
+            "subjectShortDesc": "Congresswoman (R-GA), Nazi-loving anti-vaxxer, Q-ANON conspiracy theorist, Jewish space laser hunter and Neandertahal in bad drag",
             "subjectImg": "mtg.jpg",
             "subjectDesc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eget tempor velit. Maecenas augue dolor, scelerisque id lacus id, feugiat vehicula tortor. Suspendisse condimentum libero vel neque condimentum bibendum. Nullam eleifend aliquam metus. Vestibulum molestie ligula quis nisi venenatis porta. Nam ut volutpat urna, eget condimentum urna. Cras eu tincidunt sem.",
-            "bingoDate": null,
+            "markDate": null,
             "probability": 3
         },
         {
             "subjectId": "2df92347432u493387",
             "subjectTitle": "Lauren Bobert",
+            "subjectShortDesc": "Congresswoman (R-CO), conspiracy theorist, anti-vaxxer, gun-toting community college dropout and doesn't yet realize it future adult actress",
             "subjectImg": "lauren_bobert.jpg",
             "subjectDesc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eget tempor velit. Maecenas augue dolor, scelerisque id lacus id, feugiat vehicula tortor. Suspendisse condimentum libero vel neque condimentum bibendum. Nullam eleifend aliquam metus. Vestibulum molestie ligula quis nisi venenatis porta. Nam ut volutpat urna, eget condimentum urna. Cras eu tincidunt sem.",
-            "bingoDate": null,
+            "markDate": null,
             "probability": 3
         },
         {
             "subjectId": "23fsd92347432u493387",
             "subjectTitle": "Matt Gaetz",
+            "subjectShortDesc": "Congressman (R-FL), conspiracy theorist, quintessential 'Florida Man', serial drunk driver, child sex advocate and genius who sets his Venmo status to public when paying for sex with underage girls",
             "subjectImg": "matt_gaetz.jpg",
             "subjectDesc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eget tempor velit. Maecenas augue dolor, scelerisque id lacus id, feugiat vehicula tortor. Suspendisse condimentum libero vel neque condimentum bibendum. Nullam eleifend aliquam metus. Vestibulum molestie ligula quis nisi venenatis porta. Nam ut volutpat urna, eget condimentum urna. Cras eu tincidunt sem.",
-            "bingoDate": null,
+            "markDate": null,
             "probability": 4
         },
         {
             "subjectId": "f3e392347432u493387",
             "subjectTitle": "Devin Nunez",
+            "subjectShortDesc": "Congressman (R-CA), conspiracy theorist, Mr. 'Midnight Run', and weirdo who tried to sue a Twitter user who hurt his feelings.",
             "subjectImg": "devin_nunez.jpg",
             "subjectDesc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eget tempor velit. Maecenas augue dolor, scelerisque id lacus id, feugiat vehicula tortor. Suspendisse condimentum libero vel neque condimentum bibendum. Nullam eleifend aliquam metus. Vestibulum molestie ligula quis nisi venenatis porta. Nam ut volutpat urna, eget condimentum urna. Cras eu tincidunt sem.",
-            "bingoDate": null,
+            "markDate": null,
             "probability": 1
         },
         {
             "subjectId": "23ef92347432u493387",
             "subjectTitle": "Jim Jordan",
+            "subjectShortDesc": "Congressman (R-OH), former Ohio State gym coach, walking meat puppet, fake outrage clown car driver and guy who looks the other way when your child reorts being molested by the team doctor",
             "subjectImg": "jim_jordan.jpg",
             "subjectDesc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eget tempor velit. Maecenas augue dolor, scelerisque id lacus id, feugiat vehicula tortor. Suspendisse condimentum libero vel neque condimentum bibendum. Nullam eleifend aliquam metus. Vestibulum molestie ligula quis nisi venenatis porta. Nam ut volutpat urna, eget condimentum urna. Cras eu tincidunt sem.",
-            "bingoDate": null,
+            "markDate": null,
             "probability": 1
         },
         {
             "subjectId": "9jifu2347432u493387",
             "subjectTitle": "Jared Kuchner",
+            "subjectShortDesc": "Former Senior Advisor to Donald Trump, Ivanka Trump's husband, real-estste scammmer and son of convicted felon Charles Kushner",
             "subjectImg": "jared_kushner.jpg",
             "subjectDesc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eget tempor velit. Maecenas augue dolor, scelerisque id lacus id, feugiat vehicula tortor. Suspendisse condimentum libero vel neque condimentum bibendum. Nullam eleifend aliquam metus. Vestibulum molestie ligula quis nisi venenatis porta. Nam ut volutpat urna, eget condimentum urna. Cras eu tincidunt sem.",
-            "bingoDate": null,
+            "markDate": null,
             "probability": 2
         },
         {
-            "subjectId": "0",
+            "subjectId": "asdfy78whrKYhahsdf",
             "subjectTitle": "Wildcard",
+            "subjectShortDesc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             "subjectImg": "wildcard.jpg",
             "subjectDesc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eget tempor velit. Maecenas augue dolor, scelerisque id lacus id, feugiat vehicula tortor. Suspendisse condimentum libero vel neque condimentum bibendum. Nullam eleifend aliquam metus. Vestibulum molestie ligula quis nisi venenatis porta. Nam ut volutpat urna, eget condimentum urna. Cras eu tincidunt sem.",
-            "bingoDate": "1-20-2020",
-            "probability": 5
+            "markDate": "1-20-2020",
+            "probability": 5,
+            "nohover": true
         },
         {
-            "subjectId": "333",
+            "subjectId": "asdfy788h378rhahsdf",
             "subjectTitle": "Unindicted Co-Conspirator",
+            "subjectShortDesc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             "subjectImg": "ucc.jpg",
             "subjectDesc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eget tempor velit. Maecenas augue dolor, scelerisque id lacus id, feugiat vehicula tortor. Suspendisse condimentum libero vel neque condimentum bibendum. Nullam eleifend aliquam metus. Vestibulum molestie ligula quis nisi venenatis porta. Nam ut volutpat urna, eget condimentum urna. Cras eu tincidunt sem.",
-            "bingoDate": null,
-            "probability": 0
+            "markDate": null,
+            "probability": 0,
+            "nohover": true
         }
 
 

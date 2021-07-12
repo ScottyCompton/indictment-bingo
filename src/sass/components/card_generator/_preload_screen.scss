@@ -1,0 +1,17 @@
+.preload-screen {
+    position: relative;
+    width: 100%;
+    max-width: $outer-container-max-width;
+    margin: 0 auto;
+    &__btn {
+        font-size: 2rem;
+        font-weight: bolder;
+        margin-top: 3rem;
+    }
+    // &__progress-bar {
+    //     margin: 2rem;
+    // }
+    h3 {
+        text-align: center;
+    }
+}

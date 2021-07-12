@@ -1,11 +1,6 @@
-import App from './App';
-import InfoScreen from './InfoScreen';
-import PlayAgainButton from './PlayAgainButton';
-import PreLoadScreen from './PreLoadScreen';
-import SplashScreen from './SplashScreen';
-import Subjects from './Subjects';
-import SubjectTile from './SubjectTile';
+import CardGenerator from './CardGenerator'
+import Header from './layout/Header'
+import Footer from './layout/Footer'
 
 
-
-export  {App, InfoScreen, PlayAgainButton, PreLoadScreen, SplashScreen, Subjects, SubjectTile}
+export {CardGenerator, Header, Footer};

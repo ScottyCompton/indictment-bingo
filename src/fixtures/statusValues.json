@@ -12,6 +12,10 @@
             "statusVal": 34
         },
         {
+            "statusText": "Executing Search Warrants",
+            "statusVal": 48
+        },
+        {
             "statusText": "Informing The Attorney General",
             "statusVal": 56
         },
