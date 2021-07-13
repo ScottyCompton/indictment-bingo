@@ -31,7 +31,7 @@ const TilePopover:React.FC<TilePopoverProps> = (props:TilePopoverProps) => {
                     <div className="card bg-dark">
                         <div className="card-body">
                             <div>
-                                <h5 className="text-light">{subjectTitle}</h5>
+                                <h5 className="text-light tile-popover__title">{subjectTitle}</h5>
                                 <img className="tile-popover__img" src={`../dist/images/subjects/${subjectImg}`} alt={subjectTitle + ''} />
                                 <span className="tile-popover__shortdesc">{subjectShortDesc}</span>
                                 <div className="text-light tile-popover__probability">Indictemnt Probability: <b className="text-warning">{arrProb[probability ? probability: 0]}</b></div>

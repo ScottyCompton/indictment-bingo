@@ -14,7 +14,7 @@ const SplashScreen:React.FC = () => {
     const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault();
         setRootClass('splash-screen fade-out fadeable');
-        dispatch(cardgen_navigate('GENERATE'));   
+        dispatch(cardgen_navigate('PRELOAD'));   
     }
 
 

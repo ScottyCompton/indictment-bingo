@@ -10,9 +10,9 @@ import {
     cardgen_killmusic,
     cardgen_queuemusic,
     cardgen_enableRoll,
-    cardgen_disableRoll,
-    cardgen_addTimer,
-    cardGen_killTimers} from './cardGenDataActions';
+    cardgen_showReport,
+    cardgen_showCard,
+    cardgen_disableRoll} from './cardGenDataActions';
 
 import {
     app_loadData,
@@ -32,9 +32,9 @@ export  {
     cardgen_killmusic,
     cardgen_queuemusic,
     cardgen_enableRoll,
-    cardgen_addTimer,
-    cardGen_killTimers,
     cardgen_disableRoll,
+    cardgen_showReport,
+    cardgen_showCard,
     app_executeLogin,
     app_loadData,
     app_refreshUserSession,

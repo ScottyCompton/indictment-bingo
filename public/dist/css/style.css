@@ -7765,6 +7765,9 @@ body {
     .big-button {
       font-size: 2rem; } }
 
+.hidden {
+  display: none; }
+
 .card-generator {
   max-width: 1000px;
   width: 100%;
@@ -7860,7 +7863,8 @@ body {
   position: relative;
   width: 100%;
   max-width: 700px;
-  margin: 0 auto; }
+  margin: 0 auto;
+  padding: 2rem; }
   .preload-screen__btn {
     font-size: 2rem;
     font-weight: bolder;
@@ -7868,14 +7872,19 @@ body {
   .preload-screen h3, .preload-screen .h3 {
     text-align: center; }
 
-.probability-report .rpt-prb {
-  float: right; }
+.probability-report {
+  overflow-y: auto;
+  margin-top: 2vh; }
+  .probability-report .rpt-prb {
+    float: right; }
+  @media screen and (max-width: 500px) {
+    .probability-report h3, .probability-report .h3 {
+      font-size: 1.5rem; }
+    .probability-report h5, .probability-report .h5 {
+      font-size: 1.0rem; } }
 
-@media screen and (max-width: 500px) {
-  .probability-report h3, .probability-report .h3 {
-    font-size: 1.5rem; }
-  .probability-report h5, .probability-report .h5 {
-    font-size: 1.0rem; } }
+.tile-popover__title {
+  white-space: nowrap; }
 
 .tile-popover__img {
   width: 33%;
@@ -7893,7 +7902,7 @@ body {
   font-size: 0.8rem; }
   @media screen and (min-width: 500px) {
     .tile-popover__shortdesc {
-      font-size: 1.0rem; } }
+      font-size: 0.9rem; } }
 
 .tile-popover__probability {
   font-size: 0.8rem;
@@ -7901,3 +7910,6 @@ body {
   @media screen and (min-width: 500px) {
     .tile-popover__probability {
       font-size: 1.0rem; } }
+
+.card-generator-modal__body {
+  padding: 0px; }

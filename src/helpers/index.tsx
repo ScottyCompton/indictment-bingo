@@ -59,5 +59,5 @@ export const appConfig = {
         subjImgRoot: process.env.REACT_APP_SUBJECT_IMG_ROOT,
         rollImgRoot: process.env.REACT_APP_ROLLERS_IMG_ROOT,
         audioRoot: process.env.REACT_APP_AUDIO_ROOT,
-        playLength: 12000
+        playLength: 18000
     }

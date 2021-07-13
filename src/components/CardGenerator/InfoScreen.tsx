@@ -13,7 +13,7 @@ const InfoScreen:React.FC = () => {
     const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault();
         setRootClass('info-screen fade-out fadeable');
-        dispatch(cardgen_navigate('PRELOADSCREEN'));
+        dispatch(cardgen_navigate('PRELOAD'));
     }
 
 

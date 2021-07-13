@@ -6,8 +6,7 @@ import {
     updateSelectedSubjects, 
     switchScreen, 
     setMusicState,
-    addTimer,
-    killTimers,
+    setShowReport,
     setEnabledState} from './cardGenDataSlice';
 import {SelectedSubject} from '../interfaces';
 import {getData} from '../helpers';
@@ -102,18 +101,6 @@ export const cardgen_queuemusic = () => {
     }
 }
 
-export const cardgen_addTimer = (timer:number) => {
-    return async (dispatch: any) =>  {
-        dispatch(addTimer(timer))
-    }
-}
-
-
-export const cardGen_killTimers = () =>{
-    return async (dispatch: any) =>  {
-        dispatch(killTimers())
-    }    
-}
 
 export const cardgen_reeinitialize = () => {
     return async (dispatch: any) => {
@@ -124,6 +111,28 @@ export const cardgen_reeinitialize = () => {
         }
     }
 }
+
+export const cardgen_showReport = () => {
+    return async (dispatch: any) => {
+        try {
+            dispatch(setShowReport(true))
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+
+
+export const cardgen_showCard = () => {
+    return async (dispatch: any) => {
+        try {
+            dispatch(setShowReport(false))
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+
 
 
 export const cardgen_enableRoll = () => {

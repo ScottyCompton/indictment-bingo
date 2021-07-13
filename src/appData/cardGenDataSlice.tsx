@@ -5,15 +5,15 @@ import {CardGenDataState, Subject, SelectedSubject} from '../interfaces';
 
 const initialState: CardGenDataState = {
     subjects: [],
-    selectedSubjects: [],
     uiState: {
-        screen: 'SPLASHSCREEN',
+        screen: 'SPLASH',
+        selectedSubjects: [],
         isLoading: true,
         enabled: false,
         playMusic: false,
         tileDisplayCount: 0,
         rollComplete: false,
-        tileTimers: [],
+        showReport: false,
         probabilityMatrix:  {
             vals: [[]],
             rowProbs: [],
@@ -23,57 +23,58 @@ const initialState: CardGenDataState = {
     }
 }
 
-const getRowProbs = (rows:[number[]]) => {
+const getRowProbs = (matrix:[number[]]) => {
     const arrOut:number[] = [];
-    rows.forEach((row) => {
+    matrix.forEach((row) => {
         arrOut.push(Math.min(...row))
     })
     return arrOut;
 }
 
-const getColProbs = (rows:[number[]]) => {
-    const cols:any  = transposeMatrix(rows);
-    const arrOut:number[] = getRowProbs(cols);
+const getColProbs = (matrix:[number[]]) => {
+    const transposedMatrix:any  = transposeMatrix(matrix);
+    const arrOut:number[] = getRowProbs(transposedMatrix);
     return arrOut;
 }
 
 
-const transposeMatrix = (matrix: [number[]]) => {
-    const arrOut = matrix;
-    for (let row = 0; row < arrOut.length; row++) {
-      for (let column = 0; column < row; column++) {
-        let temp = matrix[row][column]
-        arrOut[row][column] = arrOut[column][row]
-        arrOut[column][row] = temp
-      }
+
+const transposeMatrix = (matrix:[number[]]) => {
+    let arrOut = matrix;
+    for(let i = 0; i < matrix.length; i++) {
+        for(let j = 0; j < i; j++) {
+            let tmp = arrOut[i][j];
+            arrOut[i][j] = arrOut[j][i];
+            arrOut[j][i] = tmp;
+        }
     }
     return arrOut;
-  }
-
-
-const getDiagProb = (ltr:boolean = true, rows:[number[]]) => {
-    const arrOut:number[] = [];
-
-    if(ltr) {
-        for(let i = 0; i < rows.length-1; i++) {
-            arrOut.push(rows[i][i])
-        }        
-    } else {
-        for(let i = rows.length-1; i >= 0; i--) {
-            arrOut.push(rows[i][i])
-        }        
-    }
-    return Math.min(...arrOut);
-
 }
 
 
-
-const getDiagProbs = (rows:[number[]]) =>{
+const getDiagProbs = (matrix:any) =>{
+    const arrLTR: number[] = [];
+    const arrRTL: number[] = [];
     const arrOut: number[] = [];
 
-    arrOut.push(getDiagProb(true, rows));
-    arrOut.push(getDiagProb(false, rows));
+    for(let i = 0; i < matrix.length; i++) {
+        arrLTR.push(matrix[i][i])
+    }        
+    arrOut.push(Math.min(...arrLTR));   
+
+    for(let i = 0; i < matrix.length; i++) {
+        arrRTL.push(matrix[i][(matrix.length-1)-i])
+    }
+
+
+    // arrRTL.push(matrix[0][4]);
+    // arrRTL.push(matrix[1][3]);
+    // arrRTL.push(matrix[2][2]);
+    // arrRTL.push(matrix[3][1]);
+    // arrRTL.push(matrix[4][0]);
+
+    arrOut.push(Math.min(...arrRTL));   
+  
     return arrOut;
 }
 
@@ -86,8 +87,9 @@ const cardGenDataSlice = createSlice({
     reducers: {
 
         reeinitialize(state) {
-            state.uiState = initialState.uiState;
-            state.selectedSubjects = [];
+             state.uiState = initialState.uiState;
+             //state.selectedSubjects = [];
+            
         },
 
         setAppLoading(state, action: PayloadAction<boolean>) {
@@ -95,7 +97,7 @@ const cardGenDataSlice = createSlice({
         },
 
         updateSelectedSubjects(state, action:PayloadAction<SelectedSubject[]>) {
-            state.selectedSubjects = action.payload;
+            state.uiState.selectedSubjects = action.payload;
         },
 
         loadCardGenData(state, action: PayloadAction<Subject[]>) {
@@ -114,30 +116,24 @@ const cardGenDataSlice = createSlice({
             state.uiState.playMusic = action.payload;
         },
 
-        addTimer(state, action:PayloadAction<number>) {
-            state.uiState.tileTimers.push(action.payload);
-        },
-
-        killTimers(state) {
-            state.uiState.tileTimers.forEach((timer:number) => {
-                window.clearTimeout(timer);
-            })
+        setShowReport(state, action: PayloadAction<boolean>) {
+            state.uiState.showReport = action.payload;
         },
 
         updateTileDisplayCount(state) {
 
             state.uiState.tileDisplayCount++;
-            if((state.uiState.tileDisplayCount === state.selectedSubjects.length)) {
+            if((state.uiState.tileDisplayCount === state.uiState.selectedSubjects.length)) {
                 state.uiState.rollComplete = true;
                 
                 let tmpArr: number[] = [];
                 let matrix: [number[]] = [[]];
 
                 matrix.splice(0,1);
-                for(let i = 0; i <= state.selectedSubjects.length; i++) {
+                for(let i = 0; i <= state.uiState.selectedSubjects.length; i++) {
 
-                    if(state.selectedSubjects[i]) {
-                        tmpArr.push(state.selectedSubjects[i].probability)
+                    if(state.uiState.selectedSubjects[i]) {
+                        tmpArr.push(state.uiState.selectedSubjects[i].probability)
                     }
                     
                     if((i+1) % 5 === 0) {
@@ -171,7 +167,6 @@ export const {
     switchScreen, 
     setMusicState,
     setEnabledState,
-    addTimer,
-    killTimers} = actions;
+    setShowReport} = actions;
 export default reducer;
 

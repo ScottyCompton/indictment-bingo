@@ -4,7 +4,7 @@ import {v4 as uuid} from 'uuid';
 import {Subject, SelectedSubject} from '../../interfaces';
 //import PlayAgainButton from './PlayAgainButton'
 import {useAppDispatch, useAppSelector} from '../../hooks';
-import {cardgen_updateSelected, cardgen_queuemusic, cardgen_enableRoll, cardgen_disableRoll, cardgen_updateCompletedTileCount} from '../../appData';
+import {cardgen_updateSelected, cardgen_queuemusic, cardgen_disableRoll, cardgen_updateCompletedTileCount} from '../../appData';
 //import ProbabilitReport from './ProbabilityReport';
 import {appConfig} from '../../helpers'
 
@@ -12,11 +12,9 @@ import {appConfig} from '../../helpers'
 const BingoCard:React.FC = () => {
     const [rootClass, setRootClass] = useState('subjects fadeable fade-out');
     const dispatch = useAppDispatch();
-    const subjects = useAppSelector(state => state.cardGenData.subjects);
-    const selectedSubjects = useAppSelector(state => state.cardGenData.selectedSubjects);
-    const enabled = useAppSelector(state => state.cardGenData.uiState.enabled);
+    const {subjects} = useAppSelector(state => state.cardGenData);
+    const {enabled, showReport, selectedSubjects} = useAppSelector(state => state.cardGenData.uiState);
     const [aryTiles, setArrayTiles] = useState<Subject[]>()
-
     
 
 
@@ -48,27 +46,32 @@ const BingoCard:React.FC = () => {
         // so that it appears the tiles are appearing at random intervals when displayed
 
         const arySelected:SelectedSubject[] = selectedSubjects.slice();
+        
         const aryDisplayed:SelectedSubject[] = [];  // an array of tiles aready displayed 
         const interval = window.setInterval(() => {
             let found = false;
-
-            while(!found) {
-                const selectedIndex = Math.floor(Math.random() * arySelected.length);
-                let possibleSubject = arySelected[selectedIndex];      // pull a random _id out of the subjects array
+            if(selectedSubjects.length !== 0) {
+                while(!found) {
+                    const selectedIndex = Math.floor(Math.random() * arySelected.length);
+                    let possibleSubject = arySelected[selectedIndex];      // pull a random _id out of the subjects array
             
-                if (aryDisplayed.findIndex(item =>  item._id === possibleSubject._id) === -1) {
-                    const subjectToDisplay = subjects[selectedIndex]
-                    aryDisplayed.push(possibleSubject);
-
-                    setArrayTiles((prevState) => {
-                        const aryOut = prevState?.slice();                         
-                        aryOut?.splice(selectedIndex,1, subjectToDisplay)
-                        return aryOut;
-                    })                    
-                    dispatch(cardgen_updateCompletedTileCount())
-                    found = true;
-                }               
+                    if (aryDisplayed.filter(item =>  item._id === possibleSubject._id).length === 0) {
+                        const subjectToDisplay = subjects.find(item => item._id === possibleSubject._id)
+                        if(subjectToDisplay !== undefined) {
+                            aryDisplayed.push(possibleSubject);
+                            setArrayTiles((prevState) => {
+                                const aryOut = prevState?.slice();                         
+                                aryOut?.splice(selectedIndex,1, subjectToDisplay)
+                                return aryOut;
+                            })                    
+                            dispatch(cardgen_updateCompletedTileCount())
+                            found = true;
+        
+                        }
+                    }               
+                }
             }
+
 
         }, appConfig.playLength /selectedSubjects.length)
         return interval;
@@ -76,13 +79,28 @@ const BingoCard:React.FC = () => {
 
 
     useEffect(() => {
+        setRootClass((prevState) => {
+            if(showReport) {
+                return prevState + ' hidden';
+            } else {
+                return prevState.replace(' hidden', '');
+            }
+        })
+    }, [showReport])
+
+
+    useEffect(() => {
+        // close the window, set enabled = false, so clear the interval
         if(!enabled) {
             window.clearInterval(displayRandomSelectedSubject)    
         }
-        setTimeout(() => {
-            window.clearInterval(displayRandomSelectedSubject);
-            cardgen_disableRoll()
-        }, appConfig.playLength)
+
+        // run the interval timer for the length of the music
+            setTimeout(() => {
+                window.clearInterval(displayRandomSelectedSubject);
+                cardgen_disableRoll()
+            }, appConfig.playLength)
+
     }, [enabled, displayRandomSelectedSubject])
 
 
@@ -109,12 +127,9 @@ const BingoCard:React.FC = () => {
         }
         setArrayTiles(aryOut)
 
-
-        dispatch(cardgen_enableRoll());
         setRootClass('bingo-card fadeable fade-in');
         dispatch(cardgen_queuemusic());
         getSelectedSubjects();
-        //execRoll();
     }, [getSelectedSubjects, dispatch, subjects.length])
 
 

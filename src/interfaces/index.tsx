@@ -37,15 +37,15 @@ export interface SelectedSubject {
 
 export interface CardGenDataState {
     subjects: Subject[];
-    selectedSubjects: SelectedSubject[];
     uiState: {
         screen: string;
+        selectedSubjects: SelectedSubject[];
         isLoading: boolean;
         enabled: boolean;
         tileDisplayCount: number;
         rollComplete: boolean;
-        tileTimers: number[],
         playMusic: boolean;
+        showReport: boolean;
         probabilityMatrix: {
             vals: [number[]],
             rowProbs: number[],
@@ -65,6 +65,14 @@ export interface PreloadScreenProps {
 }
 
 
+export interface ModalButtonProps {
+    handleClose: () => void;
+}
+
+export interface CardGenModalProps {
+    showGenerator: boolean;
+    handleClose: () => void 
+}
 
 
 
@@ -95,3 +103,6 @@ export interface AppUser {
     };
     token: string;
 }
+
+
+
