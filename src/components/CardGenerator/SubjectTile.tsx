@@ -2,6 +2,7 @@ import {SubjectTileProps} from '../../interfaces';
 import {useState, useRef} from 'react';
 import {useAppSelector} from '../../hooks';
 import TilePopover from './TilePopover';
+import {appConfig} from '../../helpers'
 
 const SubjectTile:React.FC<SubjectTileProps> = (props:SubjectTileProps) => {
     const popoverContainerRef = useRef(null); 
@@ -12,7 +13,6 @@ const SubjectTile:React.FC<SubjectTileProps> = (props:SubjectTileProps) => {
 
     const {subject, idx} = props;
     const { markDate, subjectTitle, subjectImg, nohover} = subject;
-
     let imgClass = 'subject_tile-img';
     imgClass = (markDate && markDate != null) ? imgClass +  ' subject_tile-img__active' : imgClass;
     imgClass = !nohover ? imgClass + ' subject_tile-img__enabled' : imgClass;
@@ -35,11 +35,9 @@ const SubjectTile:React.FC<SubjectTileProps> = (props:SubjectTileProps) => {
     }
 
     return (
-
-
         <div className="subject_tile" ref={popoverContainerRef}>
             {!nohover && <TilePopover data={subject} idx={idx} show={showPopover && rollComplete} containerRef={popoverContainerRef.current} target={imgRef.current} />}
-           <img onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} onClick={handleClick} ref={imgRef} alt={subjectTitle + ''} src={`../dist/images/subjects/${subjectImg}`} className={imgClass} />
+           <img onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} onClick={handleClick} ref={imgRef} alt={subjectTitle + ''} src={appConfig.subjImgRoot + '/' + subjectImg} className={imgClass} />
         </div>
     );
 }

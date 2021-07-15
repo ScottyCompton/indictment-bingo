@@ -2,17 +2,15 @@ import {
     reeinitialize, 
     loadCardGenData, 
     updateTileDisplayCount, 
-    setAppLoading, 
     updateSelectedSubjects, 
     switchScreen, 
     setMusicState,
     setShowReport,
     setEnabledState} from './cardGenDataSlice';
-import {SelectedSubject} from '../interfaces';
-import {getData} from '../helpers';
-
-
-const gameId = '60e9a5497bda5d4944a562d6'; // hardcode for now
+import {app_setIsLoading} from './'
+import {SelectedSubject, CardData, CardDisplay} from '../interfaces';
+import {getData, getDataWithAuth, putData, appConfig} from '../helpers';
+import download from 'downloadjs';
 
 export const cardgen_loadData = () => {
     //const {subjects} = subjectData;
@@ -20,27 +18,77 @@ export const cardgen_loadData = () => {
 
     return async (dispatch: any) => {
         try {
-            setAppLoading(true)
-            getData('games/' + gameId + '/subjects').then((payload:any) => {
+            dispatch(app_setIsLoading(true))
+            getData('/games/' + appConfig.gameId + '/subjects').then((payload:any) => {
                 dispatch(loadCardGenData(payload))
             }).then(() => {
-                setAppLoading(false);
+                dispatch(app_setIsLoading(false))
             })
 
         } catch (error) {
-            setAppLoading(false)
+            dispatch(app_setIsLoading(false))
         }
 
     }    
 
 }
 
-export const cardgen_setLoadingState = (payload:boolean) => {
+
+export const cardgen_saveCardData = (cardData:CardData) => {
+
     return async (dispatch: any) => {
         try {
-            dispatch(setAppLoading(payload));
-        } catch(error) {
-            console.log(error);
+            const putConfig = {
+                body: cardData,
+                method: 'POST'
+            }
+            dispatch(app_setIsLoading(true))
+            await putData('/cards', putConfig)
+            .then(async(card) => {
+                await dispatch(cardgen_downloadCard({
+                    _id: card._id,
+                    cardName: card.cardName,
+                    createdAt: card.createdAt,
+                    cardThumbImg: card.cardThumbImg                    
+                }))
+            })
+            .then(() => {
+                dispatch(app_setIsLoading(false))
+                dispatch(reeinitialize())
+            })
+            .catch((error) => {
+                console.log('Could not save card data!', error)
+            });
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+}
+
+
+export const cardgen_downloadCard = (payload: CardDisplay) => {
+    return async (dispatch: any) => {
+        try {
+
+            const response = await getDataWithAuth(`/cardimage/${payload._id}`)
+            const {imageUrl} = response;
+            if(imageUrl) {
+                download(appConfig.apiRoot + '/' + imageUrl)
+
+                setTimeout(async() => {
+                    const putCfg = {
+                        method: 'DELETE',
+                        body: {
+                            imagePath: imageUrl
+                        }
+                    }
+                    await putData('/cardimage', putCfg);                    
+                }, 1000)
+            }
+
+        } catch (error) {
+            console.log(error)
         }
     }
 }

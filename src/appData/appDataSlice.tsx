@@ -1,11 +1,11 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {AppDataState} from '../interfaces';
-import {AppUser} from '../interfaces'
+import {AppDataLogin, UserCard} from '../interfaces'
 
 
 const initialState: AppDataState = {
     uiState: {    
-        isLoading: true
+        isLoading: false
     }
 }
 
@@ -15,24 +15,25 @@ const cardGenDataSlice = createSlice({
     initialState: initialState,
     reducers: {
 
-        setAppLoading(state, action: PayloadAction<boolean>) {
+        setAppLoading(state, action: PayloadAction<boolean>)  {
             state.uiState.isLoading = action.payload;
         },
 
 
-        loadData(state) {
-            state.uiState.isLoading = true;
+        loadUserCardData(state, action: PayloadAction<UserCard[]>) {
+            state.uiState.userCards = action.payload;
         },
 
-        loginUser(state, action: PayloadAction<AppUser>) {
-            state.uiState.user = action.payload;
+        loginUser(state, action: PayloadAction<AppDataLogin>) {
+            state.uiState.user = action.payload.user;
+            state.uiState.token = action.payload.token;
         },
         
-        refreshUserSession(state, action:PayloadAction<AppUser>) {
-            if(action.payload.user) {
-                state.uiState.user = action.payload
-            }
-            
+        refreshUserSession(state, action:PayloadAction<AppDataLogin>) {
+            if(action.payload) {
+                state.uiState.user = action.payload.user;
+                state.uiState.token = action.payload.token;
+            }            
         }
 
     }
@@ -40,6 +41,6 @@ const cardGenDataSlice = createSlice({
 
 const {actions, reducer} = cardGenDataSlice;
 
-export const {setAppLoading, loadData, loginUser, refreshUserSession} = actions;
+export const {setAppLoading, loadUserCardData, loginUser, refreshUserSession} = actions;
 export default reducer;
 

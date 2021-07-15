@@ -35,12 +35,29 @@ export interface SelectedSubject {
 }
 
 
+export interface CardData {
+    selectedSubjects: SelectedSubject[];
+    probabilityMatrix: [number[]] | string;
+}
+
+export interface CreateImageResponse {
+    thumbUrl: string;
+    imageUrl: string;
+}
+
+
+export interface CardDisplay {
+    _id: string;
+    cardName: string;
+    cardThumbImg: string;
+    createdAt: string;
+}
+
 export interface CardGenDataState {
     subjects: Subject[];
     uiState: {
         screen: string;
         selectedSubjects: SelectedSubject[];
-        isLoading: boolean;
         enabled: boolean;
         tileDisplayCount: number;
         rollComplete: boolean;
@@ -80,11 +97,37 @@ export interface CardGenModalProps {
     AppData Interfaces
 -----------------------------*/
 
+export interface AppConfig {
+    rollImgRoot: string;
+    audioRoot: string;
+    playLength: number;
+    subjImgRoot: string;
+    apiRoot: string;
+    gameId: string;
+}
+
+export interface UserCard {
+    _id?: string;
+    gameId: string;
+    cardName: string;
+    createdAt?: string;
+    userId: string;
+    selectedSubjects: SelectedSubject[];
+    probabilityMatrix: string;
+}
+
+export interface AppDataLogin {
+    token: string;
+    user: AppUser;
+}
+
 
 export interface AppDataState {
     uiState: {
         isLoading: boolean;
         user?: AppUser;
+        userCards?: UserCard[];
+        token?: string;
     }
 }
 
@@ -96,12 +139,10 @@ export interface LoginDataProps {
 
 
 export interface AppUser {
-    user: {
-        _id: string;
-        email: string;
-        name: string;
-    };
-    token: string;
+    _id: string;
+    email: string;
+    name: string;
+    isAdmin: boolean;
 }
 
 

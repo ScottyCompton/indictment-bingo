@@ -8,16 +8,16 @@ import {Container, Row, Col} from 'react-bootstrap';
 const Login:React.FC = () => {
     const [loginData, setLoginData] = useState({username: '', password: ''});
     const [loginAttempt, setLoginAttempt] = useState(false);
-    const user = useAppSelector(state => state.appData.uiState.user);
+    const {user, token} = useAppSelector(state => state.appData.uiState);
     const dispatch = useAppDispatch();
     const history = useHistory();
  
 
     useEffect(() => {
-        if(user && user.token) {
+        if(user && token) {
             history.push('/cards')
         }
-    }, [history, user])
+    }, [history, user, token])
 
 
   

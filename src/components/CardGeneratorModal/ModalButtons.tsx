@@ -5,6 +5,7 @@ import {cardgen_navigate, cardgen_showReport, cardgen_showCard} from '../../appD
 import {useEffect, useState} from 'react'
 import useSound from 'use-sound';
 import {Modal} from 'react-bootstrap'
+import {appConfig} from '../../helpers';
 
 
 const ModalButtons:React.FC<ModalButtonProps> = (props:ModalButtonProps) => {
@@ -14,7 +15,7 @@ const ModalButtons:React.FC<ModalButtonProps> = (props:ModalButtonProps) => {
     const [confirmCancel, setConfirmCancel]  = useState(false);
 
     const [playOn, {stop}] = useSound(
-        '/dist/audio/entertained.mp3',
+        `${appConfig.audioRoot}/entertained.mp3`,
         { volume: .5 }
       );
      
@@ -26,7 +27,7 @@ const ModalButtons:React.FC<ModalButtonProps> = (props:ModalButtonProps) => {
             playOn();
             setTimeout(() => {
                 playOn();
-            },75)
+            },50)
         }
       }, [confirmCancel, stop, playOn])
     

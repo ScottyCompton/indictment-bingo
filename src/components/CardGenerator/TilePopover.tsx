@@ -1,6 +1,7 @@
 import {Popover, Overlay} from 'react-bootstrap';
 import {Subject} from '../../interfaces';
 import {useRef} from 'react';
+import {appConfig} from '../../helpers';
 import probabilityValues from '../../fixtures/probabilityValues.json';
 
 
@@ -32,7 +33,7 @@ const TilePopover:React.FC<TilePopoverProps> = (props:TilePopoverProps) => {
                         <div className="card-body">
                             <div>
                                 <h5 className="text-light tile-popover__title">{subjectTitle}</h5>
-                                <img className="tile-popover__img" src={`../dist/images/subjects/${subjectImg}`} alt={subjectTitle + ''} />
+                                <img className="tile-popover__img" src={appConfig.subjImgRoot + '/' + subjectImg} alt={subjectTitle + ''} />
                                 <span className="tile-popover__shortdesc">{subjectShortDesc}</span>
                                 <div className="text-light tile-popover__probability">Indictemnt Probability: <b className="text-warning">{arrProb[probability ? probability: 0]}</b></div>
                             </div>

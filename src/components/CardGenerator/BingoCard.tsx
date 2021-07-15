@@ -141,7 +141,7 @@ const BingoCard:React.FC = () => {
                         {aryTiles && aryTiles.map((item: Subject, idx:number) => {
                             if(item._id === "-1") {
                                 return (
-                                    <img key={uuid()} alt={item.subjectTitle + ''} src={`../dist/images/subjects/${item.subjectImg}`} className='subject_tile-img subject_tile-img__rolling' />
+                                    <img key={uuid()} alt={item.subjectTitle + ''} src={`${appConfig.rollImgRoot}/${item.subjectImg}`} className='subject_tile-img subject_tile-img__rolling' />
                                 )
                             } else {
                                 return (
@@ -153,12 +153,6 @@ const BingoCard:React.FC = () => {
                     </div>
                 </div>
             </div>
-            {/* <div>
-                <ProbabilitReport />
-            </div>            
-            <div>            
-                <PlayAgainButton handleClick={handleClick} />
-            </div> */}
         </div>
                 
     )

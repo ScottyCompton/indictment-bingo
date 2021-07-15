@@ -7,6 +7,7 @@ import useSound from 'use-sound';
 import {cardgen_loadData} from '../../appData';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {useEffect} from 'react';
+import {appConfig} from '../../helpers';
 
 
 const CardGenerator:React.FC = () => {
@@ -15,7 +16,7 @@ const CardGenerator:React.FC = () => {
   const playMusic = useAppSelector(state => state.cardGenData.uiState.playMusic);
 
   const [playOn, {stop}] = useSound(
-    '/dist/audio/spanish_flea.mp3',
+    `${appConfig.audioRoot}/spanish_flea.mp3`,
     { volume: .5 }
   );
  

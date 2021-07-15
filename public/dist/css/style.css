@@ -7776,9 +7776,9 @@ body {
   padding: 0 1%; }
 
 .bingo-card {
+  padding: 1rem;
   max-width: 700px;
   margin: 0 auto;
-  margin-top: 2vh;
   width: 100%; }
   .bingo-card .bingo-wrapper {
     display: grid;
@@ -7913,3 +7913,26 @@ body {
 
 .card-generator-modal__body {
   padding: 0px; }
+
+.loading-overlay {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  background-color: #000;
+  z-index: -10;
+  overflow: hidden;
+  transition: all .5s ease-in; }
+  .loading-overlay__inner {
+    position: relative;
+    left: 50%;
+    top: 50%; }
+  .loading-overlay__spinner {
+    width: 10vh;
+    height: 10vh;
+    transform: translateX(-50%); }
+  .loading-overlay--loading {
+    opacity: 0.5;
+    z-index: 5000; }

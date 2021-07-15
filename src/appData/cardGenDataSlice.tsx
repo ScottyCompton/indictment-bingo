@@ -8,7 +8,6 @@ const initialState: CardGenDataState = {
     uiState: {
         screen: 'SPLASH',
         selectedSubjects: [],
-        isLoading: true,
         enabled: false,
         playMusic: false,
         tileDisplayCount: 0,
@@ -66,13 +65,6 @@ const getDiagProbs = (matrix:any) =>{
         arrRTL.push(matrix[i][(matrix.length-1)-i])
     }
 
-
-    // arrRTL.push(matrix[0][4]);
-    // arrRTL.push(matrix[1][3]);
-    // arrRTL.push(matrix[2][2]);
-    // arrRTL.push(matrix[3][1]);
-    // arrRTL.push(matrix[4][0]);
-
     arrOut.push(Math.min(...arrRTL));   
   
     return arrOut;
@@ -90,10 +82,6 @@ const cardGenDataSlice = createSlice({
              state.uiState = initialState.uiState;
              //state.selectedSubjects = [];
             
-        },
-
-        setAppLoading(state, action: PayloadAction<boolean>) {
-            state.uiState.isLoading = action.payload;
         },
 
         updateSelectedSubjects(state, action:PayloadAction<SelectedSubject[]>) {
@@ -162,7 +150,6 @@ export const {
     reeinitialize, 
     loadCardGenData,
     updateTileDisplayCount, 
-    setAppLoading, 
     updateSelectedSubjects, 
     switchScreen, 
     setMusicState,

@@ -10,6 +10,28 @@ const PreLoadScreen:React.FC<PreloadScreenProps> = (props:PreloadScreenProps) =>
     const {statusValues} = statusVals;
     const dispatch = useAppDispatch();
 
+
+    // const updateStatus = (status: {statusText: string, statusVal: number}, idx:number) => {
+    //     setStatus((prevState) => {
+    //         if(idx === statusValues.length-1) {
+    //             window.clearInterval(updateInterval)
+    //             setTimeout(() => {dispatch(cardgen_enableRoll())},200)
+    //         }
+    //         return status;              
+    //     })
+    // }
+
+    // const updateInterval = useMemo(() => {
+    //     let idx = 0;
+
+    //     const interval = window.setInterval(() => {
+    //         updateStatus(statusValues[idx], idx)
+    //         idx++;
+    //     }, 1000)
+    //     return interval;
+    // }, [statusValues, updateStatus])
+
+
     useEffect(() => {
         setRootClass('preload-screen fade-in fadeable');
 
