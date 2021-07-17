@@ -29,13 +29,13 @@ const TilePopover:React.FC<TilePopoverProps> = (props:TilePopoverProps) => {
                 container={containerRef}
                 placement={window.innerWidth < 500 ?  (idx < 20 ? 'bottom' : 'top') : idx < 10 ? 'bottom' : 'top'}>
                     <Popover id={`popover_${_id}`}>
-                    <div className="card bg-dark">
+                    <div className="card bg-primary text-white">
                         <div className="card-body">
                             <div>
-                                <h5 className="text-light tile-popover__title">{subjectTitle}</h5>
+                                <h6 className="card-title tile-popover__title text-warning">{subjectTitle}</h6>
                                 <img className="tile-popover__img" src={appConfig.subjImgRoot + '/' + subjectImg} alt={subjectTitle + ''} />
-                                <span className="tile-popover__shortdesc">{subjectShortDesc}</span>
-                                <div className="text-light tile-popover__probability">Indictemnt Probability: <b className="text-warning">{arrProb[probability ? probability: 0]}</b></div>
+                                <span className="tile-popover__shortdesc card-text"><p>{subjectShortDesc}</p></span>
+                                <div className="card-text tile-popover__probability">Indictemnt Probability: <b className="text-warning">{arrProb[probability ? probability: 0]}</b></div>
                             </div>
                         </div>
                         

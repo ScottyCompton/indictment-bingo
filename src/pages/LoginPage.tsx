@@ -7,8 +7,9 @@ import {Container, Row, Col} from 'react-bootstrap';
 
 const Login:React.FC = () => {
     const [loginData, setLoginData] = useState({username: '', password: ''});
-    const [loginAttempt, setLoginAttempt] = useState(false);
     const {user, token} = useAppSelector(state => state.appData.uiState);
+    const {loginFail}     = useAppSelector(state => state.appData.uiState);
+    const [loginAttempt, setLoginAttempt] = useState(false)
     const dispatch = useAppDispatch();
     const history = useHistory();
  
@@ -20,14 +21,20 @@ const Login:React.FC = () => {
     }, [history, user, token])
 
 
+    useEffect(() => {
+        if(loginFail) {
+            setLoginAttempt(true)
+        }
+    }, [loginFail])
+
   
     const handleSubmit = (e:React.ChangeEvent<HTMLFormElement>) => {
         e.preventDefault();
-        setLoginAttempt(true);
         dispatch(app_executeLogin(loginData))
     }
 
     const handleUsernameChange = (e:React.ChangeEvent<HTMLInputElement>) => {
+        setLoginAttempt(false)
         setLoginData((prev) => {
             return {
                 ...prev,
@@ -36,6 +43,7 @@ const Login:React.FC = () => {
         })        
     }
     const handlePasswordChange = (e:React.ChangeEvent<HTMLInputElement>) => {
+        setLoginAttempt(false)
         setLoginData((prev) => {
             return {
                 ...prev,
@@ -50,7 +58,7 @@ const Login:React.FC = () => {
                 <div className="card text-white bg-secondary mb-3" style={{maxWidth: '30rem', margin: '5rem auto 0'}}>
                 <div className="card-header">Login</div>
                 <div className="card-body">
-                    <h4 className="card-title">WebFolio 2.0</h4>
+                    <h4 className="card-title">Trump World Indictment Bingo</h4>
                     <form onSubmit={handleSubmit}>
                             <label htmlFor="username">Username:</label><input className="form-control" id="username" onChange={handleUsernameChange} type="text" value={loginData.username} />
                             <label htmlFor="password">Password:</label><input className="form-control" id="password" onChange={handlePasswordChange} type="password" value={loginData.password} />

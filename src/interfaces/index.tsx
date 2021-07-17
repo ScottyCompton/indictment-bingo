@@ -128,6 +128,7 @@ export interface AppDataState {
         user?: AppUser;
         userCards?: UserCard[];
         token?: string;
+        loginFail?: true;
     }
 }
 

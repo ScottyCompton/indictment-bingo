@@ -11,13 +11,13 @@
     transition: all .5s ease-in;
     &__inner {
         position: relative;
-        left: 50%;
-        top: 50%;
+        // left: 50%;
+        top: 40%;
+        text-align: center;
     }
     &__spinner {
         width: 10vh;
         height: 10vh;
-        transform: translateX(-50%);
     }
     &--loading {
         opacity: 0.5;

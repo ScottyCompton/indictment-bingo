@@ -16,7 +16,9 @@ const BingoCard:React.FC = () => {
     const {enabled, showReport, selectedSubjects} = useAppSelector(state => state.cardGenData.uiState);
     const [aryTiles, setArrayTiles] = useState<Subject[]>()
     
-
+    // there will likely be more than 25 subjects to choose from down the road, this 
+    // limits the total possible down 25, for a 5x5 matrix
+    const tileLimit = 25;
 
 
     const getSelectedSubjects = useCallback(() => {
@@ -36,6 +38,7 @@ const BingoCard:React.FC = () => {
                 });
             }
         }
+        arySelected.splice(0, arySelected.length - tileLimit)
         dispatch(cardgen_updateSelected(arySelected))   // here we have an arra of subjectId's 
 
     }, [dispatch, subjects])
@@ -125,7 +128,7 @@ const BingoCard:React.FC = () => {
                 probability: 0})
             currIdx = nextIdx;
         }
-        setArrayTiles(aryOut)
+        setArrayTiles(aryOut.splice(0, tileLimit))
 
         setRootClass('bingo-card fadeable fade-in');
         dispatch(cardgen_queuemusic());
@@ -135,7 +138,7 @@ const BingoCard:React.FC = () => {
 
     return (
         <div className={rootClass}>
-            <div className="card bg-light mb-3 bingo-card__bkg">
+            <div className="card bg-light bingo-card__bkg">
                 <div className="card-body bingo-card__body">
                     <div className="bingo-card__wrapper">
                         {aryTiles && aryTiles.map((item: Subject, idx:number) => {

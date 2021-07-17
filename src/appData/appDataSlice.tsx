@@ -28,6 +28,15 @@ const cardGenDataSlice = createSlice({
             state.uiState.user = action.payload.user;
             state.uiState.token = action.payload.token;
         },
+
+        setLoginFail(state, action: PayloadAction<boolean>) {
+            console.log(action.payload)
+            if(action.payload) {
+                state.uiState.loginFail = true;
+            } else {
+                state.uiState.loginFail = undefined;
+            }
+        },
         
         refreshUserSession(state, action:PayloadAction<AppDataLogin>) {
             if(action.payload) {
@@ -41,6 +50,6 @@ const cardGenDataSlice = createSlice({
 
 const {actions, reducer} = cardGenDataSlice;
 
-export const {setAppLoading, loadUserCardData, loginUser, refreshUserSession} = actions;
+export const {setAppLoading, setLoginFail, loadUserCardData, loginUser, refreshUserSession} = actions;
 export default reducer;
 

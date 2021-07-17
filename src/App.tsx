@@ -1,5 +1,6 @@
 import {Router, Route, Switch} from 'react-router-dom';
-import {HomePage, LoginPage, Cards, NotFoundPage} from './pages';
+import {HomePage, LoginPage, Cards, NotFoundPage, CreateAccount} from './pages';
+import {Header, Footer} from './components/layout';
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import {createBrowserHistory} from 'history';
 import {useAppSelector} from './hooks'
@@ -22,24 +23,32 @@ const AppRouter:React.FC<any> = (props:any) => {
                 key={location.key}
                 timeout={1000}
                 classNames="fade">
-              <div>
-                {!user && 
-                  <Switch location={location}>
-                  <Route path="/" component={LoginPage} exact={true} />
-                  <Route path="/login" component={LoginPage} />
-                  <Route component={NotFoundPage} />
-                </Switch>                 
-                }
+                <main>
+                    <div className="page">
+                        <Header />
+                            <div className="content">
+                            {!user &&
+                              <Switch location={location}>
+                                <Route path="/" component={HomePage} exact={true} />
+                                <Route path="/login" component={LoginPage} />
+                                <Route path="/cards" component={LoginPage} />
+                                <Route path="/createaccount" component={CreateAccount} />
+                                <Route component={NotFoundPage} />
+                              </Switch>
+                            }
 
-                {user && 
-                <Switch location={location}>
-                  <Route path="/" component={HomePage} exact={true} />
-                  <Route path="/cards" component={Cards} />
-                  <Route component={NotFoundPage} />
-                </Switch>                   
-                }
-              <LoadingOverlay />
-              </div>
+                            {user && 
+                              <Switch>
+                                <Route path="/" component={HomePage} exact={true} />
+                                <Route path="/cards" component={Cards} />
+                                <Route component={NotFoundPage} />
+                              </Switch>
+                            }
+                          </div>
+                      <Footer />
+                  </div>
+                  <LoadingOverlay />
+                </main>
             </CSSTransition>
         </TransitionGroup>
         );

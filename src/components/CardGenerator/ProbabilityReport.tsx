@@ -41,41 +41,45 @@ const ProbabilityReport:React.FC = () => {
             {
                 rollComplete && 
 
-                <Container fluid >
+                <Container fluid  className="text-light">
                 <Row>
-                    <Col xs={12}><h5 className="text-light">Rows (A through E)</h5></Col>
+                    <Col xs={12}><small>Below is a summary of your chances of winning on this card. Good luck!</small></Col>
+                </Row>
+                <Row>&nbsp;</Row>
+                <Row>
+                    <Col xs={12}><h6 className="text-warning">Rows (A through E)</h6></Col>
                 </Row>
                 {rowProbs.map((prob:any, i:number) => {
                    return (
                      <Row key={uuid()}>
-                        <Col xs={6}>Row {rowLtr(i)}:</Col>
-                        <Col xs={6}><span className="rpt-prb">{arrProbs[prob]}</span></Col>
+                        <Col xs={6}><small>Row {rowLtr(i)}:</small></Col>
+                        <Col xs={6}><span className="rpt-prb"><small>{arrProbs[prob]}</small></span></Col>
                     </Row>)
                 })}
                 <Row><Col xs={12}>&nbsp;</Col></Row>
                 <Row>
-                    <Col xs={12}><h5 className="text-light">Columns (1 thru 5)</h5></Col>
+                    <Col xs={12}><h6 className="text-warning">Columns (1 thru 5)</h6></Col>
                 </Row>
     
                 {colProbs.map((prob:any, i:number) => {
                    return (
                     <Row key={uuid()}>
-                        <Col xs={6}>Column {i+1}:</Col>
-                        <Col xs={6}><span className="rpt-prb">{arrProbs[prob]}</span></Col>
+                        <Col xs={6}><small>Column {i+1}:</small></Col>
+                        <Col xs={6}><span className="rpt-prb"><small>{arrProbs[prob]}</small></span></Col>
                     </Row>)
                 })}
                 <Row><Col xs={12}>&nbsp;</Col></Row>
     
                 <Row>
-                    <Col xs={12}><h5 className="text-light">Diagonals (A1-E5, A5-E1)</h5></Col>
+                    <Col xs={12}><h6 className="text-warning">Diagonals (A1-E5, A5-E1)</h6></Col>
                 </Row>
 
 
                 {diagProbs.map((prob:any, i:number) => {
                    return (
                     <Row key={uuid()}>
-                        <Col xs={6}>Diagonal {i+1}:</Col>
-                        <Col xs={6}><span className="rpt-prb">{arrProbs[prob]}</span></Col>
+                        <Col xs={6}><small>Diagonal {i+1}:</small></Col>
+                        <Col xs={6}><span className="rpt-prb"><small>{arrProbs[prob]}</small></span></Col>
                     </Row>)
                 })}
                 </Container>

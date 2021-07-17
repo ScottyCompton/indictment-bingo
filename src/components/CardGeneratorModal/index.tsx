@@ -58,19 +58,20 @@ const CardGeneratorModal:React.FC<CardGenModalProps> = (props:CardGenModalProps)
     return (
         <Modal 
         id="cardgen-modal"
+        contentClassName="card-generator-modal bg-primary"
         backdrop="static"
         keyboard={false}
         centered aria-labelledby="contained-modal-title-vcenter"
         show={showGenerator} 
         onHide={handleClose}>
         <Modal.Header>
-          <Modal.Title>
+          <h6 className="text-warning">
             {screen === 'SPLASH' && <span>Trump World Indictment Bingo</span>}
             {screen === 'PRELOAD' && <span>Indictments are coming... please wait</span>}
-            {(screen === 'GENERATE' && !rollComplete) && <span>Generating your Bingo card</span>}
+            {(screen === 'GENERATE' && !rollComplete) && <span>Generating your Bingo card... please wait</span>}
             {(screen === 'GENERATE' && rollComplete) && <span>Your card is ready!</span>}
-          </Modal.Title>
-          {(rollComplete && screen==='GENERATE') && <Button variant="btn btn-success btn-sm" onClick={handleSaveCard}>Save Card</Button>}          
+          </h6>
+          {(rollComplete && screen==='GENERATE') && <Button variant="btn btn-sm btn-success btn-sm" onClick={handleSaveCard}>Save Card</Button>}          
         </Modal.Header>
         <Modal.Body className="card-generator-modal__body">
           <CardGenerator />

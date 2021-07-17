@@ -66,28 +66,31 @@ const ModalButtons:React.FC<ModalButtonProps> = (props:ModalButtonProps) => {
 
     return (
         <>
-            {(enabled && screen==='PRELOAD') && <Button variant="btn btn-success" onClick={handleGetCard}>Get Your Card!</Button>}
-            {(rollComplete && !showReport && screen==='GENERATE') && <Button variant="btn btn-success" onClick={handleViewReport}>Probability Report</Button>}
-            {(rollComplete && showReport && screen==='GENERATE') && <Button variant="btn btn-success" onClick={handleViewCard}>View Card</Button>}
-            {(rollComplete && screen==='GENERATE') && <Button variant="btn btn-secondary" onClick={handleCloseClick}>Close without saving</Button>}
-            {(!rollComplete && screen==='GENERATE') && <Button variant="btn btn-secondary" onClick={handleCloseClick}>Cancel</Button>}
-            {(!rollComplete && screen==='PRELOAD') && <Button variant="btn btn-secondary" onClick={handleCloseClick}>Cancel</Button>}
-            {screen==='SPLASH' && <Button variant="btn btn-secondary" onClick={handleClose}>Cancel</Button>}
+            {(enabled && screen==='PRELOAD') && <Button variant="btn btn-sm btn-success" onClick={handleGetCard}>Get Your Card!</Button>}
+            {(rollComplete && !showReport && screen==='GENERATE') && <Button variant="btn btn-sm btn-warning" onClick={handleViewReport}>Probability Report</Button>}
+            {(rollComplete && showReport && screen==='GENERATE') && <Button variant="btn btn-sm btn-warning" onClick={handleViewCard}>View Card</Button>}
+            {(rollComplete && screen==='GENERATE') && <Button variant="btn btn-sm btn-secondary" onClick={handleCloseClick}>Close without saving</Button>}
+            {(!rollComplete && screen==='GENERATE') && <Button variant="btn btn-sm btn-secondary" onClick={handleCloseClick}>Cancel</Button>}
+            {(!rollComplete && screen==='PRELOAD') && <Button variant="btn btn-sm btn-secondary" onClick={handleCloseClick}>Cancel</Button>}
+            {screen==='SPLASH' && <Button variant="btn btn-sm btn-secondary" onClick={handleClose}>Cancel</Button>}
 
             <Modal 
                 show={confirmCancel} 
                 centered aria-labelledby="contained-modal-title-vcenter" 
-                contentClassName={screen === 'PRELOAD' ? 'bg-light' :''} 
+                contentClassName="bg-secondary"
                 onHide={handleCancel} 
                 size="sm"
                 animation={false}>
-                <Modal.Body className={screen === 'PRELOAD' ? 'text-dark' :'text-light'} >Are you sure you want to cancel?? It's fuuuunnnn...</Modal.Body>
+                <Modal.Header>
+                    <h6>Exit without saving?</h6>
+                </Modal.Header>
+                <Modal.Body >Are you sure you want to exit without saving?</Modal.Body>
                 <Modal.Footer>
-                <Button variant="btn btn-warning btn-sm" onClick={handleCancel}>
-                    Yes, Cancel
+                <Button variant="btn btn-warning btn-sm" onClick={handleContinue}>
+                    Continue
                 </Button>
-                <Button variant="btn btn-success btn-sm" onClick={handleContinue}>
-                    No, Continue
+                <Button variant="btn btn-primary btn-sm" onClick={handleCancel}>
+                    Exit without saving
                 </Button>
                 </Modal.Footer>
             </Modal>

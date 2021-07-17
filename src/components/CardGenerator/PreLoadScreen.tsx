@@ -11,27 +11,6 @@ const PreLoadScreen:React.FC<PreloadScreenProps> = (props:PreloadScreenProps) =>
     const dispatch = useAppDispatch();
 
 
-    // const updateStatus = (status: {statusText: string, statusVal: number}, idx:number) => {
-    //     setStatus((prevState) => {
-    //         if(idx === statusValues.length-1) {
-    //             window.clearInterval(updateInterval)
-    //             setTimeout(() => {dispatch(cardgen_enableRoll())},200)
-    //         }
-    //         return status;              
-    //     })
-    // }
-
-    // const updateInterval = useMemo(() => {
-    //     let idx = 0;
-
-    //     const interval = window.setInterval(() => {
-    //         updateStatus(statusValues[idx], idx)
-    //         idx++;
-    //     }, 1000)
-    //     return interval;
-    // }, [statusValues, updateStatus])
-
-
     useEffect(() => {
         setRootClass('preload-screen fade-in fadeable');
 
@@ -54,7 +33,7 @@ const PreLoadScreen:React.FC<PreloadScreenProps> = (props:PreloadScreenProps) =>
 
     return (
         <div className={rootClass}>
-            <div className="preload-screen__statustext"><h4 className="text-light">{status.statusText}</h4></div>
+            <div className="preload-screen__statustext"><h5 className="text-light">{status.statusText}</h5></div>
             <div className="progress preload-screen__progress-bar">
                 <div className="progress-bar progress-bar-striped bg-warning" role="progressbar" style={{width: `${status.statusVal}%`}} aria-valuenow={status.statusVal} aria-valuemin={0} aria-valuemax={100}></div>
             </div>

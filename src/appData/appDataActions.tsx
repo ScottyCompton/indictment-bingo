@@ -1,5 +1,5 @@
 import {putData, getData} from '../helpers';
-import {setAppLoading, loadUserCardData, loginUser, refreshUserSession} from './appDataSlice'
+import {setAppLoading, setLoginFail, loadUserCardData, loginUser, refreshUserSession} from './appDataSlice'
 import {LoginDataProps, AppDataLogin} from '../interfaces';
 
 
@@ -12,9 +12,9 @@ export const app_refreshUserSession = () => {
             if(userdata) {
                 const payload = JSON.parse(userdata);
                 dispatch(refreshUserSession(payload));
-                dispatch(setAppLoading(false))
             }
-
+            dispatch(setAppLoading(false))
+                        
         } catch (error) {
             console.log(error)
         }
@@ -72,12 +72,14 @@ export const app_executeLogin = (loginData:LoginDataProps) => {
             .then((result:AppDataLogin | null) => {
                 console.log(result)
                 if(result && result.token) {
+                    dispatch(setLoginFail(false))
                     dispatch(loginUser(result))
                     localStorage.setItem('userdata', JSON.stringify(result));
                 }
            }).then(() => {
-            setAppLoading(false);
-           });
+            dispatch(setLoginFail(true));
+            dispatch(setAppLoading(false));
+        });
 
         } catch (error) {
             console.log(error);

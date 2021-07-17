@@ -2,7 +2,10 @@
 
 const Footer:React.FC = () => {
     return (
-        <>I am a footer</>
+        <div className="footer bg-primary">
+
+            I am the footer
+        </div>
     )
 }
 
