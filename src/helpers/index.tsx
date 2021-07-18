@@ -2,6 +2,8 @@
 //const rootUrl = process.env.REACT_APP_API_ROOT;
 import {AppConfig} from '../interfaces';
 
+
+
 export interface PutDataConfiguration {
     method?: string;
     contentType?: string;
@@ -43,6 +45,7 @@ export const getDataWithAuth = async (endpoint:string) => {
     
     const fetchUrl = appConfig.apiRoot + endpoint
     const response = await fetch(fetchUrl, configData);   // e.g. http://mydata.xyz.com/categories
+
     if(!response.ok) {
         console.log({status: response.status, message: 'Could not execute getDataWithAuth', url: fetchUrl});
         throw new Error('Could not execute getDataWithAuth');
@@ -103,6 +106,7 @@ export const appConfig:AppConfig = {
         rollImgRoot: process.env.REACT_APP_ROLLERS_IMG_ROOT!,
         audioRoot: process.env.REACT_APP_AUDIO_ROOT!,
         subjImgRoot: process.env.REACT_APP_API_ROOT + process.env.REACT_APP_SUBJECT_IMG_ROOT!,
+        cardThumbImgRoot: process.env.REACT_APP_API_ROOT + process.env.REACT_APP_THUMB_IMG_ROOT!,
         playLength: 18000,
         apiRoot: process.env.REACT_APP_API_ROOT!,
         gameId: process.env.REACT_APP_GAME_ID!

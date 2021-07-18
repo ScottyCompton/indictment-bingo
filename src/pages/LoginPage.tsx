@@ -55,10 +55,9 @@ const Login:React.FC = () => {
         <Container>
         <Row>
             <Col xs="12" className="align-center">
-                <div className="card text-white bg-secondary mb-3" style={{maxWidth: '30rem', margin: '5rem auto 0'}}>
-                <div className="card-header">Login</div>
+                <div className="card  bg-secondary mb-3" style={{maxWidth: '30rem', margin: '5rem auto 0'}}>
+                <div className="card-header">Please Login</div>
                 <div className="card-body">
-                    <h4 className="card-title">Trump World Indictment Bingo</h4>
                     <form onSubmit={handleSubmit}>
                             <label htmlFor="username">Username:</label><input className="form-control" id="username" onChange={handleUsernameChange} type="text" value={loginData.username} />
                             <label htmlFor="password">Password:</label><input className="form-control" id="password" onChange={handlePasswordChange} type="password" value={loginData.password} />

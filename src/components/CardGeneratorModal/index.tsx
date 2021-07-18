@@ -11,7 +11,7 @@ import useSound from 'use-sound';
 
 
 const CardGeneratorModal:React.FC<CardGenModalProps> = (props:CardGenModalProps) => {
-    const {showGenerator, handleClose} = props;
+    const {showGenerator, handleClose, cardId} = props;
     const {screen, rollComplete, selectedSubjects, probabilityMatrix} = useAppSelector(state => state.cardGenData.uiState)
     const {user} = useAppSelector(state => state.appData.uiState)
     const [playSound, setPlaySound] = useState(false)
@@ -21,7 +21,7 @@ const CardGeneratorModal:React.FC<CardGenModalProps> = (props:CardGenModalProps)
 
     const [playOn, {stop}] = useSound(
       `${appConfig.audioRoot}/chosenone.mp3`,
-      { volume: .5 }
+      { volume: 1 }
     );
    
 
@@ -40,16 +40,14 @@ const CardGeneratorModal:React.FC<CardGenModalProps> = (props:CardGenModalProps)
     const handleSaveCard = () => {
         if(user) {
           setPlaySound(true)
-          const userId = user._id;
           const userCardData:UserCard = {
             selectedSubjects,
-            userId,
             probabilityMatrix: JSON.stringify(probabilityMatrix.vals),
             cardName: 'Some New Card',
             gameId: appConfig.gameId,
           }
           dispatch(cardgen_saveCardData(userCardData));
-          //handleClose();
+          handleClose();
           
         }
     }
@@ -65,19 +63,24 @@ const CardGeneratorModal:React.FC<CardGenModalProps> = (props:CardGenModalProps)
         show={showGenerator} 
         onHide={handleClose}>
         <Modal.Header>
-          <h6 className="text-warning">
-            {screen === 'SPLASH' && <span>Trump World Indictment Bingo</span>}
-            {screen === 'PRELOAD' && <span>Indictments are coming... please wait</span>}
-            {(screen === 'GENERATE' && !rollComplete) && <span>Generating your Bingo card... please wait</span>}
-            {(screen === 'GENERATE' && rollComplete) && <span>Your card is ready!</span>}
-          </h6>
-          {(rollComplete && screen==='GENERATE') && <Button variant="btn btn-sm btn-success btn-sm" onClick={handleSaveCard}>Save Card</Button>}          
+          {!cardId && 
+            <h6 className="text-warning">
+              {screen === 'SPLASH' && <span>Trump World Indictment Bingo</span>}
+              {screen === 'PRELOAD' && <span>Indictments are coming... please wait</span>}
+              {(screen === 'GENERATE' && !rollComplete) && <span>Generating your Bingo card... please wait</span>}
+              {(screen === 'GENERATE' && rollComplete) && <span>Your card is ready!</span>}
+            </h6>
+          }
+          {cardId && 
+            <h6 className="text-warning">Your Saved Bingo Card</h6>
+          }
+          {!cardId && (rollComplete && screen==='GENERATE') && <Button variant="btn btn-sm btn-success btn-sm" onClick={handleSaveCard}>Save Card</Button>}          
         </Modal.Header>
         <Modal.Body className="card-generator-modal__body">
-          <CardGenerator />
+          <CardGenerator cardId={cardId} />
         </Modal.Body>        
         <Modal.Footer>
-          <ModalButtons handleClose={handleClose} />
+          <ModalButtons cardId={cardId} handleClose={handleClose} />
         </Modal.Footer>
       </Modal>
     )

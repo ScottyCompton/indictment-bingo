@@ -1,7 +1,7 @@
 import {useState, useEffect, useCallback, useMemo} from 'react';
 import SubjectTile from './SubjectTile';
 import {v4 as uuid} from 'uuid';
-import {Subject, SelectedSubject} from '../../interfaces';
+import {Subject, SelectedSubject, BingoCardProps} from '../../interfaces';
 //import PlayAgainButton from './PlayAgainButton'
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {cardgen_updateSelected, cardgen_queuemusic, cardgen_disableRoll, cardgen_updateCompletedTileCount} from '../../appData';
@@ -9,12 +9,16 @@ import {cardgen_updateSelected, cardgen_queuemusic, cardgen_disableRoll, cardgen
 import {appConfig} from '../../helpers'
 
 
-const BingoCard:React.FC = () => {
+
+const BingoCard:React.FC<BingoCardProps> = (props:BingoCardProps) => {
     const [rootClass, setRootClass] = useState('subjects fadeable fade-out');
     const dispatch = useAppDispatch();
     const {subjects} = useAppSelector(state => state.cardGenData);
     const {enabled, showReport, selectedSubjects} = useAppSelector(state => state.cardGenData.uiState);
     const [aryTiles, setArrayTiles] = useState<Subject[]>()
+    const {cardId} = props;
+    const {savedCards} = useAppSelector(state => state.cardData)
+
     
     // there will likely be more than 25 subjects to choose from down the road, this 
     // limits the total possible down 25, for a 5x5 matrix
@@ -99,41 +103,51 @@ const BingoCard:React.FC = () => {
         }
 
         // run the interval timer for the length of the music
-            setTimeout(() => {
-                window.clearInterval(displayRandomSelectedSubject);
-                cardgen_disableRoll()
-            }, appConfig.playLength)
+        setTimeout(() => {
+            window.clearInterval(displayRandomSelectedSubject);
+            cardgen_disableRoll()
+        }, appConfig.playLength)
 
     }, [enabled, displayRandomSelectedSubject])
 
 
     useEffect(() => {
-
-        let currIdx = 0;
-        let nextIdx = 0;
-
-        let aryOut:Subject[] = [];
-        for(let i = 0; i < subjects.length; i++) {
-            while (nextIdx === currIdx) {
-                nextIdx = Math.floor(Math.random() * 6)+1;
-            }            
-            aryOut.push(
-                {_id: '-1',
-                subjectTitle: null, 
-                subjectDesc: null,
-                subjectShortDesc: null,
-                subjectImg: `roller${nextIdx}.gif`,
-                markDate: null,
-                nohover: false,
-                probability: 0})
-            currIdx = nextIdx;
+        if(!cardId) {
+            let currIdx = 0;
+            let nextIdx = 0;
+    
+            let aryOut:Subject[] = [];
+            for(let i = 0; i < subjects.length; i++) {
+                while (nextIdx === currIdx) {
+                    nextIdx = Math.floor(Math.random() * 6)+1;
+                }            
+                aryOut.push(
+                    {_id: '-1',
+                    subjectTitle: null, 
+                    subjectDesc: null,
+                    subjectShortDesc: null,
+                    subjectImg: `roller${nextIdx}.gif`,
+                    markDate: null,
+                    nohover: false,
+                    probability: 0})
+                currIdx = nextIdx;
+            }
+            setArrayTiles(aryOut.splice(0, tileLimit))
+    
+            setRootClass('bingo-card fadeable fade-in');
+            dispatch(cardgen_queuemusic());
+            getSelectedSubjects();
+        } else {
+            if(savedCards) {
+                const card = savedCards?.filter(item => item._id === cardId)[0];
+                setArrayTiles((prevState) => {
+                    return card.selectedSubjects
+                })
+                setRootClass('bingo-card fadeable fade-in');
+            }
         }
-        setArrayTiles(aryOut.splice(0, tileLimit))
-
-        setRootClass('bingo-card fadeable fade-in');
-        dispatch(cardgen_queuemusic());
-        getSelectedSubjects();
-    }, [getSelectedSubjects, dispatch, subjects.length])
+ 
+    }, [getSelectedSubjects, dispatch, subjects.length, cardId, savedCards])
 
 
     return (

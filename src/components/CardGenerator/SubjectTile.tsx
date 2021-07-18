@@ -36,7 +36,7 @@ const SubjectTile:React.FC<SubjectTileProps> = (props:SubjectTileProps) => {
 
     return (
         <div className="subject_tile" ref={popoverContainerRef}>
-            {!nohover && <TilePopover data={subject} idx={idx} show={showPopover && rollComplete} containerRef={popoverContainerRef.current} target={imgRef.current} />}
+            {!nohover && <TilePopover data={subject} idx={idx} show={showPopover} containerRef={popoverContainerRef.current} target={imgRef.current} />}
            <img onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} onClick={handleClick} ref={imgRef} alt={subjectTitle + ''} src={appConfig.subjImgRoot + '/' + subjectImg} className={imgClass} />
         </div>
     );

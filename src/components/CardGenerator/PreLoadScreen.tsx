@@ -33,10 +33,14 @@ const PreLoadScreen:React.FC<PreloadScreenProps> = (props:PreloadScreenProps) =>
 
     return (
         <div className={rootClass}>
-            <div className="preload-screen__statustext"><h5 className="text-light">{status.statusText}</h5></div>
+            <div className="splash-screen__container">
+                <div className="splash-screen__img"></div>
+            </div>
+            <div className="preload-screen__statustext"><h6 className="text-light">{status.statusText}</h6></div>
             <div className="progress preload-screen__progress-bar">
                 <div className="progress-bar progress-bar-striped bg-warning" role="progressbar" style={{width: `${status.statusVal}%`}} aria-valuenow={status.statusVal} aria-valuemin={0} aria-valuemax={100}></div>
             </div>
+            
          </div>
 
     )

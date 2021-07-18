@@ -1,6 +1,5 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {AppDataState} from '../interfaces';
-import {AppDataLogin, UserCard} from '../interfaces'
+import {AppDataLogin, AppDataState, UserCard, AppLoadingPayload} from '../interfaces'
 
 
 const initialState: AppDataState = {
@@ -15,8 +14,13 @@ const cardGenDataSlice = createSlice({
     initialState: initialState,
     reducers: {
 
-        setAppLoading(state, action: PayloadAction<boolean>)  {
-            state.uiState.isLoading = action.payload;
+        setAppLoading(state, action: PayloadAction<AppLoadingPayload>)  {
+            state.uiState.isLoading = action.payload.isLoading;
+            if(action.payload.loadingMsg && action.payload.isLoading) {
+                state.uiState.loadingMsg = action.payload.loadingMsg
+            } else {
+                state.uiState.loadingMsg = 'Loading data, please wait...'
+            }
         },
 
 

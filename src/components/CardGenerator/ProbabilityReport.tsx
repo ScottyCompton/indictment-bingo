@@ -1,17 +1,24 @@
 import {Container, Row, Col} from 'react-bootstrap';
 import {useAppSelector} from '../../hooks';
+import {ProbabilityReportProps} from '../../interfaces';
 import probabilityValues from '../../fixtures/probabilityValues.json';
 import {v4 as uuid} from 'uuid';
 import {useEffect, useState, useRef} from 'react';
+import {getRowProbs, getColProbs, getDiagProbs} from '../../appData/cardGenDataSlice';
 
 
-const ProbabilityReport:React.FC = () => {
+const ProbabilityReport:React.FC<ProbabilityReportProps> = (props:ProbabilityReportProps) => {
     const probabilityMatrix = useAppSelector(state => state.cardGenData.uiState.probabilityMatrix);
-    const {rowProbs, colProbs, diagProbs} = probabilityMatrix;
+    const {savedCards} = useAppSelector(state => state.cardData);
+    const [rowProbs, setRowProbs] = useState<number[]>([]);
+    const [colProbs, setColProbs] = useState<number[]>([])
+    const [diagProbs, setDiagProbs] = useState<number[]>([])
+    const {cardId} = props;
+
     const arrProbs = probabilityValues.cardVals;
     const {rollComplete, showReport} = useAppSelector(state => state.cardGenData.uiState)
     const [rootClass, setRootClass] = useState('probability-report')
-    const [rootStyle, setRootStyle] = useState<any>(null)
+    //const [rootStyle, setRootStyle] = useState<any>(null)
     const ref = useRef<HTMLDivElement>(null)
 
     const rowLtr = (i:number) => {
@@ -19,11 +26,35 @@ const ProbabilityReport:React.FC = () => {
         return ltrs[i]
     }
   
+
+
     useEffect(() => {
-        const docHeight = document.getElementById('cardgen-modal')?.offsetWidth;
-        setRootStyle({
-            height: docHeight + 'px'
-        })  
+
+        if(cardId) {
+
+            const card = savedCards?.filter(item => item._id === cardId)[0];
+    
+            if(card && card.probabilityMatrix) {
+                const savedMatrix = JSON.parse(card?.probabilityMatrix).slice();
+                setRowProbs(getRowProbs(savedMatrix));
+                setColProbs(getColProbs(savedMatrix));
+                setDiagProbs(getDiagProbs(savedMatrix));
+
+            }
+        } else {
+            setRowProbs(probabilityMatrix.rowProbs);
+            setColProbs(probabilityMatrix.colProbs);
+            setDiagProbs(probabilityMatrix.diagProbs);
+        }
+    }, [cardId, savedCards, probabilityMatrix])
+
+
+
+    useEffect(() => {
+        // const docHeight = document.getElementById('cardgen-modal')?.offsetWidth;
+        // setRootStyle({
+        //     height: docHeight + 'px'
+        // })  
 
         setRootClass((prevState) => {
             if(!showReport) {
@@ -36,16 +67,16 @@ const ProbabilityReport:React.FC = () => {
     }, [showReport])
 
 
+
     return (
-        <div ref={ref} className={rootClass} style={rootStyle}>
+        <div ref={ref} className={rootClass}>
             {
-                rollComplete && 
+                (rollComplete || cardId) && 
 
                 <Container fluid  className="text-light">
                 <Row>
                     <Col xs={12}><small>Below is a summary of your chances of winning on this card. Good luck!</small></Col>
                 </Row>
-                <Row>&nbsp;</Row>
                 <Row>
                     <Col xs={12}><h6 className="text-warning">Rows (A through E)</h6></Col>
                 </Row>
@@ -56,7 +87,6 @@ const ProbabilityReport:React.FC = () => {
                         <Col xs={6}><span className="rpt-prb"><small>{arrProbs[prob]}</small></span></Col>
                     </Row>)
                 })}
-                <Row><Col xs={12}>&nbsp;</Col></Row>
                 <Row>
                     <Col xs={12}><h6 className="text-warning">Columns (1 thru 5)</h6></Col>
                 </Row>
@@ -68,7 +98,6 @@ const ProbabilityReport:React.FC = () => {
                         <Col xs={6}><span className="rpt-prb"><small>{arrProbs[prob]}</small></span></Col>
                     </Row>)
                 })}
-                <Row><Col xs={12}>&nbsp;</Col></Row>
     
                 <Row>
                     <Col xs={12}><h6 className="text-warning">Diagonals (A1-E5, A5-E1)</h6></Col>

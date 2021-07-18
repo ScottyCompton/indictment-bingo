@@ -7401,8 +7401,10 @@ body {
   opacity: 1; }
 
 .big-button {
-  font-size: 1rem;
   font-weight: bolder; }
+  @media (max-width: 600px) {
+    .big-button {
+      padding: 1rem; } }
   @media (min-width: 600px) {
     .big-button {
       font-size: 2rem; } }
@@ -7439,16 +7441,49 @@ body {
 .content {
   width: 100%;
   max-width: 1000px;
+  padding-bottom: 100px;
   margin: 0 auto; }
+  @media (max-width: 600px) {
+    .content {
+      padding: 1% 0; } }
 
 .footer {
   position: fixed;
   left: 0;
   bottom: 0;
-  height: 75px;
+  height: 10vh;
   width: 100%;
   color: white;
-  text-align: center; }
+  text-align: center;
+  margin-top: 5vh; }
+
+.header {
+  padding: 0;
+  height: 15vh;
+  max-height: 120px;
+  display: flex; }
+  .header-logo {
+    position: relative;
+    top: 0px;
+    height: 100%;
+    overflow: hidden;
+    aspect-ratio: 3.37/1;
+    background-image: url("../images/logo.png");
+    background-repeat: no-repeat;
+    background-size: cover; }
+    .header-logo__image {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0; }
+      .header-logo__image img {
+        height: 100%;
+        aspect-ratio: 3.37/1; }
+  .header .navbar {
+    float: right;
+    position: absolute;
+    right: 0px; }
 
 .card-generator {
   max-width: 1000px;
@@ -7456,6 +7491,25 @@ body {
   margin: 0 auto;
   position: relative;
   padding: 0 1%; }
+
+.usercardlist {
+  max-width: 1000px;
+  margin: 0 auto;
+  width: 100%; }
+  .usercardlist__wrapper {
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: flex-start; }
+  .usercardlist__card {
+    width: 100%;
+    height: auto;
+    padding: 1%; }
+    .usercardlist__card img {
+      width: 100%;
+      position: relative; }
 
 .bingo-card {
   max-width: 700px;
@@ -7595,12 +7649,12 @@ body {
 
 .loading-overlay {
   position: absolute;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   top: 0;
   left: 0;
   opacity: 0;
-  background-color: #000;
+  background-color: rgba(0, 0, 0, 0.5);
   z-index: -10;
   overflow: hidden;
   transition: all .5s ease-in; }
@@ -7612,5 +7666,5 @@ body {
     width: 10vh;
     height: 10vh; }
   .loading-overlay--loading {
-    opacity: 0.5;
+    opacity: 1;
     z-index: 5000; }

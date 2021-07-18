@@ -21,7 +21,9 @@ import {
     app_setIsLoading
 } from './appDataActions';
                                                                               
-
+import {
+    card_loadCardData
+} from './cardDataActions'
 
 export  {
     cardgen_loadData, 
@@ -40,4 +42,5 @@ export  {
     app_loadUserCardData,
     app_refreshUserSession,
     app_setIsLoading,
+    card_loadCardData,
     store};

@@ -1,12 +1,13 @@
 import BingoCard from './BingoCard';
 import ProbabilityReport from './ProbabilityReport'
+import {CardGeneratorProps} from '../../interfaces';
 
-const GenerateScreen:React.FC = () => {
+const GenerateScreen:React.FC<CardGeneratorProps> = (props:CardGeneratorProps) => {
     
     return (
         <>
-            <BingoCard />
-            <ProbabilityReport />
+            <BingoCard cardId={props.cardId} />
+            <ProbabilityReport cardId={props.cardId} />
         </>
     )
 }

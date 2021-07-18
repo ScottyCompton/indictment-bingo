@@ -6,7 +6,7 @@ import {CardGenDataState, Subject, SelectedSubject} from '../interfaces';
 const initialState: CardGenDataState = {
     subjects: [],
     uiState: {
-        screen: 'SPLASH',
+        screen: 'PRELOAD',
         selectedSubjects: [],
         enabled: false,
         playMusic: false,
@@ -22,7 +22,7 @@ const initialState: CardGenDataState = {
     }
 }
 
-const getRowProbs = (matrix:[number[]]) => {
+export const getRowProbs = (matrix:[number[]]) => {
     const arrOut:number[] = [];
     matrix.forEach((row) => {
         arrOut.push(Math.min(...row))
@@ -30,7 +30,7 @@ const getRowProbs = (matrix:[number[]]) => {
     return arrOut;
 }
 
-const getColProbs = (matrix:[number[]]) => {
+export const getColProbs = (matrix:[number[]]) => {
     const transposedMatrix:any  = transposeMatrix(matrix);
     const arrOut:number[] = getRowProbs(transposedMatrix);
     return arrOut;
@@ -38,7 +38,7 @@ const getColProbs = (matrix:[number[]]) => {
 
 
 
-const transposeMatrix = (matrix:[number[]]) => {
+export const transposeMatrix = (matrix:[number[]]) => {
     let arrOut = matrix;
     for(let i = 0; i < matrix.length; i++) {
         for(let j = 0; j < i; j++) {
@@ -51,7 +51,7 @@ const transposeMatrix = (matrix:[number[]]) => {
 }
 
 
-const getDiagProbs = (matrix:any) =>{
+export const getDiagProbs = (matrix:any) => {
     const arrLTR: number[] = [];
     const arrRTL: number[] = [];
     const arrOut: number[] = [];

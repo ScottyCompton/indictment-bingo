@@ -3,6 +3,10 @@
     Card Generator Interfaces
 -----------------------------*/
 
+export interface BingoCardProps {
+    cardId?: string | null;
+}
+
 
 export interface Subject {
     _id: string;
@@ -84,11 +88,17 @@ export interface PreloadScreenProps {
 
 export interface ModalButtonProps {
     handleClose: () => void;
+    cardId?: string | null;
 }
 
 export interface CardGenModalProps {
+    cardId?: string | undefined;
     showGenerator: boolean;
     handleClose: () => void 
+}
+
+export interface CardGeneratorProps {
+    cardId?: string | undefined;
 }
 
 
@@ -97,11 +107,17 @@ export interface CardGenModalProps {
     AppData Interfaces
 -----------------------------*/
 
+export interface AppLoadingPayload {
+    isLoading: boolean;
+    loadingMsg?: string;
+}
+
 export interface AppConfig {
     rollImgRoot: string;
     audioRoot: string;
     playLength: number;
     subjImgRoot: string;
+    cardThumbImgRoot: string;
     apiRoot: string;
     gameId: string;
 }
@@ -111,10 +127,10 @@ export interface UserCard {
     gameId: string;
     cardName: string;
     createdAt?: string;
-    userId: string;
     selectedSubjects: SelectedSubject[];
     probabilityMatrix: string;
 }
+
 
 export interface AppDataLogin {
     token: string;
@@ -125,6 +141,7 @@ export interface AppDataLogin {
 export interface AppDataState {
     uiState: {
         isLoading: boolean;
+        loadingMsg?: string;
         user?: AppUser;
         userCards?: UserCard[];
         token?: string;
@@ -148,3 +165,39 @@ export interface AppUser {
 
 
 
+
+/* ---------------------------
+    CardData Interfaces
+-----------------------------*/
+
+export interface SavedCardState {
+    savedCards?: SavedCardData[] | [];
+}
+
+
+export interface SavedCardData {
+    _id?: string;
+    cardName: string;
+    cardThumbImg: string;
+    probabilityMatrix: string;
+    gameId: string;
+    selectedSubjects: Subject[];
+    createdAt:  string;
+    updatedAt: string;
+}
+
+export interface ProbabilityReportProps {
+    cardId?: string | undefined;
+}
+
+
+
+export interface UserCardProps {
+    cardData: SavedCardData;
+    handleClick: (cardId: any) => void;
+}
+
+
+export interface UserCardListProps {
+    handleClick: (cardId:any) => void;
+}

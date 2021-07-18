@@ -1,11 +1,13 @@
 import {configureStore} from '@reduxjs/toolkit';
 import cardGenDataReducer from './cardGenDataSlice';
 import appDataReducer from './appDataSlice';
+import cardDataReducer from './cardDataSlice'
 
 export const store = configureStore({
     reducer: {
         cardGenData: cardGenDataReducer,
-        appData: appDataReducer
+        appData: appDataReducer,
+        cardData: cardDataReducer
     }
 })
 

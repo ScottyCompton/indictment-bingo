@@ -1,31 +1,32 @@
 import {putData, getData} from '../helpers';
 import {setAppLoading, setLoginFail, loadUserCardData, loginUser, refreshUserSession} from './appDataSlice'
-import {LoginDataProps, AppDataLogin} from '../interfaces';
+import {LoginDataProps, AppDataLogin, AppLoadingPayload} from '../interfaces';
+import {card_loadCardData} from './cardDataActions'
 
 
 export const app_refreshUserSession = () => {
     return async (dispatch: any) => {
-        dispatch(setAppLoading(true))
         try {
             let userdata = window.localStorage.getItem('userdata')!;
             
             if(userdata) {
                 const payload = JSON.parse(userdata);
                 dispatch(refreshUserSession(payload));
+                dispatch(card_loadCardData())
             }
-            dispatch(setAppLoading(false))
-                        
+
         } catch (error) {
             console.log(error)
+            dispatch(setAppLoading({isLoading: false}))            
         }
     }
 }
 
 
 
-export const app_setIsLoading = (payload:boolean) => {
+export const app_setIsLoading = (payload:AppLoadingPayload) => {
     return async (dispatch: any) => {
-        dispatch(setAppLoading(payload))        
+        dispatch(setAppLoading(payload))
     }
 }
 
@@ -35,24 +36,24 @@ export const app_loadUserCardData = () => {
 
     return async (dispatch: any) => {
         try {
-            setAppLoading(true)
+            dispatch(setAppLoading({isLoading: true}))
             const userData = window.localStorage.getItem('userdata');
             if(userData) {
                 const storedData = JSON.parse(userData)
                 getData(`/user/${storedData.user._id}/cards`).then((payload:any) => {
                     dispatch(loadUserCardData(payload))
                 }).then(() => {
-                    setAppLoading(false);
+                    dispatch(setAppLoading({isLoading: false}))
                 }).catch((error) => {
                     console.log('Could not load user  card data', error)
-                    setAppLoading(false);                
+                    dispatch(setAppLoading({isLoading: false}))
                 }) 
             } else {
                 throw new Error('Could not load user card data - no user data found in localStorage')
             }
 
         } catch (error) {
-            setAppLoading(false)
+            dispatch(setAppLoading({isLoading: false}))
         }
     }    
 }
@@ -67,19 +68,21 @@ export const app_executeLogin = (loginData:LoginDataProps) => {
                     password: loginData.password
                 }
             }
-            setAppLoading(true)
+            dispatch(setAppLoading({isLoading: true, loadingMsg: 'Logging in...'}))
+
            await putData('/users/login',putConfig)
             .then((result:AppDataLogin | null) => {
-                console.log(result)
                 if(result && result.token) {
                     dispatch(setLoginFail(false))
-                    dispatch(loginUser(result))
                     localStorage.setItem('userdata', JSON.stringify(result));
+                    dispatch(card_loadCardData())
+                    dispatch(loginUser(result))
                 }
            }).then(() => {
             dispatch(setLoginFail(true));
-            dispatch(setAppLoading(false));
-        });
+            dispatch(setAppLoading({isLoading: false}))
+
+            });
 
         } catch (error) {
             console.log(error);
