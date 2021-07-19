@@ -194,10 +194,20 @@ export interface ProbabilityReportProps {
 
 export interface UserCardProps {
     cardData: SavedCardData;
-    handleClick: (cardId: any) => void;
+    handleTileClick: (cardId: any) => void;
+    handleConfirmDelete: (cardId:any) => void;
 }
 
 
 export interface UserCardListProps {
-    handleClick: (cardId:any) => void;
+    handleTileClick: (cardId:any) => void;
+}
+
+
+
+export interface ImageWithPreloaderProps {
+    src: string;
+    style?: string;
+    className?: string;
+    duration?: string;
 }

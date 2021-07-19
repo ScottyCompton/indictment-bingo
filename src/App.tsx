@@ -23,6 +23,8 @@ const AppRouter:React.FC<any> = (props:any) => {
                 key={location.key}
                 timeout={1000}
                 classNames="fade">
+                <>
+                <LoadingOverlay />
                 <main>
                     <div className="page">
                         <Header />
@@ -47,8 +49,8 @@ const AppRouter:React.FC<any> = (props:any) => {
                           </div>
                       <Footer />
                   </div>
-                  <LoadingOverlay />
                 </main>
+                </>
             </CSSTransition>
         </TransitionGroup>
         );

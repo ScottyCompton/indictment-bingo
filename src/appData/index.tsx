@@ -22,7 +22,8 @@ import {
 } from './appDataActions';
                                                                               
 import {
-    card_loadCardData
+    card_loadCardData,
+    card_deleteCard
 } from './cardDataActions'
 
 export  {
@@ -43,4 +44,5 @@ export  {
     app_refreshUserSession,
     app_setIsLoading,
     card_loadCardData,
+    card_deleteCard,
     store};

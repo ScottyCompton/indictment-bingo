@@ -7447,6 +7447,15 @@ body {
     .content {
       padding: 1% 0; } }
 
+.text-right {
+  text-align: right; }
+
+.img-peloader {
+  width: 100%;
+  height: 0;
+  padding-top: 125%;
+  position: relative; }
+
 .footer {
   position: fixed;
   left: 0;
@@ -7499,12 +7508,13 @@ body {
   .usercardlist__wrapper {
     display: flex;
     margin: 0 auto;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: wrap;
     width: 100%;
     justify-content: flex-start; }
   .usercardlist__card {
-    width: 100%;
+    width: 33%;
+    margin-bottom: 5vh;
     height: auto;
     padding: 1%; }
     .usercardlist__card img {
@@ -7648,7 +7658,7 @@ body {
   padding: 0px; }
 
 .loading-overlay {
-  position: absolute;
+  position: fixed;
   width: 100%;
   height: 100%;
   top: 0;

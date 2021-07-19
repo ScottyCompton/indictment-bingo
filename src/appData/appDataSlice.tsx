@@ -34,7 +34,6 @@ const cardGenDataSlice = createSlice({
         },
 
         setLoginFail(state, action: PayloadAction<boolean>) {
-            console.log(action.payload)
             if(action.payload) {
                 state.uiState.loginFail = true;
             } else {

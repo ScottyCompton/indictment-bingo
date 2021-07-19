@@ -69,7 +69,6 @@ export const app_executeLogin = (loginData:LoginDataProps) => {
                 }
             }
             dispatch(setAppLoading({isLoading: true, loadingMsg: 'Logging in...'}))
-
            await putData('/users/login',putConfig)
             .then((result:AppDataLogin | null) => {
                 if(result && result.token) {

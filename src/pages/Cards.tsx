@@ -14,7 +14,7 @@ const Cards:React.FC = () => {
     const dispatch = useAppDispatch();
 
     const handleShowGenerator = () => {
-        setCardId(undefined)
+        setCardId(undefined);
         setShowGenerator(true);        
     }
 
@@ -46,7 +46,7 @@ const Cards:React.FC = () => {
            </Row>
            <Row>
                <Col xs={12}>
-                    <UserCardList handleClick={handleTileClick} />
+                    <UserCardList handleTileClick={handleTileClick} />
                </Col>
            </Row>
        </Container>

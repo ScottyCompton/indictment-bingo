@@ -1,4 +1,4 @@
-import {getDataWithAuth, appConfig} from '../helpers';
+import {getDataWithAuth, putData, appConfig} from '../helpers';
 import {loadCardData} from './cardDataSlice'
 import {app_setIsLoading} from './'
 import {SavedCardData} from '../interfaces';
@@ -24,5 +24,23 @@ export const card_loadCardData = () => {
                 dispatch(app_setIsLoading({isLoading: false}))
                 console.log('Could not load User\'s card data - ' + error)
             }
+    }
+}
+
+
+export const card_deleteCard = (cardId: any) => {
+    return async (dispatch: any) => {
+        try {
+            const putCfg = {
+                method: 'DELETE',
+                body: {cardId}
+            }
+            await putData(`/cards`, putCfg)
+                .then((retval) => {
+                    dispatch(card_loadCardData())
+                })
+        } catch (error) {
+            console.log('Could not delete card - ' + error);
+        }
     }
 }

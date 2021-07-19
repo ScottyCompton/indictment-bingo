@@ -5,13 +5,14 @@
     &__wrapper {
         display: flex;
         margin: 0 auto;
-        flex-direction: column;
+        flex-direction: row;
         flex-wrap: wrap;
         width: 100%;
         justify-content: flex-start;
     }
     &__card {
-        width: 100%;
+        width: 33%;
+        margin-bottom: 5vh;
         height: auto;
         padding: 1%;
         img {
