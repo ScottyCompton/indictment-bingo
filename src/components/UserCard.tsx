@@ -37,7 +37,7 @@ const UserCard:React.FC<UserCardProps> = (props:UserCardProps) => {
             </Row>
             <Row>
                 <Col xs={12}>
-                <a href="#tile" onClick={handleView}><img src={appConfig.apiRoot + '/' + cardThumbImg} alt={cardName} /></a>
+                <a href="#tile" onClick={handleView}><img src={cardThumbImg} alt={cardName} /></a>
                 {/* <a href="#tile" onClick={handleView}>
                     <ImageWithPreloader src={appConfig.apiRoot + '/' + cardThumbImg} />
                 </a> */}
