@@ -6,7 +6,8 @@ import {
     switchScreen, 
     setMusicState,
     setShowReport,
-    setEnabledState} from './cardGenDataSlice';
+    setEnabledState,
+    setShowGenerator} from './cardGenDataSlice';
 import {app_setIsLoading} from './'
 import {card_loadCardData} from './cardDataActions'
 import {SelectedSubject, CardData, CardDisplay} from '../interfaces';
@@ -19,11 +20,8 @@ export const cardgen_loadData = () => {
 
     return async (dispatch: any) => {
         try {
-            dispatch(app_setIsLoading({isLoading: true}))
             getData('/games/' + appConfig.gameId + '/subjects').then((payload:any) => {
                 dispatch(loadCardGenData(payload))
-            }).then(() => {
-                dispatch(app_setIsLoading({isLoading: false}))
             })
 
         } catch (error) {
@@ -204,4 +202,15 @@ export const cardgen_disableRoll = () => {
             console.log(error);
         }
     }  
+}
+
+
+export const cardgen_showGenerator = (showGenerator: boolean, cardId?:string) => {
+    return async (dispatch:any) => {
+        try {
+            dispatch(setShowGenerator({showGenerator, cardId}));
+        } catch (error) {
+            console.log(error);
+        }
+    }
 }

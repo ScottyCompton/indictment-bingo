@@ -11,14 +11,15 @@ import {appConfig} from '../../helpers'
 
 
 const BingoCard:React.FC<BingoCardProps> = (props:BingoCardProps) => {
-    const [rootClass, setRootClass] = useState('subjects fadeable fade-out');
     const dispatch = useAppDispatch();
     const {subjects} = useAppSelector(state => state.cardGenData);
-    const {enabled, showReport, selectedSubjects} = useAppSelector(state => state.cardGenData.uiState);
+    const {enabled, selectedSubjects} = useAppSelector(state => state.cardGenData.uiState);
     const [aryTiles, setArrayTiles] = useState<Subject[]>()
     const {cardId} = props;
     const {savedCards} = useAppSelector(state => state.cardData)
-
+    const [cardStyle, setCardStyle] = useState({})
+    const showReport = useAppSelector(state => state.cardGenData.uiState.showReport)
+    const [rootClass, setRootClass] = useState('subjects fade-in')
     
     // there will likely be more than 25 subjects to choose from down the road, this 
     // limits the total possible down 25, for a 5x5 matrix
@@ -86,13 +87,11 @@ const BingoCard:React.FC<BingoCardProps> = (props:BingoCardProps) => {
 
 
     useEffect(() => {
-        setRootClass((prevState) => {
-            if(showReport) {
-                return prevState + ' hidden';
-            } else {
-                return prevState.replace(' hidden', '');
-            }
-        })
+        if(showReport) {
+            setRootClass('subjects fade-in hidden')
+        } else {
+            setRootClass('subjects fade-in')
+        }
     }, [showReport])
 
 
@@ -109,6 +108,17 @@ const BingoCard:React.FC<BingoCardProps> = (props:BingoCardProps) => {
         }, appConfig.playLength)
 
     }, [enabled, displayRandomSelectedSubject])
+
+    useEffect(() => {
+        const elem = document.getElementById('bingo-card') as HTMLDivElement;
+        if(elem) {
+            const w = elem.offsetWidth;
+           setCardStyle({
+               height: w+'px'
+           })
+        }
+
+    }, [])
 
 
     useEffect(() => {
@@ -134,7 +144,6 @@ const BingoCard:React.FC<BingoCardProps> = (props:BingoCardProps) => {
             }
             setArrayTiles(aryOut.splice(0, tileLimit))
     
-            setRootClass('bingo-card fadeable fade-in');
             dispatch(cardgen_queuemusic());
             getSelectedSubjects();
         } else {
@@ -143,7 +152,6 @@ const BingoCard:React.FC<BingoCardProps> = (props:BingoCardProps) => {
                 setArrayTiles((prevState) => {
                     return card.selectedSubjects
                 })
-                setRootClass('bingo-card fadeable fade-in');
             }
         }
  
@@ -152,7 +160,7 @@ const BingoCard:React.FC<BingoCardProps> = (props:BingoCardProps) => {
 
     return (
         <div className={rootClass}>
-            <div className="card bg-light bingo-card__bkg">
+            <div className="card bg-light bingo-card__bkg" id="bingo-card" style={cardStyle}>
                 <div className="card-body bingo-card__body">
                     <div className="bingo-card__wrapper">
                         {aryTiles && aryTiles.map((item: Subject, idx:number) => {

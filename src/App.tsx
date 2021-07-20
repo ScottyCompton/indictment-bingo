@@ -9,9 +9,10 @@ import {LoadingOverlay} from './components';
 export const history = createBrowserHistory();
 
 
+
 const AppRouter:React.FC<any> = (props:any) => {
   const {user} = useAppSelector(state => state.appData.uiState)
-  
+
 
 
   return (

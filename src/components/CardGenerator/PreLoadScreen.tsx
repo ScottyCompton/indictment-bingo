@@ -5,14 +5,12 @@ import {PreloadScreenProps} from '../../interfaces';
 import {cardgen_enableRoll} from '../../appData'
 
 const PreLoadScreen:React.FC<PreloadScreenProps> = (props:PreloadScreenProps) => {
-    const [rootClass, setRootClass] = useState('preload-screen fade-out fadeable');
     const [status, setStatus] = useState({statusVal: 0, statusText: 'Here we go...'});
     const {statusValues} = statusVals;
     const dispatch = useAppDispatch();
 
 
     useEffect(() => {
-        setRootClass('preload-screen fade-in fadeable');
 
         const updateStatus = (status: {statusText: string, statusVal: number}, idx:number) => {
             setStatus((prevState) => {
@@ -32,7 +30,7 @@ const PreLoadScreen:React.FC<PreloadScreenProps> = (props:PreloadScreenProps) =>
 
 
     return (
-        <div className={rootClass}>
+        <div className="'preload-screen fade-in">
             <div className="splash-screen__container">
                 <div className="splash-screen__img"></div>
             </div>

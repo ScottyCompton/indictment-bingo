@@ -7398,7 +7398,17 @@ body {
   opacity: 0; }
 
 .fade-in {
-  opacity: 1; }
+  opacity: 1;
+  animation-name: fadeInOpacity;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-duration: .75s; }
+
+@keyframes fadeInOpacity {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
 
 .big-button {
   font-weight: bolder; }
@@ -7470,6 +7480,7 @@ body {
   padding: 0;
   height: 15vh;
   max-height: 120px;
+  min-height: 100px;
   display: flex; }
   .header-logo {
     position: relative;
@@ -7512,14 +7523,20 @@ body {
     flex-wrap: wrap;
     width: 100%;
     justify-content: flex-start; }
+  .usercardlist__imgcontainer {
+    width: 100%;
+    aspect-ratio: .874/1; }
   .usercardlist__card {
     width: 33%;
     margin-bottom: 5vh;
     height: auto;
     padding: 1%; }
-    .usercardlist__card img {
+    .usercardlist__card__imgcontaine {
       width: 100%;
-      position: relative; }
+      aspect-ratio: .875/1; }
+      .usercardlist__card__imgcontaine img {
+        width: 100%;
+        position: relative; }
 
 .bingo-card {
   max-width: 700px;
@@ -7565,11 +7582,14 @@ body {
   background-color: #dfdfdf;
   box-sizing: border-box;
   opacity: 1;
-  margin: .2rem; }
+  margin: .2rem;
+  width: 100%;
+  aspect-ratio: 1/1; }
   .subject_tile-img {
     width: 100%;
     height: auto;
-    border: 3px solid transparent; }
+    border: 3px solid transparent;
+    aspect-ratio: 1/1; }
     .subject_tile-img__rolling {
       opacity: 0.5; }
     .subject_tile-img__active {

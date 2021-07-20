@@ -14,10 +14,12 @@ const ProbabilityReport:React.FC<ProbabilityReportProps> = (props:ProbabilityRep
     const [colProbs, setColProbs] = useState<number[]>([])
     const [diagProbs, setDiagProbs] = useState<number[]>([])
     const {cardId} = props;
+    const showReport = useAppSelector(state => state.cardGenData.uiState.showReport)
+    const [rootClass, setRootClass] = useState('probability-report fade-in');
+
 
     const arrProbs = probabilityValues.cardVals;
-    const {rollComplete, showReport} = useAppSelector(state => state.cardGenData.uiState)
-    const [rootClass, setRootClass] = useState('probability-report')
+    const {rollComplete} = useAppSelector(state => state.cardGenData.uiState)
     //const [rootStyle, setRootStyle] = useState<any>(null)
     const ref = useRef<HTMLDivElement>(null)
 
@@ -27,6 +29,13 @@ const ProbabilityReport:React.FC<ProbabilityReportProps> = (props:ProbabilityRep
     }
   
 
+    useEffect(() => {
+        if(showReport) {
+            setRootClass('probability-report fade-in')
+        } else {
+            setRootClass('probability-report fade-in hidden')
+        }
+    }, [showReport])
 
     useEffect(() => {
 
@@ -48,23 +57,6 @@ const ProbabilityReport:React.FC<ProbabilityReportProps> = (props:ProbabilityRep
         }
     }, [cardId, savedCards, probabilityMatrix])
 
-
-
-    useEffect(() => {
-        // const docHeight = document.getElementById('cardgen-modal')?.offsetWidth;
-        // setRootStyle({
-        //     height: docHeight + 'px'
-        // })  
-
-        setRootClass((prevState) => {
-            if(!showReport) {
-                return prevState + ' hidden';
-            } else {
-              
-                return prevState.replace(' hidden', '');
-            }
-        })
-    }, [showReport])
 
 
 

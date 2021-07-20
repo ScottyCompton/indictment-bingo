@@ -11,9 +11,12 @@ import useSound from 'use-sound';
 
 
 const CardGeneratorModal:React.FC<CardGenModalProps> = (props:CardGenModalProps) => {
-    const {showGenerator, handleClose, cardId} = props;
+    const {handleClose} = props;
     const {screen, rollComplete, selectedSubjects, probabilityMatrix} = useAppSelector(state => state.cardGenData.uiState)
-    const {user} = useAppSelector(state => state.appData.uiState)
+    const {user} = useAppSelector(state => state.appData.uiState);
+    const {cardId} = useAppSelector(state => state.cardGenData.uiState)
+    const {showGenerator} = useAppSelector(state => state.cardGenData.uiState);
+    const [show, setShow] = useState(false);
     const [playSound, setPlaySound] = useState(false)
 
 
@@ -24,6 +27,15 @@ const CardGeneratorModal:React.FC<CardGenModalProps> = (props:CardGenModalProps)
       { volume: 1 }
     );
    
+    
+    useEffect(() => {
+      if(showGenerator) {
+        setShow(true)
+      } else {
+        setShow(false)
+      }
+    }, [showGenerator])
+
 
     useEffect(() => {
       if(playSound) {
@@ -60,7 +72,7 @@ const CardGeneratorModal:React.FC<CardGenModalProps> = (props:CardGenModalProps)
         backdrop="static"
         keyboard={false}
         centered aria-labelledby="contained-modal-title-vcenter"
-        show={showGenerator} 
+        show={show} 
         onHide={handleClose}>
         <Modal.Header>
           {!cardId && 

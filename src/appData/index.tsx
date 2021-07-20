@@ -12,6 +12,7 @@ import {
     cardgen_showReport,
     cardgen_showCard,
     cardgen_saveCardData,
+    cardgen_showGenerator,
     cardgen_disableRoll} from './cardGenDataActions';
 
 import {
@@ -36,6 +37,7 @@ export  {
     cardgen_queuemusic,
     cardgen_enableRoll,
     cardgen_disableRoll,
+    cardgen_showGenerator,
     cardgen_showReport,
     cardgen_showCard,
     cardgen_saveCardData,

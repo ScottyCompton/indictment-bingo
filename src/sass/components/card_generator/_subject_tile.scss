@@ -3,10 +3,13 @@
     box-sizing: border-box;
     opacity: 1;
     margin: .2rem;
+    width: 100%;
+    aspect-ratio: 1/1;
     &-img {
         width: 100%;
         height: auto;
         border: 3px solid transparent;
+        aspect-ratio: 1/1;
         &__rolling {
             opacity: 0.5;
         }

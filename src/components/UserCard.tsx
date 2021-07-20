@@ -1,11 +1,33 @@
 import {UserCardProps} from '../interfaces/';
-import {appConfig} from '../helpers';
+import {useState} from 'react';
 import {Col, Row, Container} from 'react-bootstrap'
-// import {ImageWithPreloader} from './'            // not ready for prime-time
+import {Modal, Button} from 'react-bootstrap';
+import {card_deleteCard, cardgen_showGenerator} from '../appData';
+import {useAppDispatch} from '../hooks'
+
 
 const UserCard:React.FC<UserCardProps> = (props:UserCardProps) => {
     const {_id, cardThumbImg, cardName, createdAt} = props.cardData;
+    const [showModal, setShowModal] = useState(false);
+    const dispatch = useAppDispatch()
 
+  
+
+    const handleConfirmDelete = (cardId:any) => {
+
+        setShowModal(true);
+    }
+
+    const handleCancel = () => {
+        setShowModal(false);
+
+    }
+
+    const handleDelete = () => {
+        // does the killin'
+        dispatch(card_deleteCard(_id));
+        setShowModal(false);
+    }
 
     const fmtDate = (dateStr:string) => {
         const dte = new Date(dateStr);
@@ -16,19 +38,17 @@ const UserCard:React.FC<UserCardProps> = (props:UserCardProps) => {
 
     const handleView = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent> | React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault();
-        props.handleTileClick(_id);
+        dispatch(cardgen_showGenerator(true, _id))
     }
 
     const handleRefresh = () => {
         alert('moo')
     }
 
-    const handleDelete = () => {
-        props.handleConfirmDelete(_id)
-    }
 
     return (
-        <Container fluid className="usercardlist__card">
+        <>
+        <Container fluid className="usercardlist__card fade-in">
             <Row>
                 <Col xs={6}>
                     Created On:
@@ -37,10 +57,9 @@ const UserCard:React.FC<UserCardProps> = (props:UserCardProps) => {
             </Row>
             <Row>
                 <Col xs={12}>
-                <a href="#tile" onClick={handleView}><img src={cardThumbImg} alt={cardName} /></a>
-                {/* <a href="#tile" onClick={handleView}>
-                    <ImageWithPreloader src={appConfig.apiRoot + '/' + cardThumbImg} />
-                </a> */}
+                    <div className="usercardlist__imgcontainer">
+                        <img src={cardThumbImg} alt={cardName} />
+                    </div>
                 </Col>
             </Row>
             <Row>
@@ -51,7 +70,7 @@ const UserCard:React.FC<UserCardProps> = (props:UserCardProps) => {
                     <button onClick={handleRefresh} className="form-control btn btn-link btn-sm">Refresh</button>
                 </Col>
                 <Col xs={4} className="mx-0">
-                    <button onClick={handleDelete} className="form-control btn btn-link btn-sm">Delete</button>
+                    <button onClick={handleConfirmDelete} className="form-control btn btn-link btn-sm">Delete</button>
                 </Col>
             </Row>
 
@@ -63,7 +82,29 @@ const UserCard:React.FC<UserCardProps> = (props:UserCardProps) => {
             </Row>
             
         </Container>
-                )
+
+        <Modal 
+        show={showModal} 
+        centered aria-labelledby="contained-modal-title-vcenter" 
+        contentClassName="bg-secondary"
+        onHide={handleCancel} 
+        size="sm"
+        animation={true}>
+        <Modal.Header>
+            <h6>Delete Card?</h6>
+        </Modal.Header>
+        <Modal.Body >Are you sure you want to delete this card?</Modal.Body>
+        <Modal.Footer>
+        <Button variant="btn btn-warning btn-sm" onClick={handleDelete}>
+            Delete Card
+        </Button>
+        <Button variant="btn btn-primary btn-sm" onClick={handleCancel}>
+            Cancel
+        </Button>
+        </Modal.Footer>
+        </Modal>
+        </>
+    )
 }
 
 export default UserCard;

@@ -9,7 +9,7 @@ const SubjectTile:React.FC<SubjectTileProps> = (props:SubjectTileProps) => {
     const imgRef = useRef(null);
     const [showPopover, setShowPopover] = useState(false);
     const rollComplete = useAppSelector(state => state.cardGenData.uiState.rollComplete);
-
+    const cardId = useAppSelector(state => state.cardGenData.uiState.cardId)
 
     const {subject, idx} = props;
     const { markDate, subjectTitle, subjectImg, nohover} = subject;
@@ -36,7 +36,7 @@ const SubjectTile:React.FC<SubjectTileProps> = (props:SubjectTileProps) => {
 
     return (
         <div className="subject_tile" ref={popoverContainerRef}>
-            {!nohover && <TilePopover data={subject} idx={idx} show={showPopover} containerRef={popoverContainerRef.current} target={imgRef.current} />}
+            {(!nohover && (rollComplete || cardId)) && <TilePopover data={subject} idx={idx} show={showPopover} containerRef={popoverContainerRef.current} target={imgRef.current} />}
            <img onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} onClick={handleClick} ref={imgRef} alt={subjectTitle + ''} src={appConfig.subjImgRoot + '/' + subjectImg} className={imgClass} />
         </div>
     );

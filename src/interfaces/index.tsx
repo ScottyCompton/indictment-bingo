@@ -65,6 +65,8 @@ export interface CardGenDataState {
         enabled: boolean;
         tileDisplayCount: number;
         rollComplete: boolean;
+        showGenerator?: boolean; 
+        cardId?: string;
         playMusic: boolean;
         showReport: boolean;
         probabilityMatrix: {
@@ -92,8 +94,6 @@ export interface ModalButtonProps {
 }
 
 export interface CardGenModalProps {
-    cardId?: string | undefined;
-    showGenerator: boolean;
     handleClose: () => void 
 }
 
@@ -194,8 +194,6 @@ export interface ProbabilityReportProps {
 
 export interface UserCardProps {
     cardData: SavedCardData;
-    handleTileClick: (cardId: any) => void;
-    handleConfirmDelete: (cardId:any) => void;
 }
 
 

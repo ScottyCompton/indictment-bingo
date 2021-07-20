@@ -3,12 +3,18 @@ import {CardGenDataState, Subject, SelectedSubject} from '../interfaces';
 
 
 
+export interface ShowGeneratorPayloadAction {
+    showGenerator: boolean;
+    cardId?: string;
+}
+
 const initialState: CardGenDataState = {
     subjects: [],
     uiState: {
         screen: 'PRELOAD',
         selectedSubjects: [],
         enabled: false,
+        showGenerator: false,
         playMusic: false,
         tileDisplayCount: 0,
         rollComplete: false,
@@ -71,8 +77,6 @@ export const getDiagProbs = (matrix:any) => {
 }
 
 
-
-
 const cardGenDataSlice = createSlice({
     name: 'cardGenData',
     initialState: initialState,
@@ -107,7 +111,14 @@ const cardGenDataSlice = createSlice({
         setShowReport(state, action: PayloadAction<boolean>) {
             state.uiState.showReport = action.payload;
         },
-
+        setShowGenerator(state, action: PayloadAction<ShowGeneratorPayloadAction>) {
+            state.uiState.showGenerator = action.payload.showGenerator;
+            if(action.payload.cardId && action.payload.showGenerator) {
+                state.uiState.cardId = action.payload.cardId;
+            } else {
+                state.uiState.cardId = undefined;
+            }
+        },
         updateTileDisplayCount(state) {
 
             state.uiState.tileDisplayCount++;
@@ -154,6 +165,7 @@ export const {
     switchScreen, 
     setMusicState,
     setEnabledState,
-    setShowReport} = actions;
+    setShowReport,
+    setShowGenerator} = actions;
 export default reducer;
 
