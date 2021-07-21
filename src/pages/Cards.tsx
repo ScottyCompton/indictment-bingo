@@ -1,11 +1,9 @@
-import {useEffect} from 'react';
 import { withRouter } from "react-router-dom";
 import {Button} from 'react-bootstrap';
 import {cardgen_reeinitialize, cardgen_showGenerator, cardgen_killmusic, cardgen_disableRoll} from '../appData';
 import {useAppDispatch} from '../hooks'
 import {CardGeneratorModal, UserCardList} from '../components';
 import {Container, Row, Col} from 'react-bootstrap';
-
 
 const Cards:React.FC = () => {
     const dispatch = useAppDispatch();
@@ -28,14 +26,11 @@ const Cards:React.FC = () => {
         dispatch(cardgen_showGenerator(true, cardId))
     }
 
-    useEffect(() => {
-        console.log('cards page reloaded')
-    })
-
 
     return (
         <>
-       <Container fluid>
+       <Container fluid className="cards fade-in">
+     
            <Row>
                <Col xs={12} className="text-center mb-3 mt-3">
                     <div className="d-grid gap-2">

@@ -9,7 +9,7 @@ import {
     setEnabledState,
     setShowGenerator} from './cardGenDataSlice';
 import {app_setIsLoading} from './'
-import {card_loadCardData} from './cardDataActions'
+import {card_loadCardData, card_updateDownloadCount} from './cardDataActions'
 import {SelectedSubject, CardData, CardDisplay} from '../interfaces';
 import {getData, getDataWithAuth, putData, appConfig} from '../helpers';
 import download from 'downloadjs';
@@ -31,6 +31,40 @@ export const cardgen_loadData = () => {
     }    
 
 }
+
+
+
+export const cardgen_donloadOnly = (cardId: string) => {
+    return async (dispatch: any) => {
+        try {
+            dispatch(app_setIsLoading({
+                isLoading: true,
+                loadingMsg: 'Please wait, your download will begin shortly.'
+            }));
+
+            const response = await getDataWithAuth(`/cardimage/downloadonly/${cardId}`)
+            const {imageUrl} = response;
+            if(imageUrl) {
+                dispatch(app_setIsLoading({isLoading: false}))
+                dispatch(card_updateDownloadCount(cardId))
+                download(appConfig.apiRoot + '/' + imageUrl)
+                setTimeout(async() => {
+                    const putCfg = {
+                        method: 'DELETE',
+                        body: {
+                            imagePath: imageUrl
+                        }
+                    }
+                    await putData('/cardimage', putCfg);                    
+                }, 1000)
+            }
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+
 
 
 export const cardgen_saveCardData = (cardData:CardData) => {
@@ -64,6 +98,8 @@ export const cardgen_saveCardData = (cardData:CardData) => {
     }
 
 }
+
+
 
 
 export const cardgen_downloadCard = (payload: CardDisplay) => {

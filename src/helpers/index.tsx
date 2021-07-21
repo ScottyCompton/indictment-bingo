@@ -109,5 +109,6 @@ export const appConfig:AppConfig = {
         cardThumbImgRoot: process.env.REACT_APP_API_ROOT + process.env.REACT_APP_THUMB_IMG_ROOT!,
         playLength: 18000,
         apiRoot: process.env.REACT_APP_API_ROOT!,
-        gameId: process.env.REACT_APP_GAME_ID!
+        gameId: process.env.REACT_APP_GAME_ID!,
+        cardDownloadLimit: 3
     }

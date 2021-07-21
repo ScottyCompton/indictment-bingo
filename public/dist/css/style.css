@@ -7448,15 +7448,6 @@ body {
   .fade-exit.fade-exit-active .hide-on-nav {
     visibility: hidden; }
 
-.content {
-  width: 100%;
-  max-width: 1000px;
-  padding-bottom: 100px;
-  margin: 0 auto; }
-  @media (max-width: 600px) {
-    .content {
-      padding: 1% 0; } }
-
 .text-right {
   text-align: right; }
 
@@ -7465,6 +7456,18 @@ body {
   height: 0;
   padding-top: 125%;
   position: relative; }
+
+.content {
+  border-left: 1px solid #dfdfdf;
+  border-right: 1px solid #dfdfdf;
+  background-color: #fafefe;
+  width: 100%;
+  max-width: 1000px;
+  padding-bottom: 100px;
+  margin: 0 auto; }
+  @media (max-width: 600px) {
+    .content {
+      padding: 1% 0; } }
 
 .footer {
   position: fixed;

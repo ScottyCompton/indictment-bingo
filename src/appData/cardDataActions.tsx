@@ -1,5 +1,5 @@
 import {getDataWithAuth, putData, appConfig} from '../helpers';
-import {loadCardData} from './cardDataSlice'
+import {loadCardData, updateDownloadCount} from './cardDataSlice'
 import {app_setIsLoading} from './'
 import {SavedCardData} from '../interfaces';
 
@@ -24,6 +24,17 @@ export const card_loadCardData = () => {
                 dispatch(app_setIsLoading({isLoading: false}))
                 console.log('Could not load User\'s card data - ' + error)
             }
+    }
+}
+
+
+export const card_updateDownloadCount = (cardId: any) => {
+    return async (dispatch: any) => {
+        try {
+            dispatch(updateDownloadCount(cardId))
+        } catch (error) {
+            console.log(error)
+        }
     }
 }
 

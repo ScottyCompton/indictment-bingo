@@ -13,7 +13,8 @@ import {
     cardgen_showCard,
     cardgen_saveCardData,
     cardgen_showGenerator,
-    cardgen_disableRoll} from './cardGenDataActions';
+    cardgen_disableRoll,
+    cardgen_donloadOnly} from './cardGenDataActions';
 
 import {
     app_executeLogin,
@@ -24,7 +25,8 @@ import {
                                                                               
 import {
     card_loadCardData,
-    card_deleteCard
+    card_deleteCard,
+    card_updateDownloadCount
 } from './cardDataActions'
 
 export  {
@@ -41,10 +43,12 @@ export  {
     cardgen_showReport,
     cardgen_showCard,
     cardgen_saveCardData,
+    cardgen_donloadOnly,
     app_executeLogin,
     app_loadUserCardData,
     app_refreshUserSession,
     app_setIsLoading,
     card_loadCardData,
     card_deleteCard,
+    card_updateDownloadCount,
     store};

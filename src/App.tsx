@@ -11,8 +11,7 @@ export const history = createBrowserHistory();
 
 
 const AppRouter:React.FC<any> = (props:any) => {
-  const {user} = useAppSelector(state => state.appData.uiState)
-
+  const user = useAppSelector(state => state.appData.uiState.user)
 
 
   return (

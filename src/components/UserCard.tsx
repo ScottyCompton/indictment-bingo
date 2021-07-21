@@ -2,15 +2,15 @@ import {UserCardProps} from '../interfaces/';
 import {useState} from 'react';
 import {Col, Row, Container} from 'react-bootstrap'
 import {Modal, Button} from 'react-bootstrap';
-import {card_deleteCard, cardgen_showGenerator} from '../appData';
+import {card_deleteCard, cardgen_showGenerator, cardgen_donloadOnly} from '../appData';
 import {useAppDispatch} from '../hooks'
-
+import {appConfig} from '../helpers';
 
 const UserCard:React.FC<UserCardProps> = (props:UserCardProps) => {
-    const {_id, cardThumbImg, cardName, createdAt} = props.cardData;
+    const {_id, cardThumbImg, cardName, createdAt, downloadCount} = props.cardData;
     const [showModal, setShowModal] = useState(false);
     const dispatch = useAppDispatch()
-
+    const downloadLimit = appConfig.cardDownloadLimit;
   
 
     const handleConfirmDelete = (cardId:any) => {
@@ -41,8 +41,15 @@ const UserCard:React.FC<UserCardProps> = (props:UserCardProps) => {
         dispatch(cardgen_showGenerator(true, _id))
     }
 
+    const handleDownload = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        e.preventDefault();
+        if(_id) {
+            dispatch(cardgen_donloadOnly(_id))
+        }
+    }
+
     const handleRefresh = () => {
-        alert('moo')
+        console.log('theoretical refresh...')
     }
 
 
@@ -76,8 +83,12 @@ const UserCard:React.FC<UserCardProps> = (props:UserCardProps) => {
 
             <Row>
                 <Col xs={12}>
-
-                    <button className="form-control btn btn-primary">Download</button>
+                    {downloadCount < downloadLimit &&
+                        <button onClick={handleDownload} className="form-control btn btn-primary">Download ({downloadLimit - downloadCount} remaining)</button>                
+                    }
+                    {downloadCount >= downloadLimit &&
+                        <button className="form-control btn btn-primary" disabled>Download (0 remaining)</button>                
+                    }
                 </Col>
             </Row>
             

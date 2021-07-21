@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+
 import {useAppSelector,} from '../hooks';
 import {SavedCardData, UserCardListProps} from '../interfaces'
 import {UserCard} from './'

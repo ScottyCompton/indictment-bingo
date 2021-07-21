@@ -118,6 +118,7 @@ export interface AppConfig {
     playLength: number;
     subjImgRoot: string;
     cardThumbImgRoot: string;
+    cardDownloadLimit: number;
     apiRoot: string;
     gameId: string;
 }
@@ -181,6 +182,7 @@ export interface SavedCardData {
     cardThumbImg: string;
     probabilityMatrix: string;
     gameId: string;
+    downloadCount: number;
     selectedSubjects: Subject[];
     createdAt:  string;
     updatedAt: string;

@@ -12,6 +12,15 @@ const cardDataSlice = createSlice({
     reducers: {
         loadCardData(state, action: PayloadAction<SavedCardData[]>) {
             state.savedCards = action.payload;
+        },
+        updateDownloadCount(state, action: PayloadAction<string>) {
+            if(state.savedCards) {
+                const cardIdx = state.savedCards.findIndex(item => item._id === action.payload);
+                if(cardIdx !== -1) {
+                    state.savedCards[cardIdx].downloadCount = state.savedCards[cardIdx].downloadCount + 1;
+                }
+
+            }
         }
     }
 });
@@ -20,5 +29,5 @@ const cardDataSlice = createSlice({
 
 const {actions, reducer} = cardDataSlice;
 
-export const {loadCardData} = actions;
+export const {loadCardData, updateDownloadCount} = actions;
 export default reducer;
