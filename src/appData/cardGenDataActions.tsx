@@ -8,10 +8,10 @@ import {
     setShowReport,
     setEnabledState,
     setShowGenerator} from './cardGenDataSlice';
-import {app_setIsLoading} from './'
+import {app_setIsLoading, app_updateUserCardsRemaining} from './'
 import {card_loadCardData, card_updateDownloadCount} from './cardDataActions'
 import {SelectedSubject, CardData, CardDisplay} from '../interfaces';
-import {getData, getDataWithAuth, putData, appConfig} from '../helpers';
+import {http, appConfig} from '../helpers';
 import download from 'downloadjs';
 
 export const cardgen_loadData = () => {
@@ -20,7 +20,7 @@ export const cardgen_loadData = () => {
 
     return async (dispatch: any) => {
         try {
-            getData('/games/' + appConfig.gameId + '/subjects').then((payload:any) => {
+            http.getData('/games/' + appConfig.gameId + '/subjects').then((payload:any) => {
                 dispatch(loadCardGenData(payload))
             })
 
@@ -42,22 +42,26 @@ export const cardgen_donloadOnly = (cardId: string) => {
                 loadingMsg: 'Please wait, your download will begin shortly.'
             }));
 
-            const response = await getDataWithAuth(`/cardimage/downloadonly/${cardId}`)
-            const {imageUrl} = response;
-            if(imageUrl) {
-                dispatch(app_setIsLoading({isLoading: false}))
-                dispatch(card_updateDownloadCount(cardId))
-                download(appConfig.apiRoot + '/' + imageUrl)
-                setTimeout(async() => {
-                    const putCfg = {
-                        method: 'DELETE',
-                        body: {
-                            imagePath: imageUrl
+            await http.getData(`/cardimage/downloadonly/${cardId}`)
+            .then((response:any) => {
+                const imageUrl = response.imageUrl;
+
+                if(imageUrl) {
+                    dispatch(app_setIsLoading({isLoading: false}))
+                    dispatch(card_updateDownloadCount(cardId))
+                    download(appConfig.apiRoot + '/' + imageUrl)
+                    setTimeout(async() => {
+                        const putCfg = {
+                            method: 'DELETE',
+                            body: {
+                                imagePath: imageUrl
+                            }
                         }
-                    }
-                    await putData('/cardimage', putCfg);                    
-                }, 1000)
-            }
+                        await http.getData('/cardimage', putCfg);                    
+                    }, 1000)
+                }
+    
+            })
 
         } catch (error) {
             console.log(error)
@@ -76,14 +80,12 @@ export const cardgen_saveCardData = (cardData:CardData) => {
                 method: 'POST'
             }
             dispatch(app_setIsLoading({isLoading: true, loadingMsg: 'Saving card - your download will begin shortly'}))
-            await putData('/cards', putConfig)
-            .then(async(card) => {
-                await dispatch(cardgen_downloadCard({
-                    _id: card._id,
-                    cardName: card.cardName,
-                    createdAt: card.createdAt,
-                    cardThumbImg: card.cardThumbImg                    
-                }))
+            await http.getData('/cards', putConfig)
+            .then(async(card:any) => {
+                if(card) {
+                    await dispatch(cardgen_downloadCard({...card}))
+                }
+
             })
             .then(() => {
                 dispatch(app_setIsLoading({isLoading: false}))
@@ -106,21 +108,26 @@ export const cardgen_downloadCard = (payload: CardDisplay) => {
     return async (dispatch: any) => {
         try {
 
-            const response = await getDataWithAuth(`/cardimage/${payload._id}`)
-            const {imageUrl} = response;
-            if(imageUrl) {
-                download(appConfig.apiRoot + '/' + imageUrl)
-                dispatch(card_loadCardData())
-                setTimeout(async() => {
-                    const putCfg = {
-                        method: 'DELETE',
-                        body: {
-                            imagePath: imageUrl
+            await http.getData(`/cardimage/${payload._id}`)
+            .then((response) => {
+
+                const {imageUrl, cardsRemaining} = response!;
+                if(imageUrl) {
+                    download(appConfig.apiRoot + '/' + imageUrl)
+                    dispatch(card_loadCardData())
+                    dispatch(app_updateUserCardsRemaining(cardsRemaining))
+                    setTimeout(async() => {
+                        const putCfg = {
+                            method: 'DELETE',
+                            body: {
+                                imagePath: imageUrl
+                            }
                         }
-                    }
-                    await putData('/cardimage', putCfg);                    
-                }, 1000)
-            }
+                        await http.getData('/cardimage', putCfg);                    
+                    }, 1000)
+                }
+            })
+            
 
         } catch (error) {
             console.log(error)

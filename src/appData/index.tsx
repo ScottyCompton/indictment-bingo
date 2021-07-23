@@ -20,7 +20,10 @@ import {
     app_executeLogin,
     app_refreshUserSession,
     app_loadUserCardData,
-    app_setIsLoading
+    app_setIsLoading,
+    app_updateUserCardsRemaining,
+    app_reportError,
+    app_clearError
 } from './appDataActions';
                                                                               
 import {
@@ -48,6 +51,9 @@ export  {
     app_loadUserCardData,
     app_refreshUserSession,
     app_setIsLoading,
+    app_updateUserCardsRemaining,
+    app_reportError, 
+    app_clearError,
     card_loadCardData,
     card_deleteCard,
     card_updateDownloadCount,

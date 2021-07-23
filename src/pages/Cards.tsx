@@ -1,16 +1,29 @@
-import { withRouter } from "react-router-dom";
+import { withRouter, useHistory } from "react-router-dom";
 import {Button} from 'react-bootstrap';
 import {cardgen_reeinitialize, cardgen_showGenerator, cardgen_killmusic, cardgen_disableRoll} from '../appData';
-import {useAppDispatch} from '../hooks'
-import {CardGeneratorModal, UserCardList} from '../components';
+import {useAppDispatch, useAppSelector} from '../hooks'
+import {CardGeneratorModal, UserCardList, PageTitle} from '../components';
 import {Container, Row, Col} from 'react-bootstrap';
+
+
+
 
 const Cards:React.FC = () => {
     const dispatch = useAppDispatch();
+    const cardsRemaining = useAppSelector(state => state.appData.uiState.user?.cardsRemaining);
+    const history = useHistory();
+
+
 
     const handleShowGenerator = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
         e.preventDefault();
-        dispatch(cardgen_showGenerator(true))
+
+
+        if(cardsRemaining === 0) {
+            history.push('/paywall')
+        } else {
+            dispatch(cardgen_showGenerator(true))
+        }
     }
 
     const handleClose = () => {
@@ -29,18 +42,28 @@ const Cards:React.FC = () => {
 
     return (
         <>
-       <Container fluid className="cards fade-in">
      
-           <Row>
-               <Col xs={12} className="text-center mb-3 mt-3">
-                    <div className="d-grid gap-2">
-                            <Button type="button" onClick={handleShowGenerator} className="btn big-button btn-lg btn-success">CLICK HERE TO GENERATE A NEW CARD</Button>
-                        </div>
+       <Container fluid className="cards fade-in px-0">
+            <Row>
+                <Col xs={12}>
+                    <PageTitle pageTitle="Your Bingo Cards" />
+                </Col>
+            </Row>
+            <Row>
+               <Col xs={12}>
+                    <UserCardList handleTileClick={handleTileClick} />
                </Col>
            </Row>
            <Row>
                <Col xs={12}>
-                    <UserCardList handleTileClick={handleTileClick} />
+                    <p>&nbsp;</p>
+               </Col>
+           </Row>
+           <Row>
+               <Col xs={12} className="text-center">
+                    <div className="d-grid gap-2">
+                            <Button type="button" onClick={handleShowGenerator} className="btn big-button btn-lg btn-warning">CLICK HERE TO GENERATE A NEW CARD</Button>
+                    </div>
                </Col>
            </Row>
        </Container>

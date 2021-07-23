@@ -1,0 +1,16 @@
+.notfound {
+    &__message {
+        width: 50%;
+        margin: 0 auto;
+        position: relative;
+        //transform: translateX(50%);
+        /* border-left: 10px solid #000; */
+        /* border-bottom: 10px solid #000; */
+        margin-top: 50px;
+        text-align: center;
+    }
+    img {
+        width: 100%;
+        position: relative;
+    }
+}

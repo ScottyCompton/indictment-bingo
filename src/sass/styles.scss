@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Didact+Gothic&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Manrope&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap');
 @import "node_modules/bootswatch/dist/lux/variables";
 @import "node_modules/bootstrap/scss/bootstrap";
 @import "node_modules/bootswatch/dist/lux/bootswatch";
@@ -16,5 +18,9 @@
 @import "components/card_generator/preload_screen";
 @import "components/card_generator/probability_report";
 @import "components/card_generator/tile_popover";
+@import "components/ui/pagetitle";
 @import "components/card_generator_modal/card_generator_modal";
 @import "components/loading-overlay";
+@import "components/advert-block";
+@import "components/ui/toast-notification";
+@import "pages/notfound";

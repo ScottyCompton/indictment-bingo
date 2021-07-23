@@ -11,9 +11,12 @@ const UserCardList:React.FC<UserCardListProps> = (props:UserCardListProps) => {
 
 
     return (
-        <>
+
         <div className="usercardlist fade-in">
             <div className="usercardlist__wrapper">
+                {(savedCards && savedCards.length === 0) &&
+                    <div><p className="text-center">Looks like you don't have any cards yet - hit the big greeen button below to create a new Bingo card.</p><p>&nbsp;</p></div>
+                }
                 {savedCards && savedCards?.map((cardData:SavedCardData) => {
                     return (
                         <UserCard key={uuid()} cardData={cardData} />
@@ -21,9 +24,6 @@ const UserCardList:React.FC<UserCardListProps> = (props:UserCardListProps) => {
                 })}
             </div>
         </div>
-
-        
-        </>
 
     )
 }

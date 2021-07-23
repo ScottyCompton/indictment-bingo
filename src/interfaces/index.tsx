@@ -147,6 +147,7 @@ export interface AppDataState {
         userCards?: UserCard[];
         token?: string;
         loginFail?: true;
+        appError?: AppError;
     }
 }
 
@@ -162,6 +163,7 @@ export interface AppUser {
     email: string;
     name: string;
     isAdmin: boolean;
+    cardsRemaining?: number;
 }
 
 
@@ -210,4 +212,29 @@ export interface ImageWithPreloaderProps {
     style?: string;
     className?: string;
     duration?: string;
+}
+
+
+
+export interface DynamicContent {
+    contentId?: string;
+    pageTitle: string;
+    pageContent: string;
+}
+
+
+export interface AppError {
+    error: {
+        status: number | string;
+        message: string;
+        description?: string
+    }
+}
+
+
+
+export interface PutDataConfiguration {
+    method?: string;
+    contentType?: string;
+    body?:any;
 }

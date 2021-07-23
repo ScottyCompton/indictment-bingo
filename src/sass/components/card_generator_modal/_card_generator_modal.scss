@@ -5,3 +5,9 @@
     // background-attachment: fixed;
     //background-color: #09091e;
 }
+
+.round-corners {
+    border-radius: 5px;
+    -webkit-box-shadow: 7px 7px 6px -4px rgba(0, 0, 0, 0.7);
+    box-shadow: 7px 7px 6px -4px rgba(0, 0, 0, 0.7);
+}

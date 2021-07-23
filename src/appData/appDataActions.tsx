@@ -1,8 +1,7 @@
-import {putData, getData} from '../helpers';
-import {setAppLoading, setLoginFail, loadUserCardData, loginUser, refreshUserSession} from './appDataSlice'
-import {LoginDataProps, AppDataLogin, AppLoadingPayload} from '../interfaces';
+import {setAppLoading, clearError, updateUserCardsRemaining, setLoginFail, loadUserCardData, loginUser, refreshUserSession, reportError} from './appDataSlice'
+import {LoginDataProps, AppLoadingPayload, AppError} from '../interfaces';
 import {card_loadCardData} from './cardDataActions'
-
+import {http} from '../helpers';
 
 export const app_refreshUserSession = () => {
     return async (dispatch: any) => {
@@ -32,15 +31,16 @@ export const app_setIsLoading = (payload:AppLoadingPayload) => {
 
 
 
-export const app_loadUserCardData = () => {
 
+export const app_loadUserCardData = () => {
     return async (dispatch: any) => {
         try {
             dispatch(setAppLoading({isLoading: true}))
             const userData = window.localStorage.getItem('userdata');
             if(userData) {
                 const storedData = JSON.parse(userData)
-                getData(`/user/${storedData.user._id}/cards`).then((payload:any) => {
+                http.getData(`/user/${storedData.user._id}/cards`)
+                .then((payload:any) => {
                     dispatch(loadUserCardData(payload))
                 }).then(() => {
                     dispatch(setAppLoading({isLoading: false}))
@@ -59,6 +59,17 @@ export const app_loadUserCardData = () => {
 }
 
 
+
+export const app_updateUserCardsRemaining = (cardsRemaining: number) => {
+    return async (dispatch:any) => {
+        try {
+            dispatch(updateUserCardsRemaining(cardsRemaining));
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}
+
 export const app_executeLogin = (loginData:LoginDataProps) => {
     return async (dispatch: any) => {
         try {
@@ -69,9 +80,9 @@ export const app_executeLogin = (loginData:LoginDataProps) => {
                 }
             }
             dispatch(setAppLoading({isLoading: true, loadingMsg: 'Logging in...'}))
-           await putData('/users/login',putConfig)
-            .then((result:AppDataLogin | null) => {
-                if(result && result.token) {
+           await http.getData('/users/login',putConfig)
+            .then((result) => {
+                if(result) {
                     dispatch(setLoginFail(false))
                     localStorage.setItem('userdata', JSON.stringify(result));
                     dispatch(card_loadCardData())
@@ -82,6 +93,32 @@ export const app_executeLogin = (loginData:LoginDataProps) => {
             dispatch(setAppLoading({isLoading: false}))
 
             });
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}
+
+
+export const app_clearError = async () => {
+    return async (dispatch: any) => {
+        try {
+          dispatch(clearError())
+
+        } catch (error) {
+            console.log(error);
+        }
+    }   
+}
+
+
+
+export const app_reportError = async(err: AppError) => {    
+    return async (dispatch: any) => {
+        dispatch(app_setIsLoading({isLoading: false}));
+        try {
+          dispatch(reportError(err))
 
         } catch (error) {
             console.log(error);

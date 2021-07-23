@@ -108,6 +108,7 @@ const cardGenDataSlice = createSlice({
             state.uiState.playMusic = action.payload;
         },
 
+        
         setShowReport(state, action: PayloadAction<boolean>) {
             state.uiState.showReport = action.payload;
         },

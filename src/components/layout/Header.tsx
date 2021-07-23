@@ -23,7 +23,7 @@ const Header:React.FC = () => {
                 <Nav className="me-auto">
                     <Nav.Link href="/about">What It Is</Nav.Link>
                     <Nav.Link href="/howitworks">How It Works</Nav.Link>
-                    <Nav.Link href="/subjects">Subjects</Nav.Link>
+                    <Nav.Link href="/subjects">Wall Of Shame</Nav.Link>
                     {user && 
                     <NavDropdown title={fName} id="basic-nav-dropdown">
                     <NavDropdown.Item href="/account">Your Account</NavDropdown.Item>

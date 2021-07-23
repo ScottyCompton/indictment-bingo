@@ -1,7 +1,7 @@
-import {getDataWithAuth, putData, appConfig} from '../helpers';
+import {http, appConfig} from '../helpers';
 import {loadCardData, updateDownloadCount} from './cardDataSlice'
 import {app_setIsLoading} from './'
-import {SavedCardData} from '../interfaces';
+
 
 
 
@@ -9,8 +9,8 @@ export const card_loadCardData = () => {
     return async (dispatch: any) => {
         try {
             dispatch(app_setIsLoading({isLoading: true, loadingMsg: 'Loading card data...'}))
-            await getDataWithAuth(`/games/${appConfig.gameId}/cards`)
-                .then((cardData:SavedCardData[]) => {
+            await http.getData(`/games/${appConfig.gameId}/cards`)
+                .then((cardData) => {
                     dispatch(loadCardData(cardData))
                 })
                 .then(() => {
@@ -46,7 +46,7 @@ export const card_deleteCard = (cardId: any) => {
                 method: 'DELETE',
                 body: {cardId}
             }
-            await putData(`/cards`, putCfg)
+            await http.getData(`/cards`, putCfg)
                 .then((retval) => {
                     dispatch(card_loadCardData())
                 })

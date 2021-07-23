@@ -5,6 +5,24 @@ import Footer from './layout/Footer'
 import LoadingOverlay from './UI/LoadingOverlay';
 import UserCardList from './UserCardList';
 import UserCard from './UserCard';
-import ImageWithPreloader from './UI/ImageWithPreloader'
+import PageTitle from './UI/PageTitle';
+import DynamicPageContent from './DynamicPageContent';
+import ImageWithPreloader from './UI/ImageWithPreloader';
+import ToastNotification from './UI/ToastNotification';
+import AdvertBlock from './AdvertBlock';
 
-export {CardGenerator, CardGeneratorModal, Header, Footer, LoadingOverlay, UserCardList, UserCard, ImageWithPreloader};
+
+export {
+    PageTitle,
+    DynamicPageContent, 
+    CardGenerator, 
+    CardGeneratorModal, 
+    Header, 
+    Footer, 
+    LoadingOverlay, 
+    UserCardList, 
+    UserCard, 
+    AdvertBlock,
+    ImageWithPreloader,
+    ToastNotification
+};

@@ -16,7 +16,7 @@ const ModalButtons:React.FC<ModalButtonProps> = (props:ModalButtonProps) => {
 
     const [playOn, {stop}] = useSound(
         `${appConfig.audioRoot}/entertained.mp3`,
-        { volume: .5 }
+        { volume: 1 }
       );
      
 
@@ -25,9 +25,6 @@ const ModalButtons:React.FC<ModalButtonProps> = (props:ModalButtonProps) => {
           stop();
         } else {
             playOn();
-            setTimeout(() => {
-                playOn();
-            },50)
         }
       }, [confirmCancel, stop, playOn])
     
@@ -70,8 +67,8 @@ const ModalButtons:React.FC<ModalButtonProps> = (props:ModalButtonProps) => {
             {!cardId && 
                 <>
                     {(enabled && screen==='PRELOAD') && <Button variant="btn btn-sm btn-success" onClick={handleGetCard}>Get Your Card!</Button>}
-                    {(rollComplete && !showReport && screen==='GENERATE') && <Button variant="btn btn-sm btn-warning" onClick={handleViewReport}>Probability Report</Button>}
-                    {(rollComplete && showReport && screen==='GENERATE') && <Button variant="btn btn-sm btn-warning" onClick={handleViewCard}>View Card</Button>}
+                    {(rollComplete && !showReport && screen==='GENERATE') && <Button variant="btn btn-sm btn-warning text-primary" onClick={handleViewReport}>So Much Winning!</Button>}
+                    {(rollComplete && showReport && screen==='GENERATE') && <Button variant="btn btn-sm btn-warning text-primary" onClick={handleViewCard}>View Card</Button>}
                     {(rollComplete && screen==='GENERATE') && <Button variant="btn btn-sm btn-secondary" onClick={handleCloseClick}>Close without saving</Button>}
                     {(!rollComplete && screen==='GENERATE') && <Button variant="btn btn-sm btn-secondary" onClick={handleCloseClick}>Cancel</Button>}
                     {(!rollComplete && screen==='PRELOAD') && <Button variant="btn btn-sm btn-secondary" onClick={handleCloseClick}>Cancel</Button>}
@@ -79,16 +76,16 @@ const ModalButtons:React.FC<ModalButtonProps> = (props:ModalButtonProps) => {
                     <Modal 
                         show={confirmCancel} 
                         centered aria-labelledby="contained-modal-title-vcenter" 
-                        contentClassName="bg-secondary"
+                        contentClassName="bg-secondary round-corners"
                         onHide={handleCancel} 
                         size="sm"
-                        animation={false}>
+                        animation={true}>
                         <Modal.Header>
                             <h6>Exit without saving?</h6>
                         </Modal.Header>
                         <Modal.Body >Are you sure you want to exit without saving?</Modal.Body>
                         <Modal.Footer>
-                        <Button variant="btn btn-warning btn-sm" onClick={handleContinue}>
+                        <Button variant="btn btn-warning btn-sm text-primary" onClick={handleContinue}>
                             Continue
                         </Button>
                         <Button variant="btn btn-primary btn-sm" onClick={handleCancel}>
@@ -101,14 +98,11 @@ const ModalButtons:React.FC<ModalButtonProps> = (props:ModalButtonProps) => {
             }
             {cardId && 
                 <>
-                    {!showReport && <Button variant="btn btn-sm btn-warning" onClick={handleViewReport}>Probability Report</Button>}
-                    {showReport && <Button variant="btn btn-sm btn-warning" onClick={handleViewCard}>View Card</Button>}
+                    {!showReport && <Button variant="btn btn-sm btn-warning text-primary" onClick={handleViewReport}>So Much Winning!</Button>}
+                    {showReport && <Button variant="btn btn-sm btn-warning text-primary" onClick={handleViewCard}>View Card</Button>}
                     <Button variant="btn btn-sm btn-secondary" onClick={handleClose}>Close</Button>
                 </>
             }
-            
-
-
         </>
         )
 }

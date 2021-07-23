@@ -30,6 +30,7 @@ const CardGeneratorModal:React.FC<CardGenModalProps> = (props:CardGenModalProps)
     
     useEffect(() => {
       if(showGenerator) {
+        setPlaySound(false);
         setShow(true)
       } else {
         setShow(false)

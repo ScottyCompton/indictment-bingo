@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {SavedCardData, SavedCardState} from '../interfaces';
+import { SavedCardState} from '../interfaces';
 
 const initialState:SavedCardState = {
     savedCards: []
@@ -10,7 +10,7 @@ const cardDataSlice = createSlice({
     name: 'cardData',
     initialState: initialState,
     reducers: {
-        loadCardData(state, action: PayloadAction<SavedCardData[]>) {
+        loadCardData(state, action: PayloadAction<any>) {
             state.savedCards = action.payload;
         },
         updateDownloadCount(state, action: PayloadAction<string>) {

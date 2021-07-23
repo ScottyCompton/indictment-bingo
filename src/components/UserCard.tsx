@@ -39,6 +39,7 @@ const UserCard:React.FC<UserCardProps> = (props:UserCardProps) => {
     const handleView = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent> | React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault();
         dispatch(cardgen_showGenerator(true, _id))
+        return false;
     }
 
     const handleDownload = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -71,7 +72,7 @@ const UserCard:React.FC<UserCardProps> = (props:UserCardProps) => {
             </Row>
             <Row>
                 <Col xs={4} className="mx-0">
-                    <button onClick={handleView} className="form-control btn btn-link btn-sm">View</button>
+                    <button onClick={handleView} className="form-control btn btn-link btn-sm">Details</button>
                 </Col>
                 <Col xs={4} className="mx-0">
                     <button onClick={handleRefresh} className="form-control btn btn-link btn-sm">Refresh</button>
@@ -84,10 +85,10 @@ const UserCard:React.FC<UserCardProps> = (props:UserCardProps) => {
             <Row>
                 <Col xs={12}>
                     {downloadCount < downloadLimit &&
-                        <button onClick={handleDownload} className="form-control btn btn-primary">Download ({downloadLimit - downloadCount} remaining)</button>                
+                        <button onClick={handleDownload} className="form-control btn btn-primary">Download &nbsp; &nbsp; <small>({downloadLimit - downloadCount} remaining)</small></button>                
                     }
                     {downloadCount >= downloadLimit &&
-                        <button className="form-control btn btn-primary" disabled>Download (0 remaining)</button>                
+                        <button className="form-control btn btn-primary" disabled>Download &nbsp; &nbsp; <small>(0 remaining)</small></button>                
                     }
                 </Col>
             </Row>
@@ -97,7 +98,7 @@ const UserCard:React.FC<UserCardProps> = (props:UserCardProps) => {
         <Modal 
         show={showModal} 
         centered aria-labelledby="contained-modal-title-vcenter" 
-        contentClassName="bg-secondary"
+        contentClassName="round-corners bg-secondary"
         onHide={handleCancel} 
         size="sm"
         animation={true}>
@@ -106,7 +107,7 @@ const UserCard:React.FC<UserCardProps> = (props:UserCardProps) => {
         </Modal.Header>
         <Modal.Body >Are you sure you want to delete this card?</Modal.Body>
         <Modal.Footer>
-        <Button variant="btn btn-warning btn-sm" onClick={handleDelete}>
+        <Button variant="btn btn-warning btn-sm text-primary" onClick={handleDelete}>
             Delete Card
         </Button>
         <Button variant="btn btn-primary btn-sm" onClick={handleCancel}>

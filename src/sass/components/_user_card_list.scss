@@ -13,13 +13,22 @@
     &__imgcontainer {
         width: 100%;
         aspect-ratio: .874/1;
+        img {
+            width: 100%;
+            position: relative;
+            border-radius: 5px;
+        }
     }
     &__card {
-        width: 33%;
+        width: 31%;
+        background-color: #EEEEF0;
         margin-bottom: 5vh;
         height: auto;
         padding: 1%;
-        &__imgcontaine {
+        margin: 1%;
+        -webkit-box-shadow: 7px 7px 6px -4px rgba(0, 0, 0, 0.7);
+        box-shadow: 7px 7px 6px -4px rgba(0, 0, 0, 0.7);
+        &__imgcontainer {
             width: 100%;
             aspect-ratio: .875/1;
             img {

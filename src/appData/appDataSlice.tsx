@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {AppDataLogin, AppDataState, UserCard, AppLoadingPayload} from '../interfaces'
+import {AppDataLogin, AppDataState, UserCard, AppLoadingPayload, AppError} from '../interfaces'
 
 
 const initialState: AppDataState = {
@@ -28,9 +28,23 @@ const cardGenDataSlice = createSlice({
             state.uiState.userCards = action.payload;
         },
 
-        loginUser(state, action: PayloadAction<AppDataLogin>) {
+        loginUser(state, action: PayloadAction<any>) {
             state.uiState.user = action.payload.user;
             state.uiState.token = action.payload.token;
+        },
+
+        updateUserCardsRemaining(state, action: PayloadAction<number>) {
+            // update the number of cards for the user in redux state
+            // after a user has generated another card.            
+            if(state?.uiState?.user?.cardsRemaining) {
+                state.uiState.user.cardsRemaining = action.payload;
+                const userdata = {
+                    token: state.uiState.token,
+                    user: state.uiState.user
+                }
+                localStorage.setItem('userdata', JSON.stringify(userdata));
+
+            }
         },
 
         setLoginFail(state, action: PayloadAction<boolean>) {
@@ -46,13 +60,30 @@ const cardGenDataSlice = createSlice({
                 state.uiState.user = action.payload.user;
                 state.uiState.token = action.payload.token;
             }            
-        }
+        },
 
+        clearError(state) {
+            state.uiState.appError = undefined;
+        },
+
+        reportError(state, action: PayloadAction<AppError>) {
+            state.uiState.isLoading = false;
+            state.uiState.appError = action.payload;
+        }
     }
 })
 
 const {actions, reducer} = cardGenDataSlice;
 
-export const {setAppLoading, setLoginFail, loadUserCardData, loginUser, refreshUserSession} = actions;
+export const {
+    updateUserCardsRemaining, 
+    setAppLoading, 
+    setLoginFail,
+    loadUserCardData, 
+    loginUser, 
+    refreshUserSession,
+    reportError,
+    clearError
+} = actions;
 export default reducer;
 
