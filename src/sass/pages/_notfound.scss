@@ -1,12 +1,11 @@
 .notfound {
     &__message {
-        width: 50%;
+        width: 100%;
         margin: 0 auto;
         position: relative;
         //transform: translateX(50%);
         /* border-left: 10px solid #000; */
         /* border-bottom: 10px solid #000; */
-        margin-top: 50px;
         text-align: center;
     }
     img {

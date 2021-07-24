@@ -1,12 +1,8 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {CardGenDataState, Subject, SelectedSubject} from '../interfaces';
+import {CardGenDataState, Subject, SelectedSubject, ShowGeneratorPayloadAction} from '../interfaces';
 
 
 
-export interface ShowGeneratorPayloadAction {
-    showGenerator: boolean;
-    cardId?: string;
-}
 
 const initialState: CardGenDataState = {
     subjects: [],
@@ -108,7 +104,7 @@ const cardGenDataSlice = createSlice({
             state.uiState.playMusic = action.payload;
         },
 
-        
+
         setShowReport(state, action: PayloadAction<boolean>) {
             state.uiState.showReport = action.payload;
         },
@@ -120,6 +116,7 @@ const cardGenDataSlice = createSlice({
                 state.uiState.cardId = undefined;
             }
         },
+
         updateTileDisplayCount(state) {
 
             state.uiState.tileDisplayCount++;

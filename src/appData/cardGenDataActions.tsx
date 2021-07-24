@@ -8,9 +8,8 @@ import {
     setShowReport,
     setEnabledState,
     setShowGenerator} from './cardGenDataSlice';
-import {app_setIsLoading, app_updateUserCardsRemaining} from './'
-import {card_loadCardData, card_updateDownloadCount} from './cardDataActions'
-import {SelectedSubject, CardData, CardDisplay} from '../interfaces';
+import {app_setIsLoading, card_loadCardData} from './'
+import {SelectedSubject, CardData} from '../interfaces';
 import {http, appConfig} from '../helpers';
 import download from 'downloadjs';
 
@@ -34,43 +33,6 @@ export const cardgen_loadData = () => {
 
 
 
-export const cardgen_donloadOnly = (cardId: string) => {
-    return async (dispatch: any) => {
-        try {
-            dispatch(app_setIsLoading({
-                isLoading: true,
-                loadingMsg: 'Please wait, your download will begin shortly.'
-            }));
-
-            await http.getData(`/cardimage/downloadonly/${cardId}`)
-            .then((response:any) => {
-                const imageUrl = response.imageUrl;
-
-                if(imageUrl) {
-                    dispatch(app_setIsLoading({isLoading: false}))
-                    dispatch(card_updateDownloadCount(cardId))
-                    download(appConfig.apiRoot + '/' + imageUrl)
-                    setTimeout(async() => {
-                        const putCfg = {
-                            method: 'DELETE',
-                            body: {
-                                imagePath: imageUrl
-                            }
-                        }
-                        await http.getData('/cardimage', putCfg);                    
-                    }, 1000)
-                }
-    
-            })
-
-        } catch (error) {
-            console.log(error)
-        }
-    }
-}
-
-
-
 export const cardgen_saveCardData = (cardData:CardData) => {
 
     return async (dispatch: any) => {
@@ -83,7 +45,7 @@ export const cardgen_saveCardData = (cardData:CardData) => {
             await http.getData('/cards', putConfig)
             .then(async(card:any) => {
                 if(card) {
-                    await dispatch(cardgen_downloadCard({...card}))
+                    await dispatch(cardgen_downloadCard(card._id))
                 }
 
             })
@@ -104,31 +66,29 @@ export const cardgen_saveCardData = (cardData:CardData) => {
 
 
 
-export const cardgen_downloadCard = (payload: CardDisplay) => {
+
+
+export const cardgen_downloadCard = (payload: string) => {
     return async (dispatch: any) => {
         try {
 
-            await http.getData(`/cardimage/${payload._id}`)
+            await http.getData(`/cardimage/${payload}`)
             .then((response) => {
 
-                const {imageUrl, cardsRemaining} = response!;
-                if(imageUrl) {
-                    download(appConfig.apiRoot + '/' + imageUrl)
-                    dispatch(card_loadCardData())
-                    dispatch(app_updateUserCardsRemaining(cardsRemaining))
-                    setTimeout(async() => {
-                        const putCfg = {
-                            method: 'DELETE',
-                            body: {
-                                imagePath: imageUrl
-                            }
-                        }
-                        await http.getData('/cardimage', putCfg);                    
-                    }, 1000)
+                if(response.fullImg) {
+                    download(appConfig.apiRoot + '/' + response.fullImg)
+                    return response;
+                }
+            }).then(async (firstResp) => {
+                if(firstResp.rndId) {
+                    dispatch(app_setIsLoading({isLoading: true, loadingMsg: 'Almost done...'}))
+                    await http.getData(`/thumbimage/${payload}/${firstResp.rndId}`)
+                    .then(() => {                        
+                        dispatch(card_loadCardData())
+                    })
                 }
             })
             
-
         } catch (error) {
             console.log(error)
         }

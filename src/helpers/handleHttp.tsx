@@ -1,5 +1,5 @@
 import {store} from '../appData';
-import {reportError} from '../appData/appDataSlice';
+import {app_reportError} from '../appData';
 import {appConfig} from '../helpers';
 import {PutDataConfiguration, AppError} from '../interfaces';
 
@@ -11,11 +11,12 @@ const handleHttp = () => {
     return {
 
         getData: async (endpoint:string, putConfig:PutDataConfiguration | undefined = undefined) => {
-            let data;
             const fetchUrl = appConfig.apiRoot + endpoint
             const userdata = window.localStorage.getItem('userdata')    
             const aryHeaders:[[string, string]] = [['','']];
 
+            let returnData:any;
+            
             if(userdata) {
                 const token = JSON.parse(userdata).token
                 if(token) {
@@ -43,17 +44,17 @@ const handleHttp = () => {
                         if(response?.body) {
                             const errObj:AppError = await response.json();
                             if(errObj.error) {
-                                dispatch(reportError(errObj))
+                                dispatch(app_reportError(errObj))
                             }
                         }
                         console.log({status: response.status, message: 'Could not execute getData', url: fetchUrl});
-                        data = {error: 'could not locate that resource', status: response.status};
+                        returnData = {error: 'could not locate that resource', status: response.status};
                     } else {
-                        data = response.json();           
+                        returnData = response.json();           
                     }
                 })
                 .catch((error) => {
-                    dispatch(reportError({
+                    dispatch(app_reportError({
                         error: {
                             status: 404,
                             message: 'resource not found',
@@ -61,9 +62,9 @@ const handleHttp = () => {
                         }
                     }))
                     //
-                    data = {error: 'could not locate that resource', errorMsg: error};
+                    returnData =  {error: 'could not locate that resource', errorMsg: error};
                 })
-                return data;
+            return returnData;
         }
     }
 }

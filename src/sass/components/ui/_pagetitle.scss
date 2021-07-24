@@ -1,9 +1,12 @@
 .page-title {
     h1 {
         font-family: 'Permanent Marker';
-        font-size: 2.5rem;
+        font-size: 1.2rem;
         padding-bottom: 1rem;
         border-bottom: 1px solid #cfcfcf;
+        @media (min-width: 600px) {
+            font-size: 2.5rem;
+        }
     }
     margin-bottom: 2rem;
 }

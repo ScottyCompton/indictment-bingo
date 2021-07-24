@@ -1,7 +1,7 @@
 import {Toast} from 'react-bootstrap';
 import {useEffect, useState} from 'react';
 import {useAppSelector, useAppDispatch} from '../../hooks';
-import {clearError} from '../../appData/appDataSlice';
+import {app_clearError} from '../../appData';
 
 
 const ToastNotification:React.FC = () => {
@@ -25,7 +25,7 @@ const ToastNotification:React.FC = () => {
 
     const handleClose = () => {
         setShow(false);
-        dispatch(clearError())
+        dispatch(app_clearError())
     }
 
 

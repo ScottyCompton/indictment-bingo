@@ -7,23 +7,24 @@ import {
     cardgen_updateCompletedTileCount,
     cardgen_reeinitialize,
     cardgen_killmusic,
+    cardgen_downloadCard,
     cardgen_queuemusic,
     cardgen_enableRoll,
     cardgen_showReport,
     cardgen_showCard,
     cardgen_saveCardData,
     cardgen_showGenerator,
-    cardgen_disableRoll,
-    cardgen_donloadOnly} from './cardGenDataActions';
+    cardgen_disableRoll} from './cardGenDataActions';
 
 import {
-    app_executeLogin,
+    app_loginUser,
     app_refreshUserSession,
     app_loadUserCardData,
     app_setIsLoading,
-    app_updateUserCardsRemaining,
     app_reportError,
-    app_clearError
+    app_clearError,
+    app_logoutUser,
+    app_setLoginFail,
 } from './appDataActions';
                                                                               
 import {
@@ -46,14 +47,15 @@ export  {
     cardgen_showReport,
     cardgen_showCard,
     cardgen_saveCardData,
-    cardgen_donloadOnly,
-    app_executeLogin,
+    cardgen_downloadCard,
+    app_loginUser,
     app_loadUserCardData,
     app_refreshUserSession,
     app_setIsLoading,
-    app_updateUserCardsRemaining,
+    app_setLoginFail,
     app_reportError, 
     app_clearError,
+    app_logoutUser,
     card_loadCardData,
     card_deleteCard,
     card_updateDownloadCount,

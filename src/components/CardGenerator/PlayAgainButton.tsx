@@ -1,10 +1,8 @@
 import {useAppSelector, useAppDispatch} from '../../hooks';
 import {cardgen_reeinitialize} from '../../appData';
+import {PlayAgainButtonProps} from '../../interfaces'
 
 
-export interface PlayAgainButtonProps {
-    handleClick: () => void;
-}
 
 const PlayAgainButton:React.FC<PlayAgainButtonProps> = (props:PlayAgainButtonProps) => {
     const dispatch = useAppDispatch()

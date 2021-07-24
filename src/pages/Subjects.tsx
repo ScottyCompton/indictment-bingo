@@ -5,7 +5,7 @@ const Subjects:React.FC = () => {
     return (
         <Container fluid>
             <Row>
-                <Col xs={12}><PageTitle pageTitle="Wall Of Shame" /></Col>
+                <Col xs={12}><PageTitle pageTitle="Trump World Indictables" /></Col>
             </Row>
         </Container>
 

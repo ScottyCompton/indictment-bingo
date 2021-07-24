@@ -2,6 +2,7 @@ import CardGenerator from './CardGenerator'
 import CardGeneratorModal from './CardGeneratorModal';
 import Header from './layout/Header'
 import Footer from './layout/Footer'
+import LoginModal from './LoginModal';
 import LoadingOverlay from './UI/LoadingOverlay';
 import UserCardList from './UserCardList';
 import UserCard from './UserCard';
@@ -17,6 +18,7 @@ export {
     DynamicPageContent, 
     CardGenerator, 
     CardGeneratorModal, 
+    LoginModal,
     Header, 
     Footer, 
     LoadingOverlay, 

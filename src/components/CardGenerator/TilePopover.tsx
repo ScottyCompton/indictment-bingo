@@ -1,17 +1,10 @@
 import {Popover, Overlay} from 'react-bootstrap';
-import {Subject} from '../../interfaces';
+import {TilePopoverProps} from '../../interfaces';
 import {useRef} from 'react';
 import {appConfig} from '../../helpers';
 import probabilityValues from '../../fixtures/probabilityValues.json';
 
 
-export interface TilePopoverProps {
-    data: Subject
-    show: boolean;
-    target: any;
-    containerRef: any;
-    idx: number;
-}
 
 const TilePopover:React.FC<TilePopoverProps> = (props:TilePopoverProps) => {
     const {_id, subjectTitle, subjectShortDesc, subjectImg, probability} = props.data;

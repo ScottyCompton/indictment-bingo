@@ -1,13 +1,13 @@
 .content {
-    padding: 2rem;
-    width: 100%;
+    padding: 2%;
     max-width: 1000px;
-    margin: 2rem auto;
+    margin: 2rem .5rem;
     background-color: #fff;
     min-height: 70vh;
     -webkit-box-shadow: 7px 7px 6px -4px rgba(0, 0, 0, 0.7);
     box-shadow: 7px 7px 6px -4px rgba(0, 0, 0, 0.7);
-    @media (max-width: 600px) {
-        padding: 1% 0;
+    @media (min-width: 600px) {
+        width: 100%;
+        margin: 2rem auto;
     }
 }

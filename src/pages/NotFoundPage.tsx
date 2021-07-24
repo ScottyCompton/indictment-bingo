@@ -11,7 +11,7 @@ const NotFoundPage:React.FC = () => {
             <Row>
                 <Col xs={12}>
                     <div className="notfound__message">
-                        <img src="../dist/images/404.png" alt="Look at these losers..." />
+                        <img src="../dist/images/404.jpg" alt="" />
                         <p>&nbsp;</p><p>Sorry - nothing here but a bunch of criminal scumbags on their way to jail.</p>
                     </div></Col>
             </Row>

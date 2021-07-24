@@ -1,17 +1,23 @@
+import {faDownload, faShareAlt, faSyncAlt, faTrashAlt, faEye} from '@fortawesome/free-solid-svg-icons'
 import {UserCardProps} from '../interfaces/';
 import {useState} from 'react';
 import {Col, Row, Container} from 'react-bootstrap'
 import {Modal, Button} from 'react-bootstrap';
-import {card_deleteCard, cardgen_showGenerator, cardgen_donloadOnly} from '../appData';
+import {card_deleteCard, cardgen_showGenerator, cardgen_downloadCard, app_setIsLoading} from '../appData';
 import {useAppDispatch} from '../hooks'
 import {appConfig} from '../helpers';
+import UserCardButton from './UserCardButton';
 
 const UserCard:React.FC<UserCardProps> = (props:UserCardProps) => {
-    const {_id, cardThumbImg, cardName, createdAt, downloadCount} = props.cardData;
+    const {_id, cardThumbImg, cardName, downloadCount} = props.cardData;
     const [showModal, setShowModal] = useState(false);
     const dispatch = useAppDispatch()
     const downloadLimit = appConfig.cardDownloadLimit;
   
+
+    const handleShare = (cardId:any) => {
+        alert('Share to the world...')
+    }
 
     const handleConfirmDelete = (cardId:any) => {
 
@@ -29,91 +35,73 @@ const UserCard:React.FC<UserCardProps> = (props:UserCardProps) => {
         setShowModal(false);
     }
 
-    const fmtDate = (dateStr:string) => {
-        const dte = new Date(dateStr);
-        const strOut = dte.getMonth() + '/' + dte.getDate() + '/' + dte.getFullYear()
-        return strOut;
-    }
+    // const fmtDate = (dateStr:string) => {
+    //     const dte = new Date(dateStr);
+    //     const strOut = dte.getMonth() + '/' + dte.getDate() + '/' + dte.getFullYear()
+    //     return strOut;
+    // }
 
 
-    const handleView = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent> | React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        e.preventDefault();
+    const handleView = (e:any) => {
+        if(e) {e.preventDefault();}
         dispatch(cardgen_showGenerator(true, _id))
         return false;
     }
 
-    const handleDownload = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        e.preventDefault();
+    const handleDownload = () => {
         if(_id) {
-            dispatch(cardgen_donloadOnly(_id))
+            dispatch(app_setIsLoading({isLoading: true, loadingMsg: 'Retrieving your card'}))
+            dispatch(cardgen_downloadCard(_id))
         }
     }
 
     const handleRefresh = () => {
-        console.log('theoretical refresh...')
+        alert('Consider yoursel refreshed...')
     }
 
 
     return (
         <>
-        <Container fluid className="usercardlist__card fade-in">
+        <Container fluid className="usercardlist__card fade-in px-3">
+ 
             <Row>
-                <Col xs={6}>
-                    Created On:
-                </Col>
-                <Col className="text-right">{fmtDate(createdAt)}</Col>
-            </Row>
-            <Row>
-                <Col xs={12}>
+                <Col xs={12} className="px-0">
                     <div className="usercardlist__imgcontainer">
-                        <img src={cardThumbImg} alt={cardName} />
+                        <a href="#view" onClick={handleView}><img src={cardThumbImg} alt={cardName} /></a>
                     </div>
                 </Col>
             </Row>
-            <Row>
-                <Col xs={4} className="mx-0">
-                    <button onClick={handleView} className="form-control btn btn-link btn-sm">Details</button>
-                </Col>
-                <Col xs={4} className="mx-0">
-                    <button onClick={handleRefresh} className="form-control btn btn-link btn-sm">Refresh</button>
-                </Col>
-                <Col xs={4} className="mx-0">
-                    <button onClick={handleConfirmDelete} className="form-control btn btn-link btn-sm">Delete</button>
-                </Col>
-            </Row>
-
-            <Row>
-                <Col xs={12}>
-                    {downloadCount < downloadLimit &&
-                        <button onClick={handleDownload} className="form-control btn btn-primary">Download &nbsp; &nbsp; <small>({downloadLimit - downloadCount} remaining)</small></button>                
-                    }
-                    {downloadCount >= downloadLimit &&
-                        <button className="form-control btn btn-primary" disabled>Download &nbsp; &nbsp; <small>(0 remaining)</small></button>                
-                    }
-                </Col>
+            <Row className="mt-3 py-2 bg-dark" >
+                <Col xs={1}></Col>
+                <Col xs={2}><UserCardButton disabled={downloadCount >= downloadLimit} altText="Download" iconProps={{icon:faDownload}} handleClick={handleDownload}/></Col>
+                <Col xs={2}><UserCardButton handleClick={handleView} altText="view Details" iconProps={{icon:faEye}} /></Col>
+                <Col xs={2}><UserCardButton handleClick={handleRefresh} altText="Refresh Card"  iconProps={{icon:faSyncAlt}} /></Col>
+                <Col xs={2}><UserCardButton handleClick={handleConfirmDelete} altText="Delete Card" iconProps={{icon:faTrashAlt}} /></Col>
+                <Col xs={2}><UserCardButton handleClick={handleShare} altText="Share" iconProps={{icon:faShareAlt}}/></Col>
+                <Col xs={1}></Col>
             </Row>
             
         </Container>
 
         <Modal 
-        show={showModal} 
-        centered aria-labelledby="contained-modal-title-vcenter" 
-        contentClassName="round-corners bg-secondary"
-        onHide={handleCancel} 
-        size="sm"
-        animation={true}>
-        <Modal.Header>
-            <h6>Delete Card?</h6>
-        </Modal.Header>
-        <Modal.Body >Are you sure you want to delete this card?</Modal.Body>
-        <Modal.Footer>
-        <Button variant="btn btn-warning btn-sm text-primary" onClick={handleDelete}>
-            Delete Card
-        </Button>
-        <Button variant="btn btn-primary btn-sm" onClick={handleCancel}>
-            Cancel
-        </Button>
-        </Modal.Footer>
+            show={showModal} 
+            centered aria-labelledby="contained-modal-title-vcenter" 
+            contentClassName="round-corners bg-secondary"
+            onHide={handleCancel} 
+            size="sm"
+            animation={true}>
+            <Modal.Header>
+                <h6>Delete Card?</h6>
+            </Modal.Header>
+            <Modal.Body >Are you sure you want to delete this card?</Modal.Body>
+            <Modal.Footer>
+                <Button variant="btn btn-warning btn-sm text-primary" onClick={handleDelete}>
+                    Delete Card
+                </Button>
+                <Button variant="btn btn-primary btn-sm" onClick={handleCancel}>
+                    Cancel
+                </Button>
+            </Modal.Footer>
         </Modal>
         </>
     )

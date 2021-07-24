@@ -19,10 +19,9 @@ const cardGenDataSlice = createSlice({
             if(action.payload.loadingMsg && action.payload.isLoading) {
                 state.uiState.loadingMsg = action.payload.loadingMsg
             } else {
-                state.uiState.loadingMsg = 'Loading data, please wait...'
+                state.uiState.loadingMsg = 'Doin\' stuff... just relax.'
             }
         },
-
 
         loadUserCardData(state, action: PayloadAction<UserCard[]>) {
             state.uiState.userCards = action.payload;
@@ -33,26 +32,14 @@ const cardGenDataSlice = createSlice({
             state.uiState.token = action.payload.token;
         },
 
-        updateUserCardsRemaining(state, action: PayloadAction<number>) {
-            // update the number of cards for the user in redux state
-            // after a user has generated another card.            
-            if(state?.uiState?.user?.cardsRemaining) {
-                state.uiState.user.cardsRemaining = action.payload;
-                const userdata = {
-                    token: state.uiState.token,
-                    user: state.uiState.user
-                }
-                localStorage.setItem('userdata', JSON.stringify(userdata));
-
-            }
+        logoutUser(state) {
+            state.uiState.user = undefined;
+            window.localStorage.clear();
         },
 
         setLoginFail(state, action: PayloadAction<boolean>) {
-            if(action.payload) {
-                state.uiState.loginFail = true;
-            } else {
-                state.uiState.loginFail = undefined;
-            }
+            
+            state.uiState.loginFail = action.payload === true ? state.uiState.loginFail : undefined;
         },
         
         refreshUserSession(state, action:PayloadAction<AppDataLogin>) {
@@ -76,11 +63,11 @@ const cardGenDataSlice = createSlice({
 const {actions, reducer} = cardGenDataSlice;
 
 export const {
-    updateUserCardsRemaining, 
     setAppLoading, 
     setLoginFail,
     loadUserCardData, 
     loginUser, 
+    logoutUser,
     refreshUserSession,
     reportError,
     clearError

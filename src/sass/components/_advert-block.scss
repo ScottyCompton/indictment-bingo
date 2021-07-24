@@ -1,8 +1,13 @@
 .advert-block {
-    width: $app-max-width;
-    margin: 20px auto;
+    max-width: $app-max-width;
+    width: 96%;
+    margin: 2%;
     background-color: rgb(78, 78, 78);
     height: 90px;
     display: block;
     position: relative;
+    @media (min-width: 600px) {
+        width: 100%;
+        margin: 20px auto;
+    }
 }

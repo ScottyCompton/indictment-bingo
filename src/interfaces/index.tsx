@@ -22,11 +22,6 @@ export interface Subject {
 }
 
 
-
-export interface NonDataSubject {
-    subjectImg: string;
-}
-
 export interface SubjectTileProps {
     idx: number;
     subject: Subject;
@@ -44,18 +39,6 @@ export interface CardData {
     probabilityMatrix: [number[]] | string;
 }
 
-export interface CreateImageResponse {
-    thumbUrl: string;
-    imageUrl: string;
-}
-
-
-export interface CardDisplay {
-    _id: string;
-    cardName: string;
-    cardThumbImg: string;
-    createdAt: string;
-}
 
 export interface CardGenDataState {
     subjects: Subject[];
@@ -78,10 +61,6 @@ export interface CardGenDataState {
     }
 }
 
-
-export interface SubjectUpdatePayload {
-    subjects: Subject[];
-}
 
 export interface PreloadScreenProps {
     handleClick: () => void;
@@ -237,4 +216,30 @@ export interface PutDataConfiguration {
     method?: string;
     contentType?: string;
     body?:any;
+}
+
+
+
+export interface ShowGeneratorPayloadAction {
+    showGenerator: boolean;
+    cardId?: string;
+}
+
+
+export interface PlayAgainButtonProps {
+    handleClick: () => void;
+}
+
+
+export interface TilePopoverProps {
+    data: Subject
+    show: boolean;
+    target: any;
+    containerRef: any;
+    idx: number;
+}
+
+export interface PageTitleProps {
+    pageTitle: string;
+    
 }

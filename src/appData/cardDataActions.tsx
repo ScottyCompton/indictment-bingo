@@ -7,9 +7,10 @@ import {app_setIsLoading} from './'
 
 export const card_loadCardData = () => {
     return async (dispatch: any) => {
-        try {
-            dispatch(app_setIsLoading({isLoading: true, loadingMsg: 'Loading card data...'}))
-            await http.getData(`/games/${appConfig.gameId}/cards`)
+        if(window.localStorage.getItem('userdata')) {
+            try {
+                dispatch(app_setIsLoading({isLoading: true, loadingMsg: 'Doin\' stuff... just relax.'}))
+                await http.getData(`/games/${appConfig.gameId}/cards`)
                 .then((cardData) => {
                     dispatch(loadCardData(cardData))
                 })
@@ -24,6 +25,8 @@ export const card_loadCardData = () => {
                 dispatch(app_setIsLoading({isLoading: false}))
                 console.log('Could not load User\'s card data - ' + error)
             }
+        }
+            
     }
 }
 

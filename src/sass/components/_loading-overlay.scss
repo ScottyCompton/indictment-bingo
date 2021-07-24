@@ -11,13 +11,24 @@
     transition: all .5s ease-in;
     &__inner {
         position: relative;
-        // left: 50%;
+        width: 100%;
         top: 40%;
         text-align: center;
     }
+    &__card {
+        border-radius: 5px;
+        width: 300px;
+        position: relative;
+        margin: 0 auto;
+    }
     &__spinner {
         width: 10vh;
-        height: 10vh;
+        height: auto;
+        max-width: 50px;
+        margin-top: 20px;
+    }
+    &__loadingmsg {
+        font-size: 0.8rem;
     }
     &--loading {
         opacity: 1;

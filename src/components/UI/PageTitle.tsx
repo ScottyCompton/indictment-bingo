@@ -1,8 +1,5 @@
+import {PageTitleProps} from '../../interfaces';
 
-export interface PageTitleProps {
-    pageTitle: string;
-    
-}
 
 const PageTitle:React.FC<PageTitleProps> = (props:PageTitleProps) => {
     const {pageTitle} = props;
