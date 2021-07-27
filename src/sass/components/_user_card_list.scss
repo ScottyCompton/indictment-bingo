@@ -27,7 +27,6 @@
         img {
             width: 100%;
             position: relative;
-            border-radius: 5px;
             -webkit-box-shadow: 7px 7px 6px -4px rgba(0, 0, 0, 0.7);
             box-shadow: 7px 7px 6px -4px rgba(0, 0, 0, 0.7);
         }
@@ -44,5 +43,11 @@
             margin-bottom: 1%;
             width: 48%;
         }
+    }
+    &__nocards {
+        background: #76ffa5;
+        padding: 20px;
+        border-radius: 10px;
+        font-size: 1rem;
     }
 }

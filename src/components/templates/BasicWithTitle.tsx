@@ -9,7 +9,7 @@ const BasicWithTitle:React.FC<any> = (props) => {
     const {title, content} = useDynamicContent();
     const componentProps = {content:content, ...rest}
     return (
-        <div className="page fade-in">
+        <>
             <Header />
             <LeaderBoard728X90 />
             <Container className="content">
@@ -26,7 +26,7 @@ const BasicWithTitle:React.FC<any> = (props) => {
             </Container>
             <LeaderBoard728X90 />
             <Footer />
-        </div>
+        </>
 
     )
 }

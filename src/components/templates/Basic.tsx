@@ -4,7 +4,7 @@ const Basic:React.FC<any> = (props) => {
     const {ContentComponent, rootClass, ...rest} = props;
 
     return (
-        <div className="page fade-in">
+        <>
             <Header />
             <LeaderBoard728X90 />
             <div className={rootClass}>
@@ -14,7 +14,7 @@ const Basic:React.FC<any> = (props) => {
             </div>
             <LeaderBoard728X90 />
             <Footer />
-        </div>
+        </>
 
     )
 }

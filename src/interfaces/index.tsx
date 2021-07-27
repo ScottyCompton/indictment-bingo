@@ -52,13 +52,16 @@ export interface CardGenDataState {
         cardId?: string;
         playMusic: boolean;
         showReport: boolean;
-        probabilityMatrix: {
-            vals: [number[]],
-            rowProbs: number[],
-            colProbs: number[],
-            diagProbs: number[]
-        };
+        probabilityMatrix: ProbabilityMatrixProps;
     }
+}
+
+
+export interface ProbabilityMatrixProps {
+    vals: [number[]];
+    rowProbs: number[];
+    colProbs: number[];
+    diagProbs: number[];
 }
 
 
@@ -241,5 +244,6 @@ export interface TilePopoverProps {
 
 export interface PageTitleProps {
     pageTitle: string;
+    ref?:React.MutableRefObject<any>
     
 }

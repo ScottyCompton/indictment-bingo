@@ -52,6 +52,7 @@ export const cardgen_saveCardData = (cardData:CardData) => {
             .then(() => {
                 dispatch(app_setIsLoading({isLoading: false}))
                 dispatch(reeinitialize())
+                window.location.href='/cards'
             })
             .catch((error) => {
                 console.log('Could not save card data!', error)

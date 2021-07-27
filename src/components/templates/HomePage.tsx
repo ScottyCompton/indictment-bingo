@@ -12,7 +12,7 @@ const HomePage:React.FC<any> = (props) => {
 
 
     return (
-        <div className="page fade-in">
+        <>
             <Header />
             <LeaderBoard728X90 />
             <Container className="content">
@@ -37,7 +37,7 @@ const HomePage:React.FC<any> = (props) => {
             </Container>
             <LeaderBoard728X90 />
             <Footer />
-        </div>
+        </>
 
     )
 }

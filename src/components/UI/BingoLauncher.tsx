@@ -34,7 +34,8 @@ const BingoLauncher:React.FC = (props:any) => {
 
 
     const handlePostLogin = () => {
-        history.push('/cards');
+        dispatch(cardgen_showGenerator(true));
+        //history.push('/cards');
     }
 
 

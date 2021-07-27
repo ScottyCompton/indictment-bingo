@@ -81,26 +81,32 @@ const UserCard:React.FC<UserCardProps> = (props:UserCardProps) => {
 
     return (
         <>
-        <Container fluid className="usercardlist__card fade-in px-3">
+        <div className="card usercardlist__card">
+            <div className="card-body">
+                <Container fluid className=" px-3">
+                
+                <Row>
+                    <Col xs={12} className="px-0">
+                        <div className="usercardlist__imgcontainer">
+                            <a href="#view" onClick={handleView}><img src={cardThumbImg} alt={cardName} /></a>
+                        </div>
+                    </Col>
+                </Row>
+                <Row className="mt-3 py-2 bg-dark">            
+                    <Col xs={1}></Col>
+                    <Col xs={2}><UserCardButton disabled={downloadCount >= downloadLimit} altText="Download" iconProps={getIconProps(faDownload)} handleClick={handleDownload}/></Col>
+                    <Col xs={2}><UserCardButton handleClick={handleView} altText="view Details" iconProps={getIconProps(faEye)} /></Col>
+                    <Col xs={2}><UserCardButton handleClick={handleRefresh} altText="Refresh Card" iconProps={getIconProps(faSyncAlt)} /></Col>
+                    <Col xs={2}><UserCardButton handleClick={handleConfirmDelete} altText="Delete Card" iconProps={getIconProps(faTrashAlt)} /></Col>
+                    <Col xs={2}><UserCardButton handleClick={handleShare} altText="Share" iconProps={getIconProps(faShareAlt)}/></Col>
+                    <Col xs={1}></Col>
+                </Row>
+                
+                </Container>
+            </div>
+        </div>
+
  
-            <Row>
-                <Col xs={12} className="px-0">
-                    <div className="usercardlist__imgcontainer">
-                        <a href="#view" onClick={handleView}><img src={cardThumbImg} alt={cardName} /></a>
-                    </div>
-                </Col>
-            </Row>
-            <Row className="mt-3 py-2 bg-dark" >
-                <Col xs={1}></Col>
-                <Col xs={2}><UserCardButton disabled={downloadCount >= downloadLimit} altText="Download" iconProps={getIconProps(faDownload)} handleClick={handleDownload}/></Col>
-                <Col xs={2}><UserCardButton handleClick={handleView} altText="view Details" iconProps={getIconProps(faEye)} /></Col>
-                <Col xs={2}><UserCardButton handleClick={handleRefresh} altText="Refresh Card" iconProps={getIconProps(faSyncAlt)} /></Col>
-                <Col xs={2}><UserCardButton handleClick={handleConfirmDelete} altText="Delete Card" iconProps={getIconProps(faTrashAlt)} /></Col>
-                <Col xs={2}><UserCardButton handleClick={handleShare} altText="Share" iconProps={getIconProps(faShareAlt)}/></Col>
-                <Col xs={1}></Col>
-            </Row>
-            
-        </Container>
 
         <Modal 
             show={showModal} 

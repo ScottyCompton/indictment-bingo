@@ -59,7 +59,7 @@ const CardGeneratorModal:React.FC = () => {
           setPlaySound(true)
           const userCardData:UserCard = {
             selectedSubjects,
-            probabilityMatrix: JSON.stringify(probabilityMatrix.vals),
+            probabilityMatrix: JSON.stringify(probabilityMatrix),
             cardName: 'Some New Card',
             gameId: appConfig.gameId,
           }

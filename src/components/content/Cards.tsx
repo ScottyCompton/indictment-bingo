@@ -1,34 +1,17 @@
-import { withRouter, useHistory } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import {Button} from 'react-bootstrap';
 import {cardgen_showGenerator} from '../../appData';
-import {useAppDispatch, useAppSelector} from '../../hooks'
+import {useAppDispatch} from '../../hooks'
 import {UserCardList} from '../';
 import {Container, Row, Col} from 'react-bootstrap';
 import {BingoLauncher} from '../UI';
 
 const Cards:React.FC = () => {
     const dispatch = useAppDispatch();
-    // const cardsRemaining = useAppSelector(state => state.appData.uiState.user?.cardsRemaining);
-    // const history = useHistory();
-
-
-
-    // const handleShowGenerator = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
-    //     e.preventDefault();
-
-
-    //     if(cardsRemaining === 0) {
-    //         history.push('/paywall')
-    //     } else {
-    //         dispatch(cardgen_showGenerator(true))
-    //     }
-    // }
-
 
     const handleTileClick = (cardId:any) => {
         dispatch(cardgen_showGenerator(true, cardId))
     }
-
 
     return (
         <>
@@ -48,7 +31,7 @@ const Cards:React.FC = () => {
                <Col xs={12} className="text-center">
                     <div className="d-grid gap-2">
                         <BingoLauncher>
-                            <Button type="button" className="btn btn-lg btn-warning">CLICK HERE TO GENERATE A NEW CARD</Button>
+                            <Button type="button" className="btn btn-lg big-button btn-warning">GENERATE BINGO CARD</Button>
                         </BingoLauncher>
                     </div>
                </Col>

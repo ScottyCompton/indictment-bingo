@@ -12,7 +12,6 @@ const BasicContent:React.FC = (props:any) => {
         }
     }, [props])
 
-    console.log(props);
     return (
     <>
       {content}

@@ -6,6 +6,7 @@ import {useAppSelector} from '../hooks';
 import {LoadingOverlay, ToastNotification, CardGeneratorModal} from '../components';
 import {v4 as uuid} from 'uuid';
 import {useCallback} from 'react';
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
 export const history = createBrowserHistory();
 
@@ -27,9 +28,21 @@ const AppRouter:React.FC<any> = (props:any) => {
                 <ToastNotification />
                 <LoadingOverlay />
                 <CardGeneratorModal />
-                <Switch location={location}>
-                {appRouteList()}
-                </Switch>
+                <TransitionGroup className="RTG">
+                <CSSTransition 
+                    key={location.key}
+                    timeout={2000}
+                    classNames="fade"
+                >
+                  <main>
+                    <div className="page">                
+                      <Switch location={location}>
+                      {appRouteList()}
+                      </Switch>
+                  </div>
+                </main>
+                </CSSTransition>
+              </TransitionGroup>                
                 </>
         );
       }} /> 

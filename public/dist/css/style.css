@@ -7394,26 +7394,6 @@ body {
   background-attachment: fixed;
   background-color: #a0a0a3; }
 
-.fadeable {
-  opacity: 0;
-  transition: all 0.5s ease-in; }
-
-.fade-out {
-  opacity: 0; }
-
-.fade-in {
-  opacity: 1;
-  animation-name: fadeInOpacity;
-  animation-iteration-count: 1;
-  animation-timing-function: ease-in;
-  animation-duration: .75s; }
-
-@keyframes fadeInOpacity {
-  0% {
-    opacity: 0; }
-  100% {
-    opacity: 1; } }
-
 .big-button {
   font-weight: bolder; }
   @media (max-width: 600px) {
@@ -7425,32 +7405,6 @@ body {
 
 .hidden {
   display: none; }
-
-.fade-appear,
-.fade-enter {
-  opacity: 0;
-  z-index: 1; }
-
-.page {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  overflow-x: hidden; }
-
-.fade-appear-active,
-.fade-enter.fade-enter-active {
-  opacity: 1.0;
-  transition: opacity 600ms linear 150ms; }
-
-.fade-exit {
-  opacity: 1.0; }
-
-.fade-exit.fade-exit-active {
-  opacity: 0;
-  transition: opacity 600ms linear; }
-  .fade-exit.fade-exit-active .hide-on-nav {
-    visibility: hidden; }
 
 .text-right {
   text-align: right; }
@@ -7568,7 +7522,6 @@ body {
     .usercardlist__imgcontainer img {
       width: 100%;
       position: relative;
-      border-radius: 5px;
       -webkit-box-shadow: 7px 7px 6px -4px rgba(0, 0, 0, 0.7);
       box-shadow: 7px 7px 6px -4px rgba(0, 0, 0, 0.7); }
   .usercardlist__card {
@@ -7583,6 +7536,11 @@ body {
         margin: 1%;
         margin-bottom: 1%;
         width: 48%; } }
+  .usercardlist__nocards {
+    background: #76ffa5;
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 1rem; }
 
 .bingo-card {
   max-width: 700px;
@@ -7732,6 +7690,62 @@ body {
 @media screen and (min-width: 600px) {
   .page-title {
     margin-bottom: 2rem; } }
+
+.page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  overflow-x: hidden; }
+  @media screen and (min-width: 576px) {
+    .page {
+      overflow-x: inherit; } }
+
+.fade-appear,
+.fade-enter {
+  opacity: 0;
+  z-index: 1; }
+
+.page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  overflow-x: hidden; }
+
+.fade-appear-active,
+.fade-enter.fade-enter-active {
+  opacity: 1.0;
+  transition: opacity 600ms linear 150ms; }
+
+.fade-exit {
+  opacity: 1.0; }
+
+.fade-exit.fade-exit-active {
+  opacity: 0;
+  transition: opacity 600ms linear; }
+  .fade-exit.fade-exit-active .hide-on-nav {
+    visibility: hidden; }
+
+.fadeable {
+  opacity: 0;
+  transition: all 0.5s ease-in; }
+
+.fade-out {
+  opacity: 0; }
+
+.fade-in {
+  opacity: 1;
+  animation-name: fadeInOpacity;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-duration: .75s; }
+
+@keyframes fadeInOpacity {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
 
 .card-generator-modal {
   padding: 0px; }

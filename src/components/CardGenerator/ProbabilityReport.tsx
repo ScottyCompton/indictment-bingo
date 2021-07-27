@@ -1,21 +1,19 @@
 import {Container, Row, Col} from 'react-bootstrap';
 import {useAppSelector} from '../../hooks';
-import {ProbabilityReportProps} from '../../interfaces';
+import {ProbabilityReportProps, ProbabilityMatrixProps} from '../../interfaces';
 import probabilityValues from '../../fixtures/probabilityValues.json';
 import {v4 as uuid} from 'uuid';
 import {useEffect, useState, useRef} from 'react';
-import {getRowProbs, getColProbs, getDiagProbs} from '../../appData/cardGenDataSlice';
+
 
 
 const ProbabilityReport:React.FC<ProbabilityReportProps> = (props:ProbabilityReportProps) => {
-    const probabilityMatrix = useAppSelector(state => state.cardGenData.uiState.probabilityMatrix);
+    const stateMatrix = useAppSelector(state => state.cardGenData.uiState.probabilityMatrix);
     const {savedCards} = useAppSelector(state => state.cardData);
-    const [rowProbs, setRowProbs] = useState<number[]>([]);
-    const [colProbs, setColProbs] = useState<number[]>([])
-    const [diagProbs, setDiagProbs] = useState<number[]>([])
     const {cardId} = props;
     const showReport = useAppSelector(state => state.cardGenData.uiState.showReport)
     const [rootClass, setRootClass] = useState('probability-report fade-in');
+    const [matrix, setMatrix] = useState<ProbabilityMatrixProps>()
 
 
     const arrProbs = probabilityValues.cardVals;
@@ -38,24 +36,15 @@ const ProbabilityReport:React.FC<ProbabilityReportProps> = (props:ProbabilityRep
     }, [showReport])
 
     useEffect(() => {
-
         if(cardId) {
-
             const card = savedCards?.filter(item => item._id === cardId)[0];
-    
-            if(card && card.probabilityMatrix) {
-                const savedMatrix = JSON.parse(card?.probabilityMatrix).slice();
-                setRowProbs(getRowProbs(savedMatrix));
-                setColProbs(getColProbs(savedMatrix));
-                setDiagProbs(getDiagProbs(savedMatrix));
-
+            if(card?.probabilityMatrix) {
+                setMatrix(JSON.parse(card?.probabilityMatrix))
             }
         } else {
-            setRowProbs(probabilityMatrix.rowProbs);
-            setColProbs(probabilityMatrix.colProbs);
-            setDiagProbs(probabilityMatrix.diagProbs);
+            setMatrix(stateMatrix)
         }
-    }, [cardId, savedCards, probabilityMatrix])
+    }, [cardId, stateMatrix, savedCards])
 
 
 
@@ -63,7 +52,7 @@ const ProbabilityReport:React.FC<ProbabilityReportProps> = (props:ProbabilityRep
     return (
         <div ref={ref} className={rootClass}>
             {
-                (rollComplete || cardId) && 
+                ((rollComplete || cardId) && matrix) &&
 
                 <Container fluid  className="text-light">
                 <Row>
@@ -72,7 +61,7 @@ const ProbabilityReport:React.FC<ProbabilityReportProps> = (props:ProbabilityRep
                 <Row>
                     <Col xs={12}><h6 className="text-warning">Rows (A through E)</h6></Col>
                 </Row>
-                {rowProbs.map((prob:any, i:number) => {
+                {matrix.rowProbs.map((prob:any, i:number) => {
                    return (
                      <Row key={uuid()}>
                         <Col xs={6}><small>Row {rowLtr(i)}:</small></Col>
@@ -83,7 +72,7 @@ const ProbabilityReport:React.FC<ProbabilityReportProps> = (props:ProbabilityRep
                     <Col xs={12}><h6 className="text-warning">Columns (1 thru 5)</h6></Col>
                 </Row>
     
-                {colProbs.map((prob:any, i:number) => {
+                {matrix.colProbs.map((prob:any, i:number) => {
                    return (
                     <Row key={uuid()}>
                         <Col xs={6}><small>Column {i+1}:</small></Col>
@@ -96,7 +85,7 @@ const ProbabilityReport:React.FC<ProbabilityReportProps> = (props:ProbabilityRep
                 </Row>
 
 
-                {diagProbs.map((prob:any, i:number) => {
+                {matrix.diagProbs.map((prob:any, i:number) => {
                    return (
                     <Row key={uuid()}>
                         <Col xs={6}><small>Diagonal {i+1}:</small></Col>
