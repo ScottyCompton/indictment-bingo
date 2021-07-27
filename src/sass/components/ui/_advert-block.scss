@@ -1,0 +1,30 @@
+.advert-block {
+    max-width: $app-max-width;
+    width: 96%;
+    margin: 2%;
+    height: 90px;
+    display: block;
+    position: relative;
+    @media (min-width: 600px) {
+        width: 100%;
+        margin: 20px auto;
+    }
+}
+
+.leaderboard-728x90 {
+    max-width: 728px;
+    width: 100%;
+    margin: 2%;
+    max-height: 90px;
+    aspect-ratio: 8.08/1;
+    display: block;
+    position: relative;
+    img {
+        height: 100%;
+        width: auto;
+    }
+    @media (min-width: 600px) {
+        width: 100%;
+        margin: 20px auto;
+    }
+}

@@ -4,3 +4,7 @@ $app-max-width: 1000px;
 $outer-container-max-width: 700px;
 $inner-container-max-width: 600px;
 $page-container-max-width: 1000px;
+$sm-breakpoint: 576px; // anything below this is xs
+$md-breakpoint: 768px;
+$lg-breakpoint: 992px;
+$xl-breakpoint: 1200px;

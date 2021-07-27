@@ -14,6 +14,7 @@ import {
     cardgen_showCard,
     cardgen_saveCardData,
     cardgen_showGenerator,
+    cardgen_closeGenerator,
     cardgen_disableRoll} from './cardGenDataActions';
 
 import {
@@ -59,4 +60,5 @@ export  {
     card_loadCardData,
     card_deleteCard,
     card_updateDownloadCount,
+    cardgen_closeGenerator,
     store};

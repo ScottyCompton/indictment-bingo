@@ -64,7 +64,16 @@ export const cardgen_saveCardData = (cardData:CardData) => {
 }
 
 
-
+export const cardgen_closeGenerator = () => {
+    return async (dispatch: any) => {
+        dispatch(cardgen_showGenerator(false))
+        dispatch(cardgen_killmusic());
+        dispatch(cardgen_disableRoll());
+        setTimeout(() => {
+            dispatch(cardgen_reeinitialize())
+        }, 500)   
+    }
+}
 
 
 

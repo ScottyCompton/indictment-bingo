@@ -1,13 +1,7 @@
 import {Container, Row, Col} from 'react-bootstrap'
-import {PageTitle} from '../components';
-const NotFoundPage:React.FC = () => {
+const NotFound:React.FC = () => {
     return (
         <Container className="notfound">
-            <Row>
-                <Col xs={12}>
-                    <PageTitle pageTitle="Well, this is awkward..." />                    
-                </Col>
-            </Row>
             <Row>
                 <Col xs={12}>
                     <div className="notfound__message">
@@ -19,4 +13,4 @@ const NotFoundPage:React.FC = () => {
     )
 }
 
-export default NotFoundPage;
+export default NotFound;

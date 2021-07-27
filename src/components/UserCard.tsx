@@ -1,6 +1,7 @@
-import {faDownload, faShareAlt, faSyncAlt, faTrashAlt, faEye} from '@fortawesome/free-solid-svg-icons'
+import {faDownload, faShareAlt, faSyncAlt, faTrashAlt, faEye} from '@fortawesome/free-solid-svg-icons';
+import {SizeProp} from "@fortawesome/fontawesome-svg-core";
 import {UserCardProps} from '../interfaces/';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import {Col, Row, Container} from 'react-bootstrap'
 import {Modal, Button} from 'react-bootstrap';
 import {card_deleteCard, cardgen_showGenerator, cardgen_downloadCard, app_setIsLoading} from '../appData';
@@ -13,7 +14,24 @@ const UserCard:React.FC<UserCardProps> = (props:UserCardProps) => {
     const [showModal, setShowModal] = useState(false);
     const dispatch = useAppDispatch()
     const downloadLimit = appConfig.cardDownloadLimit;
-  
+    const [winSize, setWinSize] = useState(window.innerWidth);
+
+    useEffect(() => {
+
+        const handleResize = () => {
+            setWinSize(window.innerWidth);
+        }
+
+        // initiate the event handler
+        window.addEventListener('resize', handleResize, false)
+    
+        // this will clean up the event every time the component is re-rendered
+        return function cleanup() {
+          window.removeEventListener('resize', handleResize)
+        }
+      })
+
+
 
     const handleShare = (cardId:any) => {
         alert('Share to the world...')
@@ -35,13 +53,6 @@ const UserCard:React.FC<UserCardProps> = (props:UserCardProps) => {
         setShowModal(false);
     }
 
-    // const fmtDate = (dateStr:string) => {
-    //     const dte = new Date(dateStr);
-    //     const strOut = dte.getMonth() + '/' + dte.getDate() + '/' + dte.getFullYear()
-    //     return strOut;
-    // }
-
-
     const handleView = (e:any) => {
         if(e) {e.preventDefault();}
         dispatch(cardgen_showGenerator(true, _id))
@@ -59,6 +70,14 @@ const UserCard:React.FC<UserCardProps> = (props:UserCardProps) => {
         alert('Consider yoursel refreshed...')
     }
 
+    const getIconProps = (icon:any) => {
+        const size:SizeProp = winSize < 576 ? 'lg' : '1x';
+        return ({
+            icon,
+            size:size
+        })
+    }
+
 
     return (
         <>
@@ -73,11 +92,11 @@ const UserCard:React.FC<UserCardProps> = (props:UserCardProps) => {
             </Row>
             <Row className="mt-3 py-2 bg-dark" >
                 <Col xs={1}></Col>
-                <Col xs={2}><UserCardButton disabled={downloadCount >= downloadLimit} altText="Download" iconProps={{icon:faDownload}} handleClick={handleDownload}/></Col>
-                <Col xs={2}><UserCardButton handleClick={handleView} altText="view Details" iconProps={{icon:faEye}} /></Col>
-                <Col xs={2}><UserCardButton handleClick={handleRefresh} altText="Refresh Card"  iconProps={{icon:faSyncAlt}} /></Col>
-                <Col xs={2}><UserCardButton handleClick={handleConfirmDelete} altText="Delete Card" iconProps={{icon:faTrashAlt}} /></Col>
-                <Col xs={2}><UserCardButton handleClick={handleShare} altText="Share" iconProps={{icon:faShareAlt}}/></Col>
+                <Col xs={2}><UserCardButton disabled={downloadCount >= downloadLimit} altText="Download" iconProps={getIconProps(faDownload)} handleClick={handleDownload}/></Col>
+                <Col xs={2}><UserCardButton handleClick={handleView} altText="view Details" iconProps={getIconProps(faEye)} /></Col>
+                <Col xs={2}><UserCardButton handleClick={handleRefresh} altText="Refresh Card" iconProps={getIconProps(faSyncAlt)} /></Col>
+                <Col xs={2}><UserCardButton handleClick={handleConfirmDelete} altText="Delete Card" iconProps={getIconProps(faTrashAlt)} /></Col>
+                <Col xs={2}><UserCardButton handleClick={handleShare} altText="Share" iconProps={getIconProps(faShareAlt)}/></Col>
                 <Col xs={1}></Col>
             </Row>
             

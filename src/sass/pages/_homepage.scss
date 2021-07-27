@@ -1,0 +1,11 @@
+.home-page {
+    &__banner {
+        width: 100%;
+        position: relative;
+        cursor: pointer;
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
+}

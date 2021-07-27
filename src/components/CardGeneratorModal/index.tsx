@@ -1,17 +1,17 @@
 import {Modal} from 'react-bootstrap';
-import {CardGenerator} from '../'
+import CardGenerator from '../CardGenerator'
 import ModalButtons from './ModalButtons';
-import {CardGenModalProps, UserCard} from '../../interfaces';
+import {UserCard} from '../../interfaces';
 import {useAppSelector, useAppDispatch} from '../../hooks'
 import {Button} from 'react-bootstrap'
-import {cardgen_saveCardData} from '../../appData'
+import {cardgen_saveCardData, cardgen_closeGenerator} from '../../appData'
 import {appConfig} from '../../helpers';
 import {useEffect, useState} from 'react';
 import useSound from 'use-sound';
 
 
-const CardGeneratorModal:React.FC<CardGenModalProps> = (props:CardGenModalProps) => {
-    const {handleClose} = props;
+const CardGeneratorModal:React.FC = () => {
+    //const {handleClose} = props;
     const {screen, rollComplete, selectedSubjects, probabilityMatrix} = useAppSelector(state => state.cardGenData.uiState)
     const {user} = useAppSelector(state => state.appData.uiState);
     const {cardId} = useAppSelector(state => state.cardGenData.uiState)
@@ -47,6 +47,10 @@ const CardGeneratorModal:React.FC<CardGenModalProps> = (props:CardGenModalProps)
       
     }, [playSound, playOn, stop])
 
+
+    const handleClose = () => {
+      dispatch(cardgen_closeGenerator())
+    }
 
 
 

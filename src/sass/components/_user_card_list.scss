@@ -33,18 +33,16 @@
         }
     }
     &__card {
-        width: 31%;
+        width: 98%;
         margin-bottom: 5vh;
         height: auto;
         padding: 1%;
         margin: 1%;
-        // &__imgcontainer {
-        //     width: 100%;
-        //     aspect-ratio: .832/1;
-        //     img {
-        //         width: 100%;
-        //         position: relative;
-        //     }
-        // }
+        margin-bottom: 2%;
+        @media screen and (min-width: $sm-breakpoint) {
+            margin: 1%;
+            margin-bottom: 1%;
+            width: 48%;
+        }
     }
 }

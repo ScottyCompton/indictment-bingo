@@ -11,6 +11,7 @@ const PreLoadScreen:React.FC<PreloadScreenProps> = (props:PreloadScreenProps) =>
 
 
     useEffect(() => {
+        let mounted = true;
 
         const updateStatus = (status: {statusText: string, statusVal: number}, idx:number) => {
             setStatus((prevState) => {
@@ -23,9 +24,16 @@ const PreLoadScreen:React.FC<PreloadScreenProps> = (props:PreloadScreenProps) =>
 
         statusValues.forEach((item, idx) => {
             setTimeout(() => {
-                updateStatus(item, idx)
+                if(mounted) {
+                    updateStatus(item, idx)
+                }
             }, idx*1000)
         })
+
+        return function cleanup() {
+            mounted = false;
+        }
+
     }, [dispatch, statusValues])   
 
 

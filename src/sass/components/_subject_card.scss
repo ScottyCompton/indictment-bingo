@@ -1,0 +1,15 @@
+.subject-card {
+    margin-bottom: 1rem;
+    &__img {
+        aspect-ratio: 1/1;
+        padding: 4px;
+        margin: 0 1rem 1rem 0;
+        border: 1px solid #c0c0c0;
+        float: left;
+        img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1/1;
+        }
+    }
+}

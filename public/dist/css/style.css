@@ -7486,7 +7486,8 @@ body {
   width: 100%;
   color: white;
   text-align: center;
-  margin-top: 5vh; }
+  margin-top: 5vh;
+  display: none; }
 
 .header--logo {
   aspect-ratio: 3.37/1;
@@ -7519,12 +7520,28 @@ body {
   width: 100%;
   z-index: -1; }
 
+.right-sidebar {
+  border-left: 1px solid #c0c0c0; }
+
 .card-generator {
   max-width: 1000px;
   width: 100%;
   margin: 0 auto;
   position: relative;
   padding: 0 1%; }
+
+.subject-card {
+  margin-bottom: 1rem; }
+  .subject-card__img {
+    aspect-ratio: 1/1;
+    padding: 4px;
+    margin: 0 1rem 1rem 0;
+    border: 1px solid #c0c0c0;
+    float: left; }
+    .subject-card__img img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1/1; }
 
 .usercardlist {
   max-width: 1000px;
@@ -7555,11 +7572,17 @@ body {
       -webkit-box-shadow: 7px 7px 6px -4px rgba(0, 0, 0, 0.7);
       box-shadow: 7px 7px 6px -4px rgba(0, 0, 0, 0.7); }
   .usercardlist__card {
-    width: 31%;
+    width: 98%;
     margin-bottom: 5vh;
     height: auto;
     padding: 1%;
-    margin: 1%; }
+    margin: 1%;
+    margin-bottom: 2%; }
+    @media screen and (min-width: 576px) {
+      .usercardlist__card {
+        margin: 1%;
+        margin-bottom: 1%;
+        width: 48%; } }
 
 .bingo-card {
   max-width: 700px;
@@ -7697,16 +7720,18 @@ body {
     .tile-popover__probability {
       font-size: 1.0rem; } }
 
-.page-title {
-  margin-bottom: 2rem; }
-  .page-title h1, .page-title .h1 {
-    font-family: 'Permanent Marker';
-    font-size: 1.2rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid #cfcfcf; }
-    @media (min-width: 600px) {
-      .page-title h1, .page-title .h1 {
-        font-size: 2.5rem; } }
+.page-title h1, .page-title .h1 {
+  font-size: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #cfcfcf; }
+  @media (min-width: 600px) {
+    .page-title h1, .page-title .h1 {
+      font-size: 2.5rem;
+      padding-bottom: 1rem; } }
+
+@media screen and (min-width: 600px) {
+  .page-title {
+    margin-bottom: 2rem; } }
 
 .card-generator-modal {
   padding: 0px; }
@@ -7752,12 +7777,27 @@ body {
   max-width: 1000px;
   width: 96%;
   margin: 2%;
-  background-color: #4e4e4e;
   height: 90px;
   display: block;
   position: relative; }
   @media (min-width: 600px) {
     .advert-block {
+      width: 100%;
+      margin: 20px auto; } }
+
+.leaderboard-728x90 {
+  max-width: 728px;
+  width: 100%;
+  margin: 2%;
+  max-height: 90px;
+  aspect-ratio: 8.08/1;
+  display: block;
+  position: relative; }
+  .leaderboard-728x90 img {
+    height: 100%;
+    width: auto; }
+  @media (min-width: 600px) {
+    .leaderboard-728x90 {
       width: 100%;
       margin: 20px auto; } }
 
@@ -7803,3 +7843,11 @@ body {
 .notfound img {
   width: 100%;
   position: relative; }
+
+.home-page__banner {
+  width: 100%;
+  position: relative;
+  cursor: pointer; }
+  .home-page__banner img {
+    width: 100%;
+    height: auto; }

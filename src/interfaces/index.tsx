@@ -72,9 +72,9 @@ export interface ModalButtonProps {
     cardId?: string | null;
 }
 
-export interface CardGenModalProps {
-    handleClose: () => void 
-}
+// export interface CardGenModalProps {
+//     handleClose: () => void 
+// }
 
 export interface CardGeneratorProps {
     cardId?: string | undefined;

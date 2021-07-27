@@ -9,7 +9,9 @@
 @import "components/layout/content";
 @import "components/layout/footer";
 @import "components/layout/header";
+@import "components/layout/right-sidebar";
 @import "components/app";
+@import "components/subject_card";
 @import "components/user_card_list";
 @import "components/card_generator/bingo_card";
 @import "components/card_generator/subject_tile";
@@ -21,6 +23,7 @@
 @import "components/ui/pagetitle";
 @import "components/card_generator_modal/card_generator_modal";
 @import "components/loading-overlay";
-@import "components/advert-block";
+@import "components/ui/advert-block";
 @import "components/ui/toast-notification";
 @import "pages/notfound";
+@import "pages/homepage";

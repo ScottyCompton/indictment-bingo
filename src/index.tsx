@@ -1,7 +1,8 @@
 import ReactDOM from 'react-dom';
 import {store} from './appData';
 import {Provider} from 'react-redux';
-import App from './App';
+//import App from './App';
+import AppRouter from './routes/AppRouter';
 import {useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from './hooks';
 import {app_refreshUserSession} from './appData';
@@ -18,7 +19,7 @@ const AppLoader:React.FC = () => {
 
 
   return (
-      <App />
+      <AppRouter />
     )
 }
 

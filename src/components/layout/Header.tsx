@@ -6,7 +6,20 @@ import {app_logoutUser} from '../../appData';
 import { useHistory, withRouter } from "react-router-dom";
 import {LoginModal} from '../../components';
 import {useState, useEffect, useRef} from 'react';
-//import {useEvent} from '../../hooks';
+import appRoutes from '../../fixtures/appRoutes';
+import {v4 as uuid} from 'uuid';
+import {Link} from 'react-router-dom';
+
+export interface NavItem {
+    path?: string;
+    menuTitle?: string;
+    ContentComponent: any;
+    LayoutComponent: any;
+    pageTitle?: string;
+    rootClass?: string;
+    exact?: boolean;
+}
+
 
 const Header:React.FC = () => {
     const history = useHistory();
@@ -65,17 +78,19 @@ const Header:React.FC = () => {
 
 
     const navbarPrimary = () => {
+        const navs:NavItem[] = appRoutes.filter((item) => {
+            return item.menuTitle !== undefined ? item.public ? item : user ? item : null :null
+        }); 
+
+        
         return (
             <Nav className="me-auto">
-                {navCollapsed && navbarAcctDropdown()}                   
-                <Nav.Link href="/howitworks">How It Works</Nav.Link>
-                {user && <Nav.Link href="/cards">Play Bingo!</Nav.Link>}
-                <Nav.Link href="/subjects">The Indictables</Nav.Link>                   
-                <Nav.Link href="/indictable-news">Indictable News</Nav.Link>                   
-                <Nav.Link href="/indictable-swag">Indictable Swag</Nav.Link>                   
-                <Nav.Link href="/about">But... why?</Nav.Link>                   
-                <Nav.Link href="/hate-mail">Hate Mail</Nav.Link>                   
-                <Nav.Link href="/donate">Donate</Nav.Link>
+                {navCollapsed && navbarAcctDropdown()}
+                 
+                {
+                  navs.map((navitem:NavItem) => <Nav.Link as={Link} key={uuid()} to={navitem.path!}>{navitem.menuTitle}</Nav.Link>)                    
+                }
+                
             </Nav>
         )
     }
@@ -87,8 +102,8 @@ const Header:React.FC = () => {
                 <>
                 <div className="header--acctnav__icon"><FontAwesomeIcon icon={faUser} /></div>
                 <NavDropdown title={fName} id="header-acctnav">
-                <NavDropdown.Item href="/account">Your Account</NavDropdown.Item>
-                <NavDropdown.Item href="/cards">Play Bingo!</NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/account">Your Account</NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/cards">Play Bingo!</NavDropdown.Item>
                 <NavDropdown.Item href="#logout" onClick={handleLogout}>Logout</NavDropdown.Item>
                 </NavDropdown>
                 </>                    
@@ -98,7 +113,7 @@ const Header:React.FC = () => {
                 <>
                 <FontAwesomeIcon className="header--acctnav__icon" icon={faSignInAlt} /> 
                 <NavDropdown title="Join the fun!" id="header-acctnav">
-                <NavDropdown.Item href="/signup">Create Account</NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/signup">Create Account</NavDropdown.Item>
                 <NavDropdown.Item href="#login" onClick={handleOpenLoginModal}>Login</NavDropdown.Item>
                 </NavDropdown>   
                 </>                 
@@ -120,8 +135,8 @@ const Header:React.FC = () => {
         <>
         <div className="header" id="primary-header" ref={headerRef}>
         <Navbar bg="light" className="py-0" variant="light" expand="lg">
-            <Navbar.Brand className="py-0" href="/">
-                <img className="header--logo" src="./dist/images/logo.png" alt="Trump World Indictment Bingo!" />     
+            <Navbar.Brand className="py-0">
+                <Link to="/"><img className="header--logo" src="/dist/images/logo.png" alt="Trump World Indictment Bingo!" /></Link>     
             </Navbar.Brand>
             <Container>
                 <Navbar.Toggle className="header--toggle"  aria-controls="basic-navbar-nav" />

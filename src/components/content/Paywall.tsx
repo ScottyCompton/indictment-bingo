@@ -1,4 +1,4 @@
-import {PageTitle} from '../components';
+import {PageTitle} from '../UI';
 import {Container, Row, Col} from 'react-bootstrap'
 
 const Paywall:React.FC = () => {
