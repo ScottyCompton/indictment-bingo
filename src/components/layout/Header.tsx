@@ -3,22 +3,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {useAppSelector, useAppDispatch} from '../../hooks'
 import {Navbar, Container, Nav, NavDropdown} from 'react-bootstrap';
 import {app_logoutUser} from '../../appData';
+import {NavItem} from '../../interfaces';
 import { useHistory, withRouter } from "react-router-dom";
 import {LoginModal} from '../../components';
 import {useState, useEffect, useRef} from 'react';
 import appRoutes from '../../fixtures/appRoutes';
 import {v4 as uuid} from 'uuid';
 import {Link} from 'react-router-dom';
-
-export interface NavItem {
-    path?: string;
-    menuTitle?: string;
-    ContentComponent: any;
-    LayoutComponent: any;
-    pageTitle?: string;
-    rootClass?: string;
-    exact?: boolean;
-}
 
 
 const Header:React.FC = () => {
@@ -79,7 +70,7 @@ const Header:React.FC = () => {
 
     const navbarPrimary = () => {
         const navs:NavItem[] = appRoutes.filter((item) => {
-            return item.menuTitle !== undefined ? item.public ? item : user ? item : null :null
+            return item.showInHeader ? item.public ? item : user ? item : null :null
         }); 
 
         

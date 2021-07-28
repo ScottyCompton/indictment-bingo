@@ -247,3 +247,17 @@ export interface PageTitleProps {
     ref?:React.MutableRefObject<any>
     
 }
+
+
+export interface NavItem {
+    path?: string;
+    menuTitle?: string;
+    ContentComponent: any;
+    LayoutComponent: any;
+    SidebarComponents?: any[];
+    pageTitle?: string;
+    rootClass?: string;
+    exact?: boolean;
+    showInHeader: boolean;
+    showInFooter: boolean;
+}

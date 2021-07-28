@@ -5,8 +5,8 @@ const PageTitle:React.FC<PageTitleProps> = (props:PageTitleProps) => {
 
 
     return (
-            <div className="page-title">
-                <h1 ref={ref}>{pageTitle}</h1>
+            <div className="page-title fadeable fade-in">
+                <h2 ref={ref}>{pageTitle}</h2>
             </div>
     )
 }

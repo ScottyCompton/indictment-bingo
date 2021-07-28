@@ -3,11 +3,12 @@ import {Row, Col, Container} from 'react-bootstrap';
 import {PageTitle} from '../UI'
 import {useDynamicContent} from '../../hooks';
 import {useState, useEffect} from 'react';
+import {v4 as uuid} from 'uuid';
 
 
 const ContentWithRightSideBar:React.FC<any> = (props) => {
 
-    const {ContentComponent, pageTitle, rootClass, ...rest} = props;
+    const {ContentComponent, SidebarComponents, pageTitle, rootClass, ...rest} = props;
     const {title:dynTitle, content:dynContent} = useDynamicContent()
     const [data, setData] = useState<{title?:any, content?:any}>();
 
@@ -15,7 +16,7 @@ const ContentWithRightSideBar:React.FC<any> = (props) => {
         let mounted = true;
         if(mounted) {
             setData(() => {
-                const title = pageTitle ? pageTitle : (dynTitle ? dynTitle : 'Some New Page');
+                const title = pageTitle ? pageTitle : (dynTitle ? dynTitle : '...');
                 const content = dynContent ? dynContent : undefined
     
                 return {
@@ -64,7 +65,9 @@ const ContentWithRightSideBar:React.FC<any> = (props) => {
                     <ContentComponent loadParentContent={loadContentFromChild} {...rest} />
                     </Col>
                     <Col xs={12} sm={4} md={4} className="right-sidebar d-none d-sm-block d-md-block">
-                        RIGHT CONTENT GOES HERE
+                    {SidebarComponents && SidebarComponents.map((SidebarComponent:any) => {
+                            return <SidebarComponent key={uuid()} />
+                        })}
                     </Col>
                 </Row>
             </Container>

@@ -1,0 +1,39 @@
+{
+    "homeCards": [{
+            "cardTitle": "How Do I Play?",
+            "desc": "It's so easy, even a Republican can do it",
+            "cardImg": "../dist/images/home/magat.jpg",
+            "linkUrl": "/howitworks"
+        },
+        {
+            "cardTitle": "Meet the Indictables",
+            "desc": "America's greatest scumbag collection",
+            "cardImg": "../dist/images/home/indictables.jpg",
+            "linkUrl": "/subjects"
+        },
+        {
+            "cardTitle": "Indictable News",
+            "desc": "100% real news about 100% fake people",
+            "cardImg": "../dist/images/home/fucker_carlson.jpg",
+            "linkUrl": "/indictable-news"
+        },
+        {
+            "cardTitle": "Indictable Swag",
+            "desc": "Anti-Trump crap you probably don't need",
+            "cardImg": "../dist/images/home/magathat.jpg",
+            "linkUrl": "/indictable-swag"
+        },
+        {
+            "cardTitle": "Keep it going",
+            "desc": "This s*** ain't free, donate you loser",
+            "cardImg": "../dist/images/home/donate.jpg",
+            "linkUrl": "/donate"
+        },
+        {
+            "cardTitle": "But... why?",
+            "desc": "Go ahead - click around and find out.",
+            "cardImg": "../dist/images/subjects/bill_barr.jpg",
+            "linkUrl": "/about"
+        }
+    ]
+}

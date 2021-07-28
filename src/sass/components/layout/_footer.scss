@@ -1,10 +1,26 @@
 .footer {
     left: 0;
     bottom: 0;
-    height: 10vh;
+    height: 100px;
     width: 100%;
     color: white;
     text-align: center;
     margin-top: 5vh;
-    display: none;
+    &__link-container {
+        display: flex;
+        flex-wrap: wrap;
+        width: 40%;
+        margin: 0 auto;
+        min-width: 350px;
+        justify-content: space-around;
+    }
+    &__link {
+        font-size: 0.8rem;
+        padding: 10px;
+        text-decoration: none;
+        text-transform: none;
+        &:hover {
+            color: #ffffff!important;
+        }
+    }
 }

@@ -8,4 +8,19 @@
             height: auto;
         }
     }
+    &__bannercontainer {
+        min-height: 0px;
+    }
+}
+
+.rightcol_topimg {
+    max-width: 500px;
+    position: absolute;
+    float: left;
+    aspect-ratio: 1.24/1;
+    img {
+        width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
 }

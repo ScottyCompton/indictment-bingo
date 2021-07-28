@@ -1,6 +1,6 @@
 import {NotFound, Home, Cards, Subjects, SubjectDetail, Paywall, BasicContent} from '../components/content';
 import {Basic, ContentWithRightSideBar, BasicWithTitle, HomePage} from '../components/templates'
-
+import {TomiLahren} from '../components/sidebar';
 
 const appRoutes =  [
     {
@@ -9,7 +9,9 @@ const appRoutes =  [
         ContentComponent: BasicContent,
         rootClass: "basic-content",
         menuTitle: "How It Works",
-        public: true
+        public: true,
+        showInHeader: true,
+        showInFooter: true
     },    
     {
         path: "/cards", 
@@ -18,7 +20,9 @@ const appRoutes =  [
         ContentComponent: Cards,
         rootClass: "cards",
         menuTitle: "Play Bingo!",
-        public: false
+        public: false,
+        showInHeader: true,
+        showInFooter: true
     },  
     {
         path: "/subjects", 
@@ -26,9 +30,12 @@ const appRoutes =  [
         pageTitle: "Trump World Indictables",  
         LayoutComponent: ContentWithRightSideBar,
         ContentComponent: Subjects,
+        SidebarComponents: [TomiLahren],
         rootClass: "subjects",
         menuTitle: "The Indictables",
-        public: true
+        public: true,
+        showInHeader: true,
+        showInFooter: true
     },      
     {
         path: "/indictable-news",
@@ -36,7 +43,9 @@ const appRoutes =  [
         ContentComponent: BasicContent,
         rootClass: "basic-content",
         menuTitle: "Indictable News",
-        public: true
+        public: true,
+        showInHeader: true,
+        showInFooter: true
     },
     {
         path: "/indictable-swag",
@@ -44,7 +53,9 @@ const appRoutes =  [
         ContentComponent: BasicContent,
         rootClass: "basic-content",
         menuTitle: "Indictable Swag",
-        public: true
+        public: true,
+        showInHeader: true,
+        showInFooter: true
     },
 
     {
@@ -53,7 +64,9 @@ const appRoutes =  [
         ContentComponent: BasicContent,
         rootClass: "basic-content",
         menuTitle: "About Us",
-        public: true
+        public: true,
+        showInHeader: true,
+        showInFooter: true
     },
     {
         path: "/donate",
@@ -61,7 +74,9 @@ const appRoutes =  [
         ContentComponent: BasicContent,
         rootClass: "basic-content",
         menuTitle: "Donate",
-        public: true
+        public: true,
+        showInHeader: true,
+        showInFooter: true
     },                
     {
         path: "/hate-mail", 
@@ -69,7 +84,9 @@ const appRoutes =  [
         ContentComponent: BasicContent,
         rootClass: "basic-content",
         menuTitle: "Hate Mail",
-        public: true
+        public: true,
+        showInHeader: true,
+        showInFooter: true
     },
     
 
@@ -78,30 +95,58 @@ const appRoutes =  [
         LayoutComponent: ContentWithRightSideBar,
         ContentComponent: SubjectDetail,
         rootClass: "subject-detail",
-        public: true
+        public: true,
+        showInHeader: false,
+        showInFooter: false
     },
     {
         path: "/paywall",
         LayoutComponent: Basic,
         ContentComponent: Paywall,
         rootClass: "paywall",
-        public: true
+        public: true,
+        showInHeader: false,
+        showInFooter: false
     },
-
+    {
+        path: "/terms",
+        LayoutComponent: BasicWithTitle,
+        ContentComponent: BasicContent,
+        menuTitle: "Terms Of Service",
+        rootClass: "tos",
+        public: true,
+        showInHeader: false,
+        showInFooter: true
+    },
+    {
+        path: "/privacy",
+        LayoutComponent: BasicWithTitle,
+        ContentComponent: BasicContent,
+        menuTitle: "Privacy Policy",
+        rootClass: "privacy",
+        public: true,
+        showInHeader: false,
+        showInFooter: true
+    },    
     {
         path: "/", 
         exact: true, 
         LayoutComponent: HomePage,
         ContentComponent: Home,
+        SidebarComponents: [TomiLahren],
         rootClass: "home-page",
-        public: true
+        public: true,
+        showInHeader: false,
+        showInFooter: false
     },
     {
         LayoutComponent: ContentWithRightSideBar, 
         pageTitle: "Well.. this is awkward",
         ContentComponent: NotFound,  
         rootClass: "not-found-page",
-        public: true
+        public: true,
+        showInHeader: false,
+        showInFooter: false
     }
         
     ]
