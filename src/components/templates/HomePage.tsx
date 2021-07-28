@@ -1,4 +1,3 @@
-import {Header, Footer, LeaderBoard728X90} from '../../components/layout'
 import {Row, Col, Container} from 'react-bootstrap';
 import {BingoLauncher} from '../UI';
 //import {useAppSelector} from '../../hooks';
@@ -12,8 +11,6 @@ const HomePage:React.FC<any> = (props) => {
 
     return (
         <>
-            <Header />
-            <LeaderBoard728X90 />
             <Container className="content home-page__bannercontainer my-0 px-0 py-0">
                 <Row>
                     <Col xs={12}>
@@ -41,8 +38,6 @@ const HomePage:React.FC<any> = (props) => {
                     </Col>
                 </Row>
             </Container>
-            <LeaderBoard728X90 />
-            <Footer />
         </>
 
     )

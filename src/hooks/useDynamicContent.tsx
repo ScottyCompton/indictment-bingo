@@ -1,28 +1,33 @@
 import {appConfig} from '../helpers';
 import {useState, useEffect} from 'react';
-const useDynamicContent = () => {
+import createDOMPurify from 'dompurify';
+import { JSDOM } from 'jsdom';
+
+const useDynamicContent = (tag?:string) => {
     const location = window.location.pathname;
     const contentId = location.split('/')[location.split('/').length-1]
     const [title, setPageTitle] = useState(null)
     const [content, setPageContent] = useState(null);
-
+    const w:any = (new JSDOM('')).window
+    const DOMPurify = createDOMPurify(w)
 
 
     useEffect(() => {
         let mounted = true;
-
+        const endpoint = tag ? tag : contentId;
         const loadContent = async () => {
             try {
 
-                await fetch(appConfig.apiRoot + '/content/' + contentId)
+                await fetch(appConfig.apiRoot + '/content/' + endpoint)
                     .then(async(retval) => {
                         return await retval.json();
                     })
                     .then((body) => {
                         if(mounted) {
                             if(body._id) {
+                                const txt:any = DOMPurify.sanitize(body.pageContent);
                                 setPageTitle(body.pageTitle);
-                                setPageContent(body.pageContent)
+                                setPageContent(txt)
                             }
                         }
      
@@ -41,7 +46,7 @@ const useDynamicContent = () => {
         }
 
 
-    }, [contentId])
+    }, [contentId, tag, DOMPurify])
 
     return {title, content}
 }

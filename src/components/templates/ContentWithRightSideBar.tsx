@@ -1,4 +1,3 @@
-import {Header, Footer, LeaderBoard728X90} from '../../components/layout'
 import {Row, Col, Container} from 'react-bootstrap';
 import {PageTitle} from '../UI'
 import {useDynamicContent} from '../../hooks';
@@ -44,8 +43,6 @@ const ContentWithRightSideBar:React.FC<any> = (props) => {
 
     return (
         <>
-            <Header />
-            <LeaderBoard728X90 />
             <Container className="content">
                 <Row>
                     <Col xs={12}>
@@ -71,8 +68,7 @@ const ContentWithRightSideBar:React.FC<any> = (props) => {
                     </Col>
                 </Row>
             </Container>
-            <LeaderBoard728X90 />
-            <Footer />
+
         </>
 
     )

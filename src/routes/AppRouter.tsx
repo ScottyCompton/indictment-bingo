@@ -1,4 +1,5 @@
 import {Router, Route, Switch} from 'react-router-dom';
+import {Row, Col, Container} from 'react-bootstrap';
 import {createBrowserHistory} from 'history';
 import AppRoute from './AppRoute';
 import appRoutes from '../fixtures/appRoutes';
@@ -7,6 +8,7 @@ import {LoadingOverlay, ToastNotification, CardGeneratorModal} from '../componen
 import {v4 as uuid} from 'uuid';
 import {useCallback} from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
+import {Header, Footer, LeaderBoard728X90} from '../components/layout'
 
 export const history = createBrowserHistory();
 
@@ -28,21 +30,46 @@ const AppRouter:React.FC<any> = (props:any) => {
                 <ToastNotification />
                 <LoadingOverlay />
                 <CardGeneratorModal />
-                <TransitionGroup className="RTG">
-                <CSSTransition 
-                    key={location.key}
-                    timeout={2000}
-                    classNames="fade"
-                >
-                  <main>
-                    <div className="page">                
-                      <Switch location={location}>
-                      {appRouteList()}
-                      </Switch>
-                  </div>
-                </main>
-                </CSSTransition>
-              </TransitionGroup>                
+                <Container fluid className="p-0 m-0">
+                <Row className="p-0 m-0">
+                    <Col xs={12} className="p-0 m-0">
+                        <Header />
+                    </Col>
+                  </Row>
+                  <Row className="p-0 m-0">
+                    <Col xs={12} className="p-0 m-0">
+                        <LeaderBoard728X90 />                
+                    </Col>
+                  </Row>
+                  <Row className="p-0 m-0">
+                    <Col xs={12} className="p-0 m-0">
+                    <TransitionGroup className="RTG">
+                      <CSSTransition 
+                          key={location.key}
+                          timeout={2000}
+                          classNames="fade"
+                      >
+                        <main>
+                          <div className="page">                
+                            <Switch location={location}>
+                            {appRouteList()}
+                            </Switch>
+                        </div>
+                      </main>
+                      </CSSTransition>
+                    </TransitionGroup>   
+                    </Col>
+                  </Row>
+                  <Row className="p-0 m-0">
+                    <Col xs={12} className="p-0 m-0"><LeaderBoard728X90 /></Col>
+                  </Row>
+                  <Row className="p-0 m-0">
+                    <Col xs={12} className="p-0 m-0"><Footer /></Col>
+                  </Row>
+                </Container>
+                
+               
+              
                 </>
         );
       }} /> 
@@ -54,48 +81,3 @@ const AppRouter:React.FC<any> = (props:any) => {
 export default AppRouter;
 
 
-
-
-
-// import {Router, Route, Switch} from 'react-router-dom';
-// import {NotFound, HomePage, Cards, Subjects, SubjectDetail, Paywall, BasicContent} from '../components/content';
-// import {createBrowserHistory} from 'history';
-// import {Basic, ContentWithRightSideBar, BasicWithTitle} from '../components/templates'
-// import AppRoute from './AppRoute';
-// import {LoadingOverlay, ToastNotification, CardGeneratorModal} from '../components';
-// export const history = createBrowserHistory();
-
-// const AppRouter:React.FC<any> = (props:any) => {
-  
-//   return (
-//     <Router history={history} >
-//     <Route render={({location}) => {
-//         return (
-//                 <>
-//                 <ToastNotification />
-//                 <LoadingOverlay />
-//                 <CardGeneratorModal />
-//                 <Switch location={location}>
-//                   <AppRoute path="/indictable-news" LayoutComponent={BasicWithTitle} ContentComponent={BasicContent} rootClass="basic-content" />
-//                   <AppRoute path="/indictable-swag" LayoutComponent={BasicWithTitle} ContentComponent={BasicContent} rootClass="basic-content" />
-//                   <AppRoute path="/donate" LayoutComponent={ContentWithRightSideBar} ContentComponent={BasicContent} rootClass="basic-content" />
-//                   <AppRoute path="/about" LayoutComponent={BasicWithTitle} ContentComponent={BasicContent} rootClass="basic-content" />
-//                   <AppRoute path="/hate-mail" LayoutComponent={BasicWithTitle} ContentComponent={BasicContent} rootClass="basic-content" />
-//                   <AppRoute path="/whatitis" LayoutComponent={BasicWithTitle} ContentComponent={BasicContent} rootClass="basic-content" />
-//                   <AppRoute path="/howitworks" LayoutComponent={BasicWithTitle} ContentComponent={BasicContent} rootClass="basic-content" />                  
-//                   <AppRoute path="/subjects" exact={true}  pageTitle="Trump World Indictables"  LayoutComponent={ContentWithRightSideBar} ContentComponent={Subjects} rootClass="subjects" />
-//                   <AppRoute path="/subjects/:subjectId" LayoutComponent={ContentWithRightSideBar} ContentComponent={SubjectDetail} rootClass="subject-detail" />
-//                   <AppRoute path="/paywall" LayoutComponent={Basic} ContentComponent={Paywall} rootClass="paywall" />
-//                   <AppRoute path="/cards" exact={true} LayoutComponent={ContentWithRightSideBar} ContentComponent={Cards} rootClass="cards" />
-//                   <AppRoute path="/" exact={true} LayoutComponent={Basic} ContentComponent={HomePage} rootClass="home-page" />
-//                   <AppRoute LayoutComponent={ContentWithRightSideBar} pageTitle="Well.. this is awkward" ContentComponent={NotFound}  rootClass="not-found-page" />
-//                 </Switch>
-//                 </>
-//         );
-//       }} /> 
-//     </Router>)
-
-// };
-
-
-// export default AppRouter;
