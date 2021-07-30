@@ -1,5 +1,6 @@
 import {useAppDispatch, useAppSelector} from './redux-hooks';
 import useEvent from './useEvent';
-import useDynamicContent from './useDynamicContent'
+import useScrollTo from './useScrollTo'
+import useDbContent from './useDbContent';
 
-export {useAppDispatch, useAppSelector, useEvent, useDynamicContent}
+export {useAppDispatch, useAppSelector, useEvent, useScrollTo, useDbContent}

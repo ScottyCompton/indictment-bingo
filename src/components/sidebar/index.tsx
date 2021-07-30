@@ -1,5 +1,9 @@
 import TomiLahren from './TomiLahren'
+import Sidebar from './Sidebar'
+import LatestSubject from './LatestSubject';
 
 export {
-    TomiLahren
+    Sidebar,
+    TomiLahren,
+    LatestSubject
 }

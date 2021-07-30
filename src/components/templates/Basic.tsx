@@ -1,6 +1,8 @@
+import {useScrollTo} from '../../hooks';
 
 const Basic:React.FC<any> = (props) => {
     const {ContentComponent, rootClass, ...rest} = props;
+    useScrollTo(0,0);
 
     return (
         <>

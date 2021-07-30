@@ -59,10 +59,10 @@
         width: 100%;
         aspect-ratio: 1/1;
         border-radius: 50%;
-        filter: invert(1);
+        filter: invert(0);
         transition: filter 0.3s ease-in;
         &.inverted {
-            filter: invert(0);
+            filter: invert(1);
         }
     }
 }

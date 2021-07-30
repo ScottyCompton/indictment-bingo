@@ -5,7 +5,12 @@ import {SubjectCard} from './';
 import {http, appConfig} from '../../helpers';
 import {v4 as uuid} from 'uuid';
 
-const Subjects:React.FC = () => {
+export interface SubjectsListPageProps {
+    loadParentContent: (c:any, v: any) => void;
+}
+
+
+const Subjects:React.FC<SubjectsListPageProps> = (props: SubjectsListPageProps) => {
     const [subjectList, setSubjectList] = useState<Subject[]>([])
     const [currPage, setCurrPage] = useState(1);
     const [subjectsToShow, setSubjectsToShow] = useState<Subject[]>([])
@@ -13,6 +18,7 @@ const Subjects:React.FC = () => {
     const [loaded, setLoaded] = useState(false);
     const pageLen = 5;
 
+ 
     useEffect(() => {
         let mounted = true;
         const loadSubjects = async () => {
@@ -20,7 +26,7 @@ const Subjects:React.FC = () => {
             .then((result) => {
                 if(mounted) {
                     setSubjectList(result);
-                    setLoaded(true);    
+                    setLoaded(true);
                 }
             })
         }
@@ -42,6 +48,13 @@ const Subjects:React.FC = () => {
         })
     }, [subjectList, currPage])
 
+
+
+    // useEffect(() => {
+    //     if(dbContent.isLoaded) {
+    //         props.loadParentContent(dbContent.title, dbContent.content)    
+    //     }
+    // }, [dbContent, props])
 
 
     const paginate = (e:any) => {

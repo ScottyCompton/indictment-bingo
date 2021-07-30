@@ -1,6 +1,7 @@
 import {NotFound, Home, Cards, Subjects, SubjectDetail, Paywall, BasicContent} from '../components/content';
 import {Basic, ContentWithRightSideBar, BasicWithTitle, HomePage} from '../components/templates'
-import {TomiLahren} from '../components/sidebar';
+import {TomiLahren, LatestSubject} from '../components/sidebar';
+// import TestWidget from '../components/sidebar/TestWidget';
 
 const appRoutes =  [
     {
@@ -18,6 +19,7 @@ const appRoutes =  [
         exact: true,
         LayoutComponent: ContentWithRightSideBar,
         ContentComponent: Cards,
+        SidebarComponents: [LatestSubject],
         rootClass: "cards",
         menuTitle: "Play Bingo!",
         public: false,
@@ -133,7 +135,7 @@ const appRoutes =  [
         exact: true, 
         LayoutComponent: HomePage,
         ContentComponent: Home,
-        SidebarComponents: [TomiLahren],
+        SidebarComponents: [TomiLahren, LatestSubject],
         rootClass: "home-page",
         public: true,
         showInHeader: false,

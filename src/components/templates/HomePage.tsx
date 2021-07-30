@@ -1,12 +1,11 @@
 import {Row, Col, Container} from 'react-bootstrap';
 import {BingoLauncher} from '../UI';
-//import {useAppSelector} from '../../hooks';
+import {Sidebar} from '../sidebar';
+import {useScrollTo} from '../../hooks';
 
 const HomePage:React.FC<any> = (props) => {
-    //const user = useAppSelector(state => state.appData.uiState.user)
     const {ContentComponent, SidebarComponents, pageTitle, rootClass, ...rest} = props;
-    // const {title, content} = useDynamicContent()
-
+    useScrollTo(0,0);
 
 
     return (
@@ -25,16 +24,12 @@ const HomePage:React.FC<any> = (props) => {
  
             </Container>            
             <Container className="content mt-0">
-
-
                 <Row>
                     <Col xs={12} sm={8} md={8} className={rootClass}>
                     <ContentComponent {...rest} />
                     </Col>
-                    <Col xs={12} sm={4} md={4} className="right-sidebar d-none d-sm-block d-md-block">
-                        {SidebarComponents && SidebarComponents.map((SidebarComponent:any) => {
-                            return <SidebarComponent />
-                        })}
+                    <Col xs={12} sm={4} md={4} className="sidebar__right d-none d-sm-block d-md-block">
+                        <Sidebar SidebarComponents={SidebarComponents} />
                     </Col>
                 </Row>
             </Container>

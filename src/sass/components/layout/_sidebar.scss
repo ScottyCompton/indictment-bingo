@@ -1,0 +1,90 @@
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    &__widget {
+        width: 100%;
+        h6 {
+            font-family: roboto;
+            font-size: 0.7rem;
+            letter-spacing: 0.1rem;
+            font-weight: 900;
+            text-transform: none;
+            color: #000;
+            @media screen and (max-width: $md-breakpoint) {
+                font-size: .8rem;
+                white-space: nowrap;
+            }
+            @media screen and (max-width: $sm-breakpoint) {
+                font-size: 2rem;
+            }
+        }
+        h6.widget-title {
+            background-color: #0f0f36;
+            color: #ffffff;
+            padding: 5px;
+        }
+        &-text {
+            font-size: 0.8rem;
+            @media screen and (max-width: $sm-breakpoint) {
+                font-size: 1rem;
+            }
+        }
+    }
+    &__right {
+        border-left: 1px solid #c0c0c0;
+    }
+}
+
+.pushdown {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 0.7/1;
+    img {
+        width: 100%;
+        aspect-ratio: 0.7/1;
+    }
+}
+
+.tomi-lahren-widget {
+    max-width: 500px;
+    position: absolute;
+    float: left;
+    aspect-ratio: 1.24/1;
+    z-index: 100;
+    img {
+        width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+}
+
+.latest-subject-widget {
+    .winner {
+        color: #ff0000;
+        font-weight: 900;
+    }
+    &__img {
+        width: 40%;
+        float: left;
+        text-align: center;
+        margin-right: 5px;
+        img {
+            width: 100%;
+        }
+    }
+    &__btns {
+        width: 100%;
+        float: left;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        .btn {
+            padding-top: 0;
+            height: auto;
+            padding-bottom: 0;
+            padding: 3px !important;
+            border-radius: 0;
+            margin-left: 5px;
+        }
+    }
+}

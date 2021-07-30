@@ -1,20 +1,20 @@
 import {useState, useEffect} from 'react';
-
+import {ContentData} from '../../interfaces'
 
 
 
 const BasicContent:React.FC = (props:any) => {
-    const [content, setContent] = useState('')
+    const [dbContent, setDbContent] = useState<ContentData>({title: '', content: '', isLoaded: false})
 
     useEffect(() => {
-        if(props['content']) {
-            setContent(props.content)
+        if(props['dbContent']) {
+            setDbContent(props.dbContent)
         }
     }, [props])
 
     return (
     <>
-      {content}
+      {dbContent.isLoaded && dbContent.content && <div dangerouslySetInnerHTML={{ __html: dbContent.content+'' }} ></div>}
     </>
     )
 }

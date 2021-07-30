@@ -30,7 +30,10 @@ const SubjectDetail:React.FC<SubjectDetailComponentProps> = (props: SubjectDetai
             })
         }
 
-        loadSubjectDetail()
+        if(subjectpath !== '') {
+            loadSubjectDetail()
+        }
+        
 
         return function cleanup() {
             mounted = false;

@@ -1,18 +1,26 @@
-import {useDynamicContent} from '../../hooks';
 import {Row, Col, Container} from 'react-bootstrap';
 import {PageTitle} from '../UI'
+import {useDbContent, useScrollTo} from '../../hooks'
+
 
 
 const BasicWithTitle:React.FC<any> = (props) => {
     const {ContentComponent, pageTitle, rootClass, ...rest} = props;
-    const {title, content} = useDynamicContent();
-    const componentProps = {content:content, ...rest}
+    useScrollTo(0,0);
+
+    const dbContent = useDbContent();
+    
+    const componentProps = {
+        dbContent,
+        ...rest
+    }
+
     return (
         <>
             <Container className="content">
                 <Row>
                     <Col xs={12}>
-                        <PageTitle pageTitle={pageTitle ? pageTitle : (title ? title : ' ')} />
+                        <PageTitle pageTitle={pageTitle ? pageTitle : (dbContent.title ? dbContent.title : ' ')} />
                     </Col>
                 </Row>
                 <Row>

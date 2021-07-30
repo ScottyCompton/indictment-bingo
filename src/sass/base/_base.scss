@@ -23,6 +23,14 @@ body {
     border-radius: 5px;
 }
 
+.btn-primary:hover,
+.btn-secondary:hover,
+.btn-info:hover,
+.btn-warning:hover,
+.btn-success:hover {
+    filter: invert(0.1)!important;
+}
+
 .special {
     font-family: 'Permanent Marker';
 }
@@ -62,4 +70,14 @@ body {
 .navbar.nav-link {
     font-weight: 300!important;
     text-transform: none!important;
+}
+
+.test-widget {
+    display: block;
+    font-size: 0.7rem;
+    position: relative;
+    width: 100%;
+    background-color: rgb(194, 194, 194);
+    border-bottom: 1px solid #c0c0c0;
+    padding: 5px;
 }

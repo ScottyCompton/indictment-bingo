@@ -7397,6 +7397,13 @@ body {
 .btn {
   border-radius: 5px; }
 
+.btn-primary:hover,
+.btn-secondary:hover,
+.btn-info:hover,
+.btn-warning:hover,
+.btn-success:hover {
+  filter: invert(0.1) !important; }
+
 .special {
   font-family: 'Permanent Marker'; }
 
@@ -7430,6 +7437,15 @@ body {
   font-weight: 300 !important;
   text-transform: none !important; }
 
+.test-widget {
+  display: block;
+  font-size: 0.7rem;
+  position: relative;
+  width: 100%;
+  background-color: #c2c2c2;
+  border-bottom: 1px solid #c0c0c0;
+  padding: 5px; }
+
 .content {
   padding: 2%;
   max-width: 1000px;
@@ -7446,13 +7462,13 @@ body {
 .footer {
   left: 0;
   bottom: 0;
-  height: 100px;
   width: 100%;
   color: white;
   text-align: center;
   margin-top: 5vh; }
   .footer__link-container {
     display: flex;
+    padding: 20px 0;
     flex-wrap: wrap;
     width: 40%;
     margin: 0 auto;
@@ -7460,11 +7476,15 @@ body {
     justify-content: space-around; }
   .footer__link {
     font-size: 0.8rem;
-    padding: 10px;
+    padding: 0 4px;
     text-decoration: none;
     text-transform: none; }
     .footer__link:hover {
       color: #ffffff !important; }
+  .footer .copyright {
+    text-transform: none;
+    font-size: 0.7rem;
+    padding: 20px 0; }
 
 .header--logo {
   aspect-ratio: 3.37/1;
@@ -7478,7 +7498,7 @@ body {
 .header--acctnav {
   position: absolute;
   right: 0px;
-  margin-right: 2vw; }
+  margin-right: 4vw; }
   .header--acctnav #header--acctnav {
     color: #000; }
   .header--acctnav__icon {
@@ -7493,12 +7513,87 @@ body {
   content: "";
   height: 350px;
   background-color: #08081d;
+  background: #020024;
+  background: linear-gradient(184deg, #020024 0%, #0f2236 62%);
   position: absolute;
   width: 100%;
   z-index: -1; }
 
-.right-sidebar {
-  border-left: 1px solid #c0c0c0; }
+.sidebar {
+  display: flex;
+  flex-direction: column; }
+  .sidebar__widget {
+    width: 100%; }
+    .sidebar__widget h6, .sidebar__widget .h6 {
+      font-family: roboto;
+      font-size: 0.7rem;
+      letter-spacing: 0.1rem;
+      font-weight: 900;
+      text-transform: none;
+      color: #000; }
+      @media screen and (max-width: 768px) {
+        .sidebar__widget h6, .sidebar__widget .h6 {
+          font-size: .8rem;
+          white-space: nowrap; } }
+      @media screen and (max-width: 576px) {
+        .sidebar__widget h6, .sidebar__widget .h6 {
+          font-size: 2rem; } }
+    .sidebar__widget h6.widget-title, .sidebar__widget .widget-title.h6 {
+      background-color: #0f0f36;
+      color: #ffffff;
+      padding: 5px; }
+    .sidebar__widget-text {
+      font-size: 0.8rem; }
+      @media screen and (max-width: 576px) {
+        .sidebar__widget-text {
+          font-size: 1rem; } }
+  .sidebar__right {
+    border-left: 1px solid #c0c0c0; }
+
+.pushdown {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 0.7/1; }
+  .pushdown img {
+    width: 100%;
+    aspect-ratio: 0.7/1; }
+
+.tomi-lahren-widget {
+  max-width: 500px;
+  position: absolute;
+  float: left;
+  aspect-ratio: 1.24/1;
+  z-index: 100; }
+  .tomi-lahren-widget img {
+    width: 100%;
+    height: auto;
+    cursor: pointer; }
+
+.latest-subject-widget .winner {
+  color: #ff0000;
+  font-weight: 900; }
+
+.latest-subject-widget__img {
+  width: 40%;
+  float: left;
+  text-align: center;
+  margin-right: 5px; }
+  .latest-subject-widget__img img {
+    width: 100%; }
+
+.latest-subject-widget__btns {
+  width: 100%;
+  float: left;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end; }
+  .latest-subject-widget__btns .btn {
+    padding-top: 0;
+    height: auto;
+    padding-bottom: 0;
+    padding: 3px !important;
+    border-radius: 0;
+    margin-left: 5px; }
 
 .card-generator {
   max-width: 1000px;
@@ -7619,10 +7714,10 @@ body {
     width: 100%;
     aspect-ratio: 1/1;
     border-radius: 50%;
-    filter: invert(1);
+    filter: invert(0);
     transition: filter 0.3s ease-in; }
     .home-card-list__img.inverted {
-      filter: invert(0); }
+      filter: invert(1); }
 
 .bingo-card {
   max-width: 700px;
@@ -7949,13 +8044,3 @@ body {
 
 .home-page__bannercontainer {
   min-height: 0px; }
-
-.rightcol_topimg {
-  max-width: 500px;
-  position: absolute;
-  float: left;
-  aspect-ratio: 1.24/1; }
-  .rightcol_topimg img {
-    width: 100%;
-    height: auto;
-    cursor: pointer; }

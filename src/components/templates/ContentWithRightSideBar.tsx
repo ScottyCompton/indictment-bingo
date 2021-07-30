@@ -1,42 +1,25 @@
 import {Row, Col, Container} from 'react-bootstrap';
 import {PageTitle} from '../UI'
-import {useDynamicContent} from '../../hooks';
-import {useState, useEffect} from 'react';
-import {v4 as uuid} from 'uuid';
-
+import {useScrollTo} from '../../hooks';
+import {useState} from 'react';
+import {Sidebar} from '../sidebar';
+import {ContentData} from '../../interfaces'
+import {useDbContent}   from '../../hooks';
 
 const ContentWithRightSideBar:React.FC<any> = (props) => {
 
     const {ContentComponent, SidebarComponents, pageTitle, rootClass, ...rest} = props;
-    const {title:dynTitle, content:dynContent} = useDynamicContent()
-    const [data, setData] = useState<{title?:any, content?:any}>();
+    const [data, setData] = useState<ContentData>({title: '', content: '', isLoaded: false})
+    useScrollTo(0,0);
 
-    useEffect(() => {
-        let mounted = true;
-        if(mounted) {
-            setData(() => {
-                const title = pageTitle ? pageTitle : (dynTitle ? dynTitle : '...');
-                const content = dynContent ? dynContent : undefined
-    
-                return {
-                    title,
-                    content
-                }
-            })    
-        }
-
-        return function cleanup() {
-            mounted = false;
-        }
-
-    }, [dynTitle, dynContent, pageTitle])
-
+    const dbContent = useDbContent();
 
     const loadContentFromChild = (t:any, c:any) => {
         setData(() => {
             return {
                 title: t,
-                content: c
+                content: c,
+                isLoaded: true
             }
         })
     }
@@ -44,31 +27,48 @@ const ContentWithRightSideBar:React.FC<any> = (props) => {
     return (
         <>
             <Container className="content">
-                <Row>
-                    <Col xs={12}>
-                        <PageTitle pageTitle={data?.title} />
-                    </Col>
-                </Row>
-                {data?.content && <>
-                <Row>
-                    <Col xs={12}>{data.content}</Col>
-                </Row>
-                <Row><Col xs={12}><p>&nbsp;</p></Col></Row>
-                    </>
+                {
+                    dbContent.isLoaded && 
+                <>
+                    <Row>
+                        <Col xs={12}>
+                            <PageTitle pageTitle={pageTitle ? pageTitle : (dbContent.title)} />
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col xs={12}>{dbContent.content}</Col>
+                    </Row>
+                    <Row><Col xs={12}><p>&nbsp;</p></Col></Row>
+                </>
                 }
 
+                {!dbContent.isLoaded &&     // do this for a component that loads the template title and an excerpt
+                    <>
+                    <Row>
+                        <Col xs={12}>
+                            <PageTitle pageTitle={pageTitle ? pageTitle : (data.isLoaded && data.title ? data.title : ' ')} />
+                        </Col>
+                    </Row>
+                    {data.isLoaded && data?.content && 
+                    <>
+                    <Row>
+                        <Col xs={12}>{data.content}</Col>
+                    </Row>
+                    <Row><Col xs={12}><p>&nbsp;</p></Col></Row>
+                    </>
+                    }
+                    </>
+                }
+ 
                 <Row>
                     <Col xs={12} sm={8} md={8} className={rootClass}>
-                    <ContentComponent loadParentContent={loadContentFromChild} {...rest} />
+                        <ContentComponent loadParentContent={loadContentFromChild} {...rest} />
                     </Col>
-                    <Col xs={12} sm={4} md={4} className="right-sidebar d-none d-sm-block d-md-block">
-                    {SidebarComponents && SidebarComponents.map((SidebarComponent:any) => {
-                            return <SidebarComponent key={uuid()} />
-                        })}
+                    <Col xs={12} sm={4} md={4} className="d-none d-sm-block d-md-block sidebar__right">
+                        <Sidebar SidebarComponents={SidebarComponents}/>
                     </Col>
                 </Row>
             </Container>
-
         </>
 
     )

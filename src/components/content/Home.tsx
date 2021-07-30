@@ -3,26 +3,30 @@ import {HomeCard} from './'
 import homeCardData from '../../fixtures/homeCards.json'
 import {BingoLauncher} from '../UI';
 import {v4 as uuid} from 'uuid';
-import {useAppSelector, useDynamicContent} from '../../hooks';
+import {useAppSelector} from '../../hooks';
+import {useDbContent} from '../../hooks';
 
 const Home:React.FC = () => {
     const arrCards = homeCardData.homeCards;
     const user = useAppSelector(state => state.appData.uiState.user);
-    const {title, content} = useDynamicContent('home');
+
+    const dbContent = useDbContent('home');
+
 
     return (
         <Container>
             <Row>
-                <Col xs={12}><h1 className="special">{title}</h1>
-                    {<div dangerouslySetInnerHTML={{ __html: content+'' }} ></div>}
-                    {/* It's indictment season in Trump World and it's only a matter of time until your favorite morally-degenerate MAGAt gets a visit from the FBI.  But why should they have all the fun?  Now, you can play along with the rest of the country as they're perp-walked to the court house when you play <strong className="superstrong">Trump World Indictment Bingo!</strong>. */}
+                <Col xs={12}>
+                    <h5 style={{paddingBottom: '20px'}}>{dbContent.isLoaded && dbContent.title}</h5>
+                    {dbContent.isLoaded && <div dangerouslySetInnerHTML={{ __html: dbContent.content +'' }} ></div>}
+                    
                 </Col>
             </Row>
             <Row><Col><p>&nbsp;</p></Col></Row>
             <Row>
                 <Col xs={12}>
-                {user && <BingoLauncher><Button type="button" className="btn btn-lg big-button form-control btn-success">CREATE A NEW BINGO CARD NOW</Button></BingoLauncher>}
-                {!user && <BingoLauncher><Button type="button" className="btn btn-lg big-button form-control btn-success">LOGIN AND PLAY NOW</Button></BingoLauncher>}
+                {user && <BingoLauncher><Button type="button" className="btn btn-lg big-button form-control btn-primary">CREATE A NEW BINGO CARD NOW</Button></BingoLauncher>}
+                {!user && <BingoLauncher><Button type="button" className="btn btn-lg big-button form-control btn-primary">LOGIN AND PLAY NOW</Button></BingoLauncher>}
 
                     
                                     

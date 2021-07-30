@@ -261,3 +261,10 @@ export interface NavItem {
     showInHeader: boolean;
     showInFooter: boolean;
 }
+
+
+export interface ContentData {
+    title: string | null;
+    content: string | null;
+    isLoaded: boolean;
+}

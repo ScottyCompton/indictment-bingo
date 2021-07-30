@@ -93,8 +93,7 @@ const Header:React.FC = () => {
                 <>
                 <div className="header--acctnav__icon"><FontAwesomeIcon icon={faUser} /></div>
                 <NavDropdown title={fName} id="header-acctnav">
-                <NavDropdown.Item as={Link} to="/account">Your Account</NavDropdown.Item>
-                <NavDropdown.Item as={Link} to="/cards">Play Bingo!</NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/cards">Your Saved Cards</NavDropdown.Item>
                 <NavDropdown.Item href="#logout" onClick={handleLogout}>Logout</NavDropdown.Item>
                 </NavDropdown>
                 </>                    
