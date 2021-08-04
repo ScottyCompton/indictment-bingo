@@ -1,3 +1,9 @@
+@import "bingo_card";
+@import "subject_tile";
+@import "preload_screen";
+@import "probability_report";
+@import "tile_popover";
+@import "card_generator_modal";
 .card-generator {
     max-width: 1000px;
     width: 100%;

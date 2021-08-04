@@ -11,7 +11,7 @@ const HomePage:React.FC<any> = (props) => {
     return (
         <>
             <Container className="content home-page__bannercontainer my-0 px-0 py-0">
-                <Row>
+                <Row className="d-none d-sm-block d-md-block">
                     <Col xs={12}>
                         <div className="home-page__banner">
                             <BingoLauncher>

@@ -1,0 +1,30 @@
+{
+
+    "appBreakpoints": [{
+            "size": "XS",
+            "min": 0,
+            "max": 576
+        },
+        {
+            "size": "SM",
+            "min": 577,
+            "max": 768
+        },
+        {
+            "size": "MD",
+            "min": 769,
+            "max": 992
+        },
+        {
+            "size": "LG",
+            "min": 993,
+            "max": 1200
+        },
+        {
+            "size": "XL",
+            "min": 1201,
+            "max": 10000
+        }
+
+    ]
+}

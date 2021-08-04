@@ -1,4 +1,3 @@
-import InfoScreen from './InfoScreen';
 import PreLoadScreen from './PreLoadScreen';
 import GenerateScreen from './GenerateScreen';
 import SubjectTile from './SubjectTile';
@@ -53,5 +52,5 @@ const CardGenerator:React.FC<CardGeneratorProps> = (props:CardGeneratorProps) =>
 }
 
 
-export  {InfoScreen, PreLoadScreen, GenerateScreen, SubjectTile}
+export  {PreLoadScreen, GenerateScreen, SubjectTile}
 export default CardGenerator;

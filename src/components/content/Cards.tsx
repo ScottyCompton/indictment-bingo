@@ -22,11 +22,7 @@ const Cards:React.FC = () => {
                     <UserCardList handleTileClick={handleTileClick} />
                </Col>
            </Row>
-           <Row>
-               <Col xs={12}>
-                    <p>&nbsp;</p>
-               </Col>
-           </Row>
+
            <Row>
                <Col xs={12} className="text-center">
                     <div className="d-grid gap-2">
@@ -36,6 +32,11 @@ const Cards:React.FC = () => {
                     </div>
                </Col>
            </Row>
+           <Row>
+               <Col xs={12}>
+                    <p>&nbsp;</p>
+               </Col>
+           </Row>           
        </Container>
 
                

@@ -69,26 +69,26 @@ const ModalButtons:React.FC<ModalButtonProps> = (props:ModalButtonProps) => {
                     {(enabled && screen==='PRELOAD') && <Button variant="btn btn-sm btn-success" onClick={handleGetCard}>Get Your Card!</Button>}
                     {(rollComplete && !showReport && screen==='GENERATE') && <Button variant="btn btn-sm btn-warning text-primary" onClick={handleViewReport}>So Much Winning!</Button>}
                     {(rollComplete && showReport && screen==='GENERATE') && <Button variant="btn btn-sm btn-warning text-primary" onClick={handleViewCard}>View Card</Button>}
-                    {(rollComplete && screen==='GENERATE') && <Button variant="btn btn-sm btn-secondary" onClick={handleCloseClick}>Close without saving</Button>}
-                    {(!rollComplete && screen==='GENERATE') && <Button variant="btn btn-sm btn-secondary" onClick={handleCloseClick}>Cancel</Button>}
-                    {(!rollComplete && screen==='PRELOAD') && <Button variant="btn btn-sm btn-secondary" onClick={handleCloseClick}>Cancel</Button>}
+                    {(rollComplete && screen==='GENERATE') && <Button variant="btn btn-sm btn-primary" onClick={handleCloseClick}>Close without saving</Button>}
+                    {(!rollComplete && screen==='GENERATE') && <Button variant="btn btn-sm btn-primary" onClick={handleCloseClick}>Cancel</Button>}
+                    {(!rollComplete && screen==='PRELOAD') && <Button variant="btn btn-sm btn-primary" onClick={handleCloseClick}>Cancel</Button>}
 
                     <Modal 
                         show={confirmCancel} 
                         centered aria-labelledby="contained-modal-title-vcenter" 
-                        contentClassName="bg-secondary round-corners"
+                        contentClassName="bg-lignt round-corners confirm-modal"
                         onHide={handleCancel} 
                         size="sm"
                         animation={true}>
                         <Modal.Header>
                             <h6>Exit without saving?</h6>
                         </Modal.Header>
-                        <Modal.Body >Are you sure you want to exit without saving?</Modal.Body>
+                        <Modal.Body className="text-primary text-center">Are you sure you want to exit without saving?</Modal.Body>
                         <Modal.Footer>
-                        <Button variant="btn btn-warning btn-sm text-primary" onClick={handleContinue}>
+                        <Button variant="btn btn-success btn-sm text-primary" onClick={handleContinue}>
                             Continue
                         </Button>
-                        <Button variant="btn btn-primary btn-sm" onClick={handleCancel}>
+                        <Button variant="btn btn-light btn-sm" onClick={handleCancel}>
                             Exit without saving
                         </Button>
                         </Modal.Footer>

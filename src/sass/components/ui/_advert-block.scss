@@ -28,3 +28,18 @@
         margin: 20px auto;
     }
 }
+
+.leaderboard-350x100 {
+    max-width: 350px;
+    width: 100%;
+    margin: 30px auto;
+    max-height: 100px;
+    aspect-ratio: 3.5/1;
+    display: block;
+    background-color: #c0c0c0;
+    position: relative;
+    img {
+        height: 100%;
+        width: auto;
+    }
+}

@@ -11,3 +11,20 @@
     -webkit-box-shadow: 7px 7px 6px -4px rgba(0, 0, 0, 0.7);
     box-shadow: 7px 7px 6px -4px rgba(0, 0, 0, 0.7);
 }
+
+.confirm-modal {
+    @media screen and (max-width: $sm-breakpoint) {
+        width: 90%;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (max-width: $sm-breakpoint) {
+    #cardgen-modal {
+        margin: 0;
+    }
+    .confirm-modal {
+        width: 90%;
+        margin: 0 auto;
+    }
+}

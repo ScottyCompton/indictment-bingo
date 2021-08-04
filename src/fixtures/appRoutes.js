@@ -32,7 +32,7 @@ const appRoutes =  [
         pageTitle: "Trump World Indictables",  
         LayoutComponent: ContentWithRightSideBar,
         ContentComponent: Subjects,
-        SidebarComponents: [TomiLahren],
+        SidebarComponents: [TomiLahren, LatestSubject],
         rootClass: "subjects",
         menuTitle: "The Indictables",
         public: true,

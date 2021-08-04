@@ -8,13 +8,13 @@ import {LoadingOverlay, ToastNotification, CardGeneratorModal} from '../componen
 import {v4 as uuid} from 'uuid';
 import {useCallback} from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
-import {Header, Footer, LeaderBoard728X90} from '../components/layout'
-
+import {Header, Footer, HorizPageAd, NoLandscape} from '../components/layout'
 export const history = createBrowserHistory();
 
 const AppRouter:React.FC<any> = (props:any) => {
   const user = useAppSelector(state => state.appData.uiState.user);
-  
+  // useLockOrientation()
+
   const appRouteList = useCallback(() => {
     return appRoutes.map((props) => {
       return props.public ? <AppRoute key={uuid()} {...props} /> : user ? <AppRoute key={uuid()} {...props} /> : null
@@ -27,6 +27,8 @@ const AppRouter:React.FC<any> = (props:any) => {
     <Route render={({location}) => {
         return (
                 <>
+                <NoLandscape />
+                <div className="app">
                 <ToastNotification />
                 <LoadingOverlay />
                 <CardGeneratorModal />
@@ -38,7 +40,7 @@ const AppRouter:React.FC<any> = (props:any) => {
                   </Row>
                   <Row className="p-0 m-0">
                     <Col xs={12} className="p-0 m-0">
-                        <LeaderBoard728X90 />                
+                        <HorizPageAd />                
                     </Col>
                   </Row>
                   <Row className="p-0 m-0">
@@ -61,13 +63,13 @@ const AppRouter:React.FC<any> = (props:any) => {
                     </Col>
                   </Row>
                   <Row className="p-0 m-0">
-                    <Col xs={12} className="p-0 m-0"><LeaderBoard728X90 /></Col>
+                    <Col xs={12} className="p-0 m-0"><HorizPageAd /></Col>
                   </Row>
                   <Row className="p-0 m-0">
                     <Col xs={12} className="p-0 m-0"><Footer /></Col>
                   </Row>
                 </Container>
-                
+                </div>
                
               
                 </>

@@ -12,6 +12,22 @@ body {
     height: 100%;
 }
 
+.app {
+    @media screen and (max-height: 450px) and (max-width: $lg-breakpoint) and (orientation: landscape) {
+        display: none;
+    }
+}
+
+html.rotate-90 {
+    transform: rotate(-90deg);
+    transform-origin: left top;
+    width: 100vh;
+    overflow-x: hidden;
+    position: absolute;
+    top: 100%;
+    left: 0;
+}
+
 body {
     background-size: contain;
     background-repeat: repeat;

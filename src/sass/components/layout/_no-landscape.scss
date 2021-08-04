@@ -1,0 +1,24 @@
+.no-landscape {
+    opacity: 0;
+    z-index: -100;
+    background-color: #000;
+    transition: all 1s ease-in;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    &__message {
+        position: relative;
+        width: 70%;
+        margin: 30vh auto;
+        color: white;
+        text-align: center;
+    }
+    &__undo {
+        margin-bottom: 20px;
+        color: darkgreen;
+    }
+    @media screen and (max-height: 450px) and (max-width: $lg-breakpoint) and (orientation: landscape) {
+        opacity: 1;
+        z-index: 1500;
+    }
+}
