@@ -3,9 +3,8 @@ import {HomeCard} from './'
 import homeCardData from '../../fixtures/homeCards.json'
 import {BingoLauncher} from '../UI';
 import {v4 as uuid} from 'uuid';
-import {useAppSelector} from '../../hooks';
-import {useDbContent} from '../../hooks';
-import './testing.js';
+import {useAppSelector, useDbContent} from '../../hooks';
+
 
 const Home:React.FC = () => {
     const arrCards = homeCardData.homeCards;

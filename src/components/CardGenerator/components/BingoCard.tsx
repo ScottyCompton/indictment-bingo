@@ -1,12 +1,14 @@
 import {useState, useEffect, useCallback, useMemo} from 'react';
-import SubjectTile from './SubjectTile';
+import {SubjectTile} from '../';
 import {v4 as uuid} from 'uuid';
-import {Subject, SelectedSubject, BingoCardProps} from '../../interfaces';
-//import PlayAgainButton from './PlayAgainButton'
-import {useAppDispatch, useAppSelector} from '../../hooks';
-import {cardgen_updateSelected, cardgen_queuemusic, cardgen_disableRoll, cardgen_updateCompletedTileCount} from '../../appData';
-//import ProbabilitReport from './ProbabilityReport';
-import {appConfig} from '../../helpers'
+import {Subject, SelectedSubject, BingoCardProps} from '../interfaces';
+import {useAppDispatch, useAppSelector} from '../hooks';
+import {
+        cardgen_updateSelected, 
+        cardgen_queuemusic, 
+        cardgen_disableRoll, 
+        cardgen_updateCompletedTileCount} from '../appData';
+import {appConfig} from '../helpers'
 
 
 
@@ -15,8 +17,8 @@ const BingoCard:React.FC<BingoCardProps> = (props:BingoCardProps) => {
     const {subjects} = useAppSelector(state => state.cardGenData);
     const {enabled, selectedSubjects} = useAppSelector(state => state.cardGenData.uiState);
     const [aryTiles, setArrayTiles] = useState<Subject[]>()
-    const {cardId} = props;
-    const {savedCards} = useAppSelector(state => state.cardData)
+    const {cardId, cardData} = props;
+    // const {savedCards} = useAppSelector(state => state.cardData)
     const [cardStyle, setCardStyle] = useState({})
     const showReport = useAppSelector(state => state.cardGenData.uiState.showReport)
     const [rootClass, setRootClass] = useState('subjects fade-in')
@@ -147,15 +149,15 @@ const BingoCard:React.FC<BingoCardProps> = (props:BingoCardProps) => {
             dispatch(cardgen_queuemusic());
             getSelectedSubjects();
         } else {
-            if(savedCards) {
-                const card = savedCards?.filter(item => item._id === cardId)[0];
+            if(cardData) {
+                //const card = savedCards?.filter(item => item._id === cardId)[0];
                 setArrayTiles((prevState) => {
-                    return card.selectedSubjects
+                    return cardData.selectedSubjects
                 })
             }
         }
  
-    }, [getSelectedSubjects, dispatch, subjects.length, cardId, savedCards])
+    }, [getSelectedSubjects, dispatch, subjects.length, cardId, cardData])
 
 
     return (

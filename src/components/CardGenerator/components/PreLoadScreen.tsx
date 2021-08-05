@@ -1,8 +1,8 @@
 import {useState, useEffect} from 'react';
-import statusVals from '../../fixtures/statusValues.json';
-import {useAppDispatch} from '../../hooks';
-import {PreloadScreenProps} from '../../interfaces';
-import {cardgen_enableRoll} from '../../appData'
+import statusVals from '../fixtures/statusValues.json';
+import {useAppDispatch} from '../hooks';
+import {PreloadScreenProps} from '../interfaces';
+import {cardgen_enableRoll} from '../appData'
 
 const PreLoadScreen:React.FC<PreloadScreenProps> = (props:PreloadScreenProps) => {
     const [status, setStatus] = useState({statusVal: 0, statusText: 'Here we go...'});

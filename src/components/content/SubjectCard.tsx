@@ -2,7 +2,6 @@ import {Subject} from '../../interfaces'
 import probabilityValues from '../../fixtures/probabilityValues.json';
 import { withRouter, useHistory } from "react-router-dom";
 import {RouteComponentProps} from 'react-router'
-
 export interface SubjectCardProps extends RouteComponentProps<any> {
     data: Subject;
 }

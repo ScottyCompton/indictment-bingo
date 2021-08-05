@@ -1,21 +1,8 @@
 import {store} from './store'
 
 import {
-    cardgen_loadData, 
-    cardgen_navigate, 
-    cardgen_updateSelected, 
-    cardgen_updateCompletedTileCount,
-    cardgen_reeinitialize,
-    cardgen_killmusic,
-    cardgen_downloadCard,
-    cardgen_queuemusic,
-    cardgen_enableRoll,
-    cardgen_showReport,
-    cardgen_showCard,
-    cardgen_saveCardData,
-    cardgen_showGenerator,
-    cardgen_closeGenerator,
-    cardgen_disableRoll} from './cardGenDataActions';
+    cardgen_showGenerator
+} from '../components/CardGenerator/appData';
 
 import {
     app_loginUser,
@@ -35,20 +22,7 @@ import {
 } from './cardDataActions'
 
 export  {
-    cardgen_loadData, 
-    cardgen_navigate, 
-    cardgen_updateSelected, 
-    cardgen_updateCompletedTileCount,
-    cardgen_reeinitialize,
-    cardgen_killmusic,
-    cardgen_queuemusic,
-    cardgen_enableRoll,
-    cardgen_disableRoll,
-    cardgen_showGenerator,
-    cardgen_showReport,
-    cardgen_showCard,
-    cardgen_saveCardData,
-    cardgen_downloadCard,
+ 
     app_loginUser,
     app_loadUserCardData,
     app_refreshUserSession,
@@ -60,5 +34,5 @@ export  {
     card_loadCardData,
     card_deleteCard,
     card_updateDownloadCount,
-    cardgen_closeGenerator,
+    cardgen_showGenerator,
     store};

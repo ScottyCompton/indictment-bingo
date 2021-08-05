@@ -1,8 +1,8 @@
-import {SubjectTileProps} from '../../interfaces';
+import {SubjectTileProps} from '../interfaces';
 import {useState, useRef} from 'react';
-import {useAppSelector} from '../../hooks';
+import {useAppSelector} from '../hooks';
 import TilePopover from './TilePopover';
-import {appConfig} from '../../helpers'
+import {appConfig} from '../helpers'
 
 const SubjectTile:React.FC<SubjectTileProps> = (props:SubjectTileProps) => {
     const popoverContainerRef = useRef(null); 

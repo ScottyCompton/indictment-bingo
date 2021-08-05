@@ -1,11 +1,11 @@
 import {Button} from 'react-bootstrap';
-import {ModalButtonProps} from '../../interfaces';
-import {useAppDispatch, useAppSelector} from '../../hooks';
-import {cardgen_navigate, cardgen_showReport, cardgen_showCard} from '../../appData';
+import {ModalButtonProps} from '../interfaces';
+import {useAppDispatch, useAppSelector} from '../hooks';
+import {cardgen_navigate, cardgen_showReport, cardgen_showCard} from '../appData';
 import {useEffect, useState} from 'react'
 import useSound from 'use-sound';
 import {Modal} from 'react-bootstrap'
-import {appConfig} from '../../helpers';
+import {appConfig} from '../helpers';
 
 
 const ModalButtons:React.FC<ModalButtonProps> = (props:ModalButtonProps) => {

@@ -1,4 +1,4 @@
-import CardGeneratorModal from './CardGeneratorModal';
+import {CardGeneratorModal} from './CardGenerator';
 import Header from './layout/Header'
 import Footer from './layout/Footer'
 import LoginModal from './LoginModal';

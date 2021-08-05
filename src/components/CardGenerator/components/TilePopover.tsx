@@ -1,8 +1,8 @@
 import {Popover, Overlay} from 'react-bootstrap';
-import {TilePopoverProps} from '../../interfaces';
+import {TilePopoverProps} from '../interfaces';
 import {useRef} from 'react';
-import {appConfig} from '../../helpers';
-import probabilityValues from '../../fixtures/probabilityValues.json';
+import {appConfig} from '../helpers';
+import probabilityValues from '../../../fixtures/probabilityValues.json';
 
 
 

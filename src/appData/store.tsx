@@ -1,5 +1,5 @@
 import {configureStore} from '@reduxjs/toolkit';
-import cardGenDataReducer from './cardGenDataSlice';
+import cardGenDataReducer from '../components/CardGenerator/appData/cardGenDataSlice';
 import appDataReducer from './appDataSlice';
 import cardDataReducer from './cardDataSlice'
 

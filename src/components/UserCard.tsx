@@ -4,7 +4,8 @@ import {UserCardProps} from '../interfaces/';
 import {useState, useEffect} from 'react';
 import {Col, Row, Container} from 'react-bootstrap'
 import {Modal, Button} from 'react-bootstrap';
-import {card_deleteCard, cardgen_showGenerator, cardgen_downloadCard, app_setIsLoading} from '../appData';
+import {cardgen_showGenerator, cardgen_downloadCard} from '../components/CardGenerator/appData';
+import {card_deleteCard, app_setIsLoading} from '../appData';
 import {useAppDispatch} from '../hooks'
 import {appConfig} from '../helpers';
 import UserCardButton from './UserCardButton';

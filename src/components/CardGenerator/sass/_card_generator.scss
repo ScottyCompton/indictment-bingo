@@ -1,0 +1,17 @@
+@import "node_modules/bootswatch/dist/lux/variables";
+@import "node_modules/bootstrap/scss/bootstrap";
+@import "node_modules/bootswatch/dist/lux/bootswatch";
+@import "./variables/variables";
+@import "./components/bingo_card";
+@import "./components/subject_tile";
+@import "./components/preload_screen";
+@import "./components/probability_report";
+@import "./components/tile_popover";
+@import "./components/card_generator_modal";
+.card-generator {
+    max-width: 1000px;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    padding: 0 1%;
+}

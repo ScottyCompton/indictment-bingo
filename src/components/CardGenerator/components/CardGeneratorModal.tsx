@@ -1,11 +1,11 @@
 import {Modal} from 'react-bootstrap';
-import CardGenerator from '../CardGenerator'
+import CardGenerator from './CardGenerator'
 import ModalButtons from './ModalButtons';
-import {UserCard} from '../../interfaces';
-import {useAppSelector, useAppDispatch} from '../../hooks'
+import {UserCard} from '../interfaces';
+import {useAppSelector, useAppDispatch} from '../hooks';
 import {Button} from 'react-bootstrap'
-import {cardgen_saveCardData, cardgen_closeGenerator} from '../../appData'
-import {appConfig} from '../../helpers';
+import {cardgen_saveCardData, cardgen_closeGenerator} from '../appData'
+import {appConfig} from '../helpers';
 import {useEffect, useState} from 'react';
 import useSound from 'use-sound';
 
@@ -82,7 +82,6 @@ const CardGeneratorModal:React.FC = () => {
         <Modal.Header>
           {!cardId && 
             <h6 className="text-warning">
-              {screen === 'SPLASH' && <span>Trump World Indictment Bingo</span>}
               {screen === 'PRELOAD' && <span>Indictments are coming... please wait</span>}
               {(screen === 'GENERATE' && !rollComplete) && <span>Generating your Bingo card... please wait</span>}
               {(screen === 'GENERATE' && rollComplete) && <span>Your card is ready!</span>}

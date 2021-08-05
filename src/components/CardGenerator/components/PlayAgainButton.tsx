@@ -1,6 +1,6 @@
-import {useAppSelector, useAppDispatch} from '../../hooks';
-import {cardgen_reeinitialize} from '../../appData';
-import {PlayAgainButtonProps} from '../../interfaces'
+import {useAppSelector, useAppDispatch} from '../hooks';
+import {cardgen_reeinitialize} from '../appData';
+import {PlayAgainButtonProps} from '../interfaces';
 
 
 

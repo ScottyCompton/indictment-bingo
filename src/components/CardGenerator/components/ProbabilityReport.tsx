@@ -1,7 +1,7 @@
 import {Container, Row, Col} from 'react-bootstrap';
-import {useAppSelector} from '../../hooks';
-import {ProbabilityReportProps, ProbabilityMatrixProps} from '../../interfaces';
-import probabilityValues from '../../fixtures/probabilityValues.json';
+import {useAppSelector} from '../hooks';
+import {ProbabilityReportProps, ProbabilityMatrixProps} from '../interfaces';
+import probabilityValues from '../../../fixtures/probabilityValues.json';
 import {v4 as uuid} from 'uuid';
 import {useEffect, useState, useRef} from 'react';
 
@@ -9,8 +9,8 @@ import {useEffect, useState, useRef} from 'react';
 
 const ProbabilityReport:React.FC<ProbabilityReportProps> = (props:ProbabilityReportProps) => {
     const stateMatrix = useAppSelector(state => state.cardGenData.uiState.probabilityMatrix);
-    const {savedCards} = useAppSelector(state => state.cardData);
-    const {cardId} = props;
+    // const {savedCards} = useAppSelector(state => state.cardData);
+    const {cardId, cardData} = props;
     const showReport = useAppSelector(state => state.cardGenData.uiState.showReport)
     const [rootClass, setRootClass] = useState('probability-report fade-in');
     const [matrix, setMatrix] = useState<ProbabilityMatrixProps>()
@@ -18,7 +18,6 @@ const ProbabilityReport:React.FC<ProbabilityReportProps> = (props:ProbabilityRep
 
     const arrProbs = probabilityValues.cardVals;
     const {rollComplete} = useAppSelector(state => state.cardGenData.uiState)
-    //const [rootStyle, setRootStyle] = useState<any>(null)
     const ref = useRef<HTMLDivElement>(null)
 
     const rowLtr = (i:number) => {
@@ -37,14 +36,13 @@ const ProbabilityReport:React.FC<ProbabilityReportProps> = (props:ProbabilityRep
 
     useEffect(() => {
         if(cardId) {
-            const card = savedCards?.filter(item => item._id === cardId)[0];
-            if(card?.probabilityMatrix) {
-                setMatrix(JSON.parse(card?.probabilityMatrix))
+            if(cardData?.probabilityMatrix) {
+                setMatrix(JSON.parse(cardData?.probabilityMatrix))
             }
         } else {
             setMatrix(stateMatrix)
         }
-    }, [cardId, stateMatrix, savedCards])
+    }, [cardId, stateMatrix, cardData])
 
 
 

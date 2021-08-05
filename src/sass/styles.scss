@@ -4,6 +4,7 @@
 @import "node_modules/bootswatch/dist/lux/variables";
 @import "node_modules/bootstrap/scss/bootstrap";
 @import "node_modules/bootswatch/dist/lux/bootswatch";
+@import "../components/CardGenerator/sass/card_generator";
 @import "variables/variables";
 @import "base/base";
 @import "components/layout/content";
@@ -14,7 +15,6 @@
 @import "components/subject_card";
 @import "components/user_card_list";
 @import "components/home_card_list";
-@import "components/card_generator/card_generator";
 @import "components/ui/pagetitle";
 @import "components/ui/page_fade";
 @import "components/loading-overlay";
