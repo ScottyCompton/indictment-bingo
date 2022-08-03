@@ -15033,38 +15033,29 @@ body {
     font-size: 0.7rem;
     padding: 20px 0; }
 
-.header--logo {
-  aspect-ratio: 3.37/1;
-  max-height: 75px; }
-
-.header--toggle {
-  position: absolute;
-  top: 20px;
-  right: 0px; }
-
-.header--acctnav {
-  position: absolute;
-  right: 0px;
-  margin-right: 4vw; }
-  .header--acctnav #header--acctnav {
-    color: #000; }
-  .header--acctnav__icon {
-    position: relative;
-    top: 10px;
-    margin-right: 5px;
-    color: #1b1b66; }
-  .header--acctnav__userinfo {
-    display: flex; }
-
-.header::after {
-  content: "";
-  height: 350px;
-  background-color: #08081d;
-  background: #020024;
-  background: linear-gradient(184deg, #020024 0%, #0f2236 62%);
-  position: absolute;
-  width: 100%;
-  z-index: -1; }
+.header {
+  max-width: 1000px;
+  margin: 0 auto !important; }
+  .header--logo {
+    aspect-ratio: 3.37/1;
+    max-height: 75px; }
+  .header--toggle {
+    position: absolute;
+    top: 20px;
+    right: 0px; }
+  .header--acctnav {
+    position: absolute;
+    right: 0px;
+    margin-right: 4vw; }
+    .header--acctnav #header--acctnav {
+      color: #000; }
+    .header--acctnav__icon {
+      position: relative;
+      top: 10px;
+      margin-right: 5px;
+      color: #1b1b66; }
+    .header--acctnav__userinfo {
+      display: flex; }
 
 .sidebar {
   display: flex;

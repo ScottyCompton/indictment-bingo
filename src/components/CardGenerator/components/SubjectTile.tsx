@@ -8,7 +8,7 @@ const SubjectTile:React.FC<SubjectTileProps> = (props:SubjectTileProps) => {
     const popoverContainerRef = useRef(null); 
     const imgRef = useRef(null);
     const [showPopover, setShowPopover] = useState(false);
-    const rollComplete = useAppSelector(state => state.cardGenData.uiState.rollComplete);
+    const rollComplete:any = useAppSelector(state => state.cardGenData.uiState.rollComplete);
     const cardId = useAppSelector(state => state.cardGenData.uiState.cardId)
 
     const {subject, idx} = props;

@@ -32,7 +32,7 @@ const Home:React.FC = () => {
             </Row>
             <Row>
                 <Col xs={12}>
-                {user && <BingoLauncher><Button type="button" className="btn btn-lg big-button form-control btn-warning">CREATE A NEW BINGO CARD NOW</Button></BingoLauncher>}
+                {user && <BingoLauncher><Button type="button" className="btn btn-lg big-button form-control btn-warning">CREATE NEW BINGO CARD</Button></BingoLauncher>}
                 {!user && <BingoLauncher><Button type="button" className="btn btn-lg big-button form-control btn-warning">LOGIN AND PLAY NOW</Button></BingoLauncher>}
 
                     

@@ -66,7 +66,7 @@ const ModalButtons:React.FC<ModalButtonProps> = (props:ModalButtonProps) => {
 
             {!cardId && 
                 <>
-                    {(enabled && screen==='PRELOAD') && <Button variant="btn btn-sm btn-success" onClick={handleGetCard}>Get Your Card!</Button>}
+                    {(enabled && screen==='PRELOAD') && <Button variant="btn btn-sm btn-warning" onClick={handleGetCard}>Get Your Card!</Button>}
                     {(rollComplete && !showReport && screen==='GENERATE') && <Button variant="btn btn-sm btn-warning text-primary" onClick={handleViewReport}>So Much Winning!</Button>}
                     {(rollComplete && showReport && screen==='GENERATE') && <Button variant="btn btn-sm btn-warning text-primary" onClick={handleViewCard}>View Card</Button>}
                     {(rollComplete && screen==='GENERATE') && <Button variant="btn btn-sm btn-primary" onClick={handleCloseClick}>Close without saving</Button>}
@@ -85,7 +85,7 @@ const ModalButtons:React.FC<ModalButtonProps> = (props:ModalButtonProps) => {
                         </Modal.Header>
                         <Modal.Body className="text-primary text-center">Are you sure you want to exit without saving?</Modal.Body>
                         <Modal.Footer>
-                        <Button variant="btn btn-success btn-sm text-primary" onClick={handleContinue}>
+                        <Button variant="btn btn-warning btn-sm text-primary" onClick={handleContinue}>
                             Continue
                         </Button>
                         <Button variant="btn btn-light btn-sm" onClick={handleCancel}>

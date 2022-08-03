@@ -90,7 +90,7 @@ const CardGeneratorModal:React.FC = () => {
           {cardId && 
             <h6 className="text-warning">Your Saved Bingo Card</h6>
           }
-          {!cardId && (rollComplete && screen==='GENERATE') && <Button variant="btn btn-sm btn-success btn-sm" onClick={handleSaveCard}>Save Card</Button>}          
+          {!cardId && (rollComplete && screen==='GENERATE') && <Button variant="btn btn-sm btn-warning btn-sm" onClick={handleSaveCard}>Save Card</Button>}          
         </Modal.Header>
         <Modal.Body className="card-generator-modal__body">
           <CardGenerator cardId={cardId} />

@@ -18,7 +18,7 @@ const PlayAgainButton:React.FC<PlayAgainButtonProps> = (props:PlayAgainButtonPro
 
     return (
         <div>
-            {rollComplete && <button onClick={handleClick} className="btn btn-success big-button form-control">SAVE THIS CARD</button>}
+            {rollComplete && <button onClick={handleClick} className="btn btn-warning big-button form-control">SAVE THIS CARD</button>}
         </div>
     )
 }
